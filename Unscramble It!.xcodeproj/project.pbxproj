@@ -10,13 +10,18 @@
 		0573635E55351F53B75DD420 /* Pods_Unscramble_It__Unscramble_It_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F15DFD0F6254755EB54C5DF /* Pods_Unscramble_It__Unscramble_It_UITests.framework */; };
 		1105871E2424338E0005B62D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1105871D2424338E0005B62D /* AppDelegate.swift */; };
 		110587202424338E0005B62D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1105871F2424338E0005B62D /* SceneDelegate.swift */; };
-		110587222424338E0005B62D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110587212424338E0005B62D /* ViewController.swift */; };
+		110587222424338E0005B62D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110587212424338E0005B62D /* StartViewController.swift */; };
 		110587252424338E0005B62D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 110587232424338E0005B62D /* Main.storyboard */; };
 		110587282424338E0005B62D /* Unscramble_It_.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 110587262424338E0005B62D /* Unscramble_It_.xcdatamodeld */; };
 		1105872A242433900005B62D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11058729242433900005B62D /* Assets.xcassets */; };
 		1105872D242433900005B62D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1105872B242433900005B62D /* LaunchScreen.storyboard */; };
 		11058738242433900005B62D /* Unscramble_It_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058737242433900005B62D /* Unscramble_It_Tests.swift */; };
 		11058743242433910005B62D /* Unscramble_It_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058742242433910005B62D /* Unscramble_It_UITests.swift */; };
+		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
+		11D793C42428822A00435B54 /* Nature.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BF2428822A00435B54 /* Nature.txt */; };
+		11D793C52428822A00435B54 /* Space.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C02428822A00435B54 /* Space.txt */; };
+		11D793C62428822A00435B54 /* Countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C12428822A00435B54 /* Countries.txt */; };
+		11D793C72428822A00435B54 /* Adjectives.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C22428822A00435B54 /* Adjectives.txt */; };
 		1D4BD71C31F377B43A0538B7 /* Pods_Unscramble_It_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD039BC8D578C9D876002DA /* Pods_Unscramble_It_Tests.framework */; };
 		3EB473C77AB3F793D6FA97FA /* Pods_Unscramble_It_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E06CDD845CC494C9877EEB85 /* Pods_Unscramble_It_.framework */; };
 /* End PBXBuildFile section */
@@ -42,7 +47,7 @@
 		1105871A2424338E0005B62D /* Unscramble It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unscramble It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1105871D2424338E0005B62D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1105871F2424338E0005B62D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		110587212424338E0005B62D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		110587212424338E0005B62D /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		110587242424338E0005B62D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		110587272424338E0005B62D /* Unscramble_It_.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unscramble_It_.xcdatamodel; sourceTree = "<group>"; };
 		11058729242433900005B62D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +59,11 @@
 		1105873E242433910005B62D /* Unscramble It!UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unscramble It!UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11058742242433910005B62D /* Unscramble_It_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unscramble_It_UITests.swift; sourceTree = "<group>"; };
 		11058744242433910005B62D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
+		11D793BF2428822A00435B54 /* Nature.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Nature.txt; sourceTree = "<group>"; };
+		11D793C02428822A00435B54 /* Space.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Space.txt; sourceTree = "<group>"; };
+		11D793C12428822A00435B54 /* Countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Countries.txt; sourceTree = "<group>"; };
+		11D793C22428822A00435B54 /* Adjectives.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Adjectives.txt; sourceTree = "<group>"; };
 		200A8709C14EF6538BB59290 /* Pods-Unscramble It!Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!Tests.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble It!Tests/Pods-Unscramble It!Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		27EE35C4E8F0653D8ADC9AB9 /* Pods-Unscramble It!Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!Tests.release.xcconfig"; path = "Target Support Files/Pods-Unscramble It!Tests/Pods-Unscramble It!Tests.release.xcconfig"; sourceTree = "<group>"; };
 		415A3225ADFF442F093A6C65 /* Pods-Unscramble It!.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,9 +141,10 @@
 		1105871C2424338E0005B62D /* Unscramble It! */ = {
 			isa = PBXGroup;
 			children = (
+				11D793C82428823600435B54 /* Text File References */,
 				1105871D2424338E0005B62D /* AppDelegate.swift */,
 				1105871F2424338E0005B62D /* SceneDelegate.swift */,
-				110587212424338E0005B62D /* ViewController.swift */,
+				110587212424338E0005B62D /* StartViewController.swift */,
 				110587232424338E0005B62D /* Main.storyboard */,
 				11058729242433900005B62D /* Assets.xcassets */,
 				1105872B242433900005B62D /* LaunchScreen.storyboard */,
@@ -159,6 +170,18 @@
 				11058744242433910005B62D /* Info.plist */,
 			);
 			path = "Unscramble It!UITests";
+			sourceTree = "<group>";
+		};
+		11D793C82428823600435B54 /* Text File References */ = {
+			isa = PBXGroup;
+			children = (
+				11D793C22428822A00435B54 /* Adjectives.txt */,
+				11D793BE2428822A00435B54 /* Common_Words.txt */,
+				11D793C12428822A00435B54 /* Countries.txt */,
+				11D793BF2428822A00435B54 /* Nature.txt */,
+				11D793C02428822A00435B54 /* Space.txt */,
+			);
+			path = "Text File References";
 			sourceTree = "<group>";
 		};
 		226EB4642809B7DB7F31D454 /* Frameworks */ = {
@@ -281,8 +304,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1105872D242433900005B62D /* LaunchScreen.storyboard in Resources */,
+				11D793C32428822A00435B54 /* Common_Words.txt in Resources */,
 				1105872A242433900005B62D /* Assets.xcassets in Resources */,
 				110587252424338E0005B62D /* Main.storyboard in Resources */,
+				11D793C42428822A00435B54 /* Nature.txt in Resources */,
+				11D793C52428822A00435B54 /* Space.txt in Resources */,
+				11D793C72428822A00435B54 /* Adjectives.txt in Resources */,
+				11D793C62428822A00435B54 /* Countries.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				110587222424338E0005B62D /* ViewController.swift in Sources */,
+				110587222424338E0005B62D /* StartViewController.swift in Sources */,
 				1105871E2424338E0005B62D /* AppDelegate.swift in Sources */,
 				110587282424338E0005B62D /* Unscramble_It_.xcdatamodeld in Sources */,
 				110587202424338E0005B62D /* SceneDelegate.swift in Sources */,

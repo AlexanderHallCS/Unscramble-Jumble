@@ -9,17 +9,22 @@
 import UIKit
 import GoogleMobileAds
 
-class ViewController: UIViewController, GADBannerViewDelegate {
+class StartViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setting up banner ad
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         bannerView.delegate = self
+        
+        let adjectivesFilePath = Bundle.main.path(forResource: "Adjectives", ofType: "txt")
+        let adjectivesContents = try! String(contentsOfFile: adjectivesFilePath!, encoding: String.Encoding.utf8)
+        print(adjectivesContents)
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
