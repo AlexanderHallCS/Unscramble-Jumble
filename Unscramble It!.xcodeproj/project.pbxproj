@@ -17,6 +17,7 @@
 		1105872D242433900005B62D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1105872B242433900005B62D /* LaunchScreen.storyboard */; };
 		11058738242433900005B62D /* Unscramble_It_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058737242433900005B62D /* Unscramble_It_Tests.swift */; };
 		11058743242433910005B62D /* Unscramble_It_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058742242433910005B62D /* Unscramble_It_UITests.swift */; };
+		118D74C6242C7048007DB21E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D74C5242C7048007DB21E /* CategoryViewController.swift */; };
 		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
 		11D793C42428822A00435B54 /* Nature.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BF2428822A00435B54 /* Nature.txt */; };
 		11D793C52428822A00435B54 /* Space.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C02428822A00435B54 /* Space.txt */; };
@@ -59,6 +60,7 @@
 		1105873E242433910005B62D /* Unscramble It!UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unscramble It!UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11058742242433910005B62D /* Unscramble_It_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unscramble_It_UITests.swift; sourceTree = "<group>"; };
 		11058744242433910005B62D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		118D74C5242C7048007DB21E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
 		11D793BF2428822A00435B54 /* Nature.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Nature.txt; sourceTree = "<group>"; };
 		11D793C02428822A00435B54 /* Space.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Space.txt; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				1105871F2424338E0005B62D /* SceneDelegate.swift */,
 				110587212424338E0005B62D /* StartViewController.swift */,
 				110587232424338E0005B62D /* Main.storyboard */,
+				118D74C5242C7048007DB21E /* CategoryViewController.swift */,
 				11058729242433900005B62D /* Assets.xcassets */,
 				1105872B242433900005B62D /* LaunchScreen.storyboard */,
 				1105872E242433900005B62D /* Info.plist */,
@@ -438,6 +441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				118D74C6242C7048007DB21E /* CategoryViewController.swift in Sources */,
 				110587222424338E0005B62D /* StartViewController.swift in Sources */,
 				1105871E2424338E0005B62D /* AppDelegate.swift in Sources */,
 				110587282424338E0005B62D /* Unscramble_It_.xcdatamodeld in Sources */,

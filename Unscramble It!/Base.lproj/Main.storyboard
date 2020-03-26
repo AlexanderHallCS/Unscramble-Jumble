@@ -30,6 +30,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adX-qb-4XT">
                                 <rect key="frame" x="20" y="655" width="374" height="79"/>
                                 <state key="normal" image="Play"/>
+                                <connections>
+                                    <action selector="goToCategoryVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bN-kV-nmG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -55,9 +58,64 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="114.50892857142857"/>
         </scene>
+        <!--Category View Controller-->
+        <scene sceneID="eT3-VS-Y5e">
+            <objects>
+                <viewController storyboardIdentifier="CategoryPopUpID" id="mIU-lr-PUK" customClass="CategoryViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RX4-AR-uc1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yao-hh-LvN">
+                                <rect key="frame" x="77" y="199" width="261" height="384"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-BN-m2b">
+                                        <rect key="frame" x="8" y="21" width="245" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Adjectives"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-f4-Ouf">
+                                        <rect key="frame" x="8" y="173" width="245" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="CountriesButton"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O83-e8-SDQ">
+                                        <rect key="frame" x="8" y="249" width="245" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Nature"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCm-TE-cQF">
+                                        <rect key="frame" x="8" y="325" width="245" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Space"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-pI-CYU">
+                                        <rect key="frame" x="8" y="97" width="245" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="Common Words"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="K0q-FF-QP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lOa-em-dtd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MxW-bi-lG3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="976.81159420289862" y="110.49107142857143"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Adjectives" width="480" height="79"/>
+        <image name="Common Words" width="480" height="79"/>
+        <image name="CountriesButton" width="480" height="79"/>
+        <image name="Nature" width="480" height="79"/>
         <image name="Play" width="480" height="79"/>
+        <image name="Space" width="480" height="79"/>
         <image name="TitleWords" width="557" height="140"/>
     </resources>
 </document>

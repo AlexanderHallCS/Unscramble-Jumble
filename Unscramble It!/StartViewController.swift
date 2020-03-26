@@ -26,6 +26,13 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         let adjectivesContents = try! String(contentsOfFile: adjectivesFilePath!, encoding: String.Encoding.utf8)
         print(adjectivesContents)
     }
+    @IBAction func goToCategoryVC(_ sender: UIButton) {
+        let categoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryPopUpID") as! CategoryViewController
+        self.addChild(categoryVC)
+        categoryVC.view.frame = self.view.frame
+        self.view.addSubview(categoryVC.view)
+        categoryVC.didMove(toParent: self)
+    }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("Ad was received!")
