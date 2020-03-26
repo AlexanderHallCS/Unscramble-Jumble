@@ -10,18 +10,18 @@ import UIKit
 
 class CategoryViewController: UIViewController {
 
-    //MARK: ADD A BACK BUTTON ON THE CATEGORYVC(MAKE ROOM FOR THAT)
-    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    //@IBOutlet var categoryLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+       // categoryLabel.backgroundColor = UIColor(patternImage: UIImage(named: "Categories")!)
+        
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.animateIn()
     }
     
-    @IBAction func backOut(_ sender: Any) {
-        
+    @IBAction func backOut(_ sender: UIButton) {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
