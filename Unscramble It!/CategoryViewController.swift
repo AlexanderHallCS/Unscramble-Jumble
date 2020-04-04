@@ -10,7 +10,7 @@ import UIKit
 
 class CategoryViewController: UIViewController {
 
-    //@IBOutlet var categoryLabel: UILabel!
+    @IBOutlet var categoryLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
