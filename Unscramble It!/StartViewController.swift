@@ -13,6 +13,9 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet var bannerView: GADBannerView!
     
+    //animating letters
+    @IBOutlet var ALabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +28,20 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         let adjectivesFilePath = Bundle.main.path(forResource: "Adjectives", ofType: "txt")
         let adjectivesContents = try! String(contentsOfFile: adjectivesFilePath!, encoding: String.Encoding.utf8)
         print(adjectivesContents)
+        
+        animateLetters()
+        
+        //maybe make this a gradient or more custom later
+        view.backgroundColor = .systemOrange
     }
+    
+    
+    // MARK: Add more labels to rotate(maybe some Z, Y, C, F, etc.)
+    func animateLetters() {
+        ALabel.rotate()
+        //Make more letters rotate here
+    }
+    
     @IBAction func goToCategoryVC(_ sender: UIButton) {
         let categoryVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryPopUpID") as! CategoryViewController
         self.addChild(categoryVC)
@@ -42,6 +58,15 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         print(error)
     }
 
-
 }
 
+extension UIView {
+    func rotate() {
+        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = Double.pi*2
+        rotation.duration = 5
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
+    }
+}
