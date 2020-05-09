@@ -18,10 +18,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-0k-xCq" customClass="GADBannerView">
                                 <rect key="frame" x="47" y="812" width="320" height="50"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="JQt-KV-6FQ"/>
-                                    <constraint firstAttribute="width" constant="320" id="KUd-TH-wup"/>
-                                </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleWords" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-fk-KUb">
                                 <rect key="frame" x="20" y="187" width="374" height="140"/>
@@ -34,7 +30,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="En0-UB-2Yx">
-                                <rect key="frame" x="283" y="44" width="56" height="96"/>
+                                <rect key="frame" x="286" y="61" width="56" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                 <color key="textColor" red="1" green="0.00033646567800926785" blue="0.44712520007741396" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,9 +42,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="adX-qb-4XT" secondAttribute="trailing" constant="20" id="7SG-OJ-YRl"/>
                             <constraint firstItem="7KP-fk-KUb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="143" id="8hp-MZ-YjF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7KP-fk-KUb" secondAttribute="trailing" constant="20" id="APr-Yk-Gdw"/>
+                            <constraint firstItem="bYL-0k-xCq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0558036" id="Ebt-ml-NsQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bYL-0k-xCq" secondAttribute="bottom" id="MVT-lQ-wxl"/>
                             <constraint firstItem="adX-qb-4XT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QC8-OE-T0o"/>
                             <constraint firstItem="adX-qb-4XT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="glb-mx-hF0"/>
+                            <constraint firstItem="bYL-0k-xCq" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.772947" id="nar-Pn-ilC"/>
                             <constraint firstItem="7KP-fk-KUb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vLy-yk-bTG"/>
                             <constraint firstItem="bYL-0k-xCq" firstAttribute="top" secondItem="adX-qb-4XT" secondAttribute="bottom" constant="78" id="xbd-mr-fKf"/>
                             <constraint firstItem="7KP-fk-KUb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="z36-C8-isU"/>
