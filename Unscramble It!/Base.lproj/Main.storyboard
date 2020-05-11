@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,23 +12,16 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-0k-xCq" customClass="GADBannerView">
-                                <rect key="frame" x="68" y="566.5" width="464" height="33.5"/>
+                                <rect key="frame" x="47" y="695" width="320" height="41"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleWords" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-fk-KUb">
-                                <rect key="frame" x="20" y="143" width="560" height="140"/>
+                                <rect key="frame" x="20" y="143" width="374" height="140"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adX-qb-4XT">
-                                <rect key="frame" x="20" y="409.5" width="560" height="79"/>
-                                <state key="normal" image="Play"/>
-                                <connections>
-                                    <action selector="goToCategoryVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bN-kV-nmG"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="En0-UB-2Yx">
                                 <rect key="frame" x="286" y="61" width="56" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -36,19 +29,28 @@
                                 <color key="textColor" red="1" green="0.00033646567800926785" blue="0.44712520007741396" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adX-qb-4XT">
+                                <rect key="frame" x="20" y="562.66666666666663" width="374" height="63.333333333333371"/>
+                                <state key="normal" backgroundImage="Play"/>
+                                <connections>
+                                    <action selector="goToCategoryVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bN-kV-nmG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="adX-qb-4XT" secondAttribute="trailing" constant="20" id="7SG-OJ-YRl"/>
                             <constraint firstItem="7KP-fk-KUb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="143" id="8hp-MZ-YjF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7KP-fk-KUb" secondAttribute="trailing" constant="20" id="APr-Yk-Gdw"/>
                             <constraint firstItem="bYL-0k-xCq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0558036" id="Ebt-ml-NsQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bYL-0k-xCq" secondAttribute="bottom" id="MVT-lQ-wxl"/>
-                            <constraint firstItem="adX-qb-4XT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QC8-OE-T0o"/>
-                            <constraint firstItem="adX-qb-4XT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="glb-mx-hF0"/>
+                            <constraint firstItem="adX-qb-4XT" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0858482" id="NVA-QT-bXv"/>
+                            <constraint firstItem="adX-qb-4XT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="TIn-2H-OhD"/>
+                            <constraint firstItem="bYL-0k-xCq" firstAttribute="top" secondItem="adX-qb-4XT" secondAttribute="bottom" constant="69" id="nIY-HF-aHl">
+                                <variation key="heightClass=regular-widthClass=regular" constant="200"/>
+                            </constraint>
                             <constraint firstItem="bYL-0k-xCq" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.772947" id="nar-Pn-ilC"/>
+                            <constraint firstItem="adX-qb-4XT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.903382" id="oP5-IJ-OdS"/>
                             <constraint firstItem="7KP-fk-KUb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vLy-yk-bTG"/>
-                            <constraint firstItem="bYL-0k-xCq" firstAttribute="top" secondItem="adX-qb-4XT" secondAttribute="bottom" constant="78" id="xbd-mr-fKf"/>
                             <constraint firstItem="7KP-fk-KUb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="z36-C8-isU"/>
                             <constraint firstItem="bYL-0k-xCq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zSS-FF-5wo"/>
                         </constraints>
@@ -68,7 +70,7 @@
             <objects>
                 <viewController storyboardIdentifier="CategoryPopUpID" id="mIU-lr-PUK" customClass="CategoryViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RX4-AR-uc1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yao-hh-LvN">

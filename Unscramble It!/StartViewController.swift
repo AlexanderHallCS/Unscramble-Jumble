@@ -98,7 +98,6 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
 extension UIView {
     func rotate() {
         let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.fromValue = self.layer.transform.m24
         rotation.toValue = Double.pi*2
         rotation.duration = 5
         rotation.isCumulative = true
