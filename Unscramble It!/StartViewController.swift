@@ -17,8 +17,6 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
     //animating letters
     @IBOutlet var ALabel: UILabel!
     
-    var didBeginRotating: Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,39 +32,12 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         
         animateLetters()
         
-        // observers used to allow spinning animation to resume when app goes in background
-        NotificationCenter.default.addObserver(self, selector: #selector(resigningActive), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(becomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        
         //MARK: maybe make this a gradient or more custom later <-----
         view.backgroundColor = .systemOrange
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
         print("did deinit!")
-    }
-    
-    //MARK: Try to get the rotating animation to start from the last angle it left off at <-----------
-    /*See listing 5-4 in developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/AdvancedAnimationTricks/AdvancedAnimationTricks.html for more information. */
-    @objc func resigningActive() {
-        didBeginRotating = true
-        /*let pausedTime: CFTimeInterval = ALabel.layer.convertTime(CACurrentMediaTime(), to: nil)
-        ALabel.layer.speed = 0.0
-        ALabel.layer.timeOffset = pausedTime */
-    }
-    
-    @objc func becomeActive() {
-        if didBeginRotating {
-           /* let pausedTime: CFTimeInterval = ALabel.layer.timeOffset
-            print(pausedTime)
-            ALabel.layer.speed = 1.0
-            ALabel.layer.timeOffset = 0.0
-            ALabel.layer.beginTime = 0.0
-            let timeSincePause: CFTimeInterval = ALabel.layer.convertTime(CACurrentMediaTime(), to: nil) - pausedTime
-            ALabel.layer.beginTime = timeSincePause */
-            animateLetters()
-        }
     }
     
     // MARK: Add more labels to rotate(maybe some Z, Y, C, F, etc.) <-----
@@ -95,13 +66,8 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
 
 }
 
-extension UIView {
+extension UILabel {
     func rotate() {
-        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.toValue = Double.pi*2
-        rotation.duration = 5
-        rotation.isCumulative = true
-        rotation.repeatCount = Float.greatestFiniteMagnitude
-        self.layer.add(rotation, forKey: "rotationAnimation")
+        self.transform = CGAffineTransform(rotationAngle: CGFloat.random(in: 0.0...CGFloat.pi*2.0))
     }
 }
