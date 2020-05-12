@@ -138,7 +138,7 @@
         <image name="CountriesButton" width="480" height="79"/>
         <image name="Nature" width="480" height="79"/>
         <image name="Play" width="480" height="79"/>
-        <image name="ScrambledLettersUniform" width="810" height="1080"/>
+        <image name="ScrambledLettersUniform" width="414" height="736"/>
         <image name="Space" width="480" height="79"/>
         <image name="TitleWords" width="557" height="140"/>
     </resources>
