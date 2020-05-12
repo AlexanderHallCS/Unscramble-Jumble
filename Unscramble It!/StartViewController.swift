@@ -14,9 +14,6 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet var bannerView: GADBannerView!
     
-    //animating letters
-    @IBOutlet var ALabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,22 +26,10 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         let adjectivesFilePath = Bundle.main.path(forResource: "Adjectives", ofType: "txt")
         let adjectivesContents = try! String(contentsOfFile: adjectivesFilePath!, encoding: String.Encoding.utf8)
         print(adjectivesContents)
-        
-        animateLetters()
-        
-        //MARK: maybe make this a gradient or more custom later <-----
-        view.backgroundColor = .systemOrange
     }
     
     deinit {
         print("did deinit!")
-    }
-    
-    // MARK: Add more labels to rotate(maybe some Z, Y, C, F, etc.) <-----
-    func animateLetters() {
-        //create for loop through an array of all the letters and do "letter.rotate"
-        ALabel.rotate()
-        //Make more letters rotate here with for loop
     }
     
     // causes the category VC to pop up
@@ -63,11 +48,5 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         print(error)
     }
-
-}
-
-extension UILabel {
-    func rotate() {
-        self.transform = CGAffineTransform(rotationAngle: CGFloat.random(in: 0.0...CGFloat.pi*2.0))
-    }
+    
 }
