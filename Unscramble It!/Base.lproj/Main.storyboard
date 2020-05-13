@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,21 +12,21 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScrambledLettersUniform" translatesAutoresizingMaskIntoConstraints="NO" id="5jW-Rb-k5D">
-                                <rect key="frame" x="0.0" y="-5" width="414" height="741"/>
+                                <rect key="frame" x="0.0" y="-5" width="375" height="672"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-0k-xCq" customClass="GADBannerView">
-                                <rect key="frame" x="47" y="695" width="320" height="41"/>
+                                <rect key="frame" x="42.5" y="630" width="290" height="37"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleWords" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-fk-KUb">
-                                <rect key="frame" x="20" y="109" width="374" height="140"/>
+                                <rect key="frame" x="18" y="99" width="339" height="126.5"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adX-qb-4XT">
-                                <rect key="frame" x="20" y="477" width="374" height="63.333333333333371"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adX-qb-4XT" userLabel="Play!">
+                                <rect key="frame" x="18" y="432.5" width="339" height="57"/>
                                 <state key="normal" backgroundImage="Play"/>
                                 <connections>
                                     <action selector="goToCategoryVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bN-kV-nmG"/>
@@ -67,41 +67,34 @@
             <objects>
                 <viewController storyboardIdentifier="CategoryPopUpID" id="mIU-lr-PUK" customClass="CategoryViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RX4-AR-uc1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yao-hh-LvN">
-                                <rect key="frame" x="42" y="206" width="330" height="494"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yao-hh-LvN">
+                                <rect key="frame" x="38" y="109.5" width="299" height="448"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-BN-m2b">
-                                        <rect key="frame" x="8" y="94" width="314" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Adjectives" image="Adjectives"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-BN-m2b" userLabel="Adjectives">
+                                        <rect key="frame" x="7.5" y="85.5" width="284" height="44"/>
+                                        <state key="normal" backgroundImage="Adjectives"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-f4-Ouf">
-                                        <rect key="frame" x="8" y="256" width="314" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Countries" image="CountriesButton"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-f4-Ouf" userLabel="Countries">
+                                        <rect key="frame" x="7.5" y="232" width="284" height="44.5"/>
+                                        <state key="normal" backgroundImage="CountriesButton"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O83-e8-SDQ">
-                                        <rect key="frame" x="8" y="337" width="314" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Nature" image="Nature"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O83-e8-SDQ" userLabel="Nature">
+                                        <rect key="frame" x="7.5" y="305.5" width="284" height="44.5"/>
+                                        <state key="normal" backgroundImage="Nature"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCm-TE-cQF">
-                                        <rect key="frame" x="8" y="418" width="314" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Space" image="Space"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCm-TE-cQF" userLabel="Space">
+                                        <rect key="frame" x="7.5" y="379" width="284" height="44.5"/>
+                                        <state key="normal" backgroundImage="Space"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-pI-CYU">
-                                        <rect key="frame" x="8" y="175" width="314" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Common Words" image="Common Words"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-pI-CYU" userLabel="Common Words">
+                                        <rect key="frame" x="7.5" y="159" width="284" height="44"/>
+                                        <state key="normal" backgroundImage="Common Words"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hax-4m-rCM">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hax-4m-rCM">
+                                        <rect key="frame" x="0.0" y="0.0" width="43.5" height="36.5"/>
                                         <state key="normal" title="BackButton" image="BackButton"/>
                                         <connections>
                                             <action selector="backOut:" destination="mIU-lr-PUK" eventType="touchUpInside" id="vrb-u5-8jd"/>
@@ -116,9 +109,41 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="7FF-pI-CYU" secondAttribute="bottom" multiplier="494/224" id="1ZE-Th-5Gq"/>
+                                    <constraint firstItem="hax-4m-rCM" firstAttribute="leading" secondItem="yao-hh-LvN" secondAttribute="leading" id="4Kp-C5-iiS"/>
+                                    <constraint firstItem="hax-4m-rCM" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0809717" id="AlV-ym-O0a"/>
+                                    <constraint firstAttribute="bottom" secondItem="uCm-TE-cQF" secondAttribute="bottom" multiplier="494/467" id="DdN-Lw-5m6"/>
+                                    <constraint firstItem="uCm-TE-cQF" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="HRI-hx-5mv"/>
+                                    <constraint firstAttribute="bottom" secondItem="Uwm-BN-m2b" secondAttribute="bottom" multiplier="494/143" id="OKC-PY-MM3"/>
+                                    <constraint firstItem="hax-4m-rCM" firstAttribute="top" secondItem="yao-hh-LvN" secondAttribute="top" id="POd-99-z5u"/>
+                                    <constraint firstItem="O83-e8-SDQ" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="PeD-hp-vqR"/>
+                                    <constraint firstAttribute="bottom" secondItem="3zY-f4-Ouf" secondAttribute="bottom" multiplier="494/305" id="PoQ-5T-B1o"/>
+                                    <constraint firstItem="7FF-pI-CYU" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.951515" id="UxN-st-YJI"/>
+                                    <constraint firstItem="Uwm-BN-m2b" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="YLg-Pj-Rca"/>
+                                    <constraint firstAttribute="bottom" secondItem="O83-e8-SDQ" secondAttribute="bottom" multiplier="494/386" id="ZIs-xN-6t8"/>
+                                    <constraint firstItem="Uwm-BN-m2b" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.951515" id="bVt-WX-8vk"/>
+                                    <constraint firstItem="Uwm-BN-m2b" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="bar-Vv-Zff"/>
+                                    <constraint firstItem="O83-e8-SDQ" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="byN-cC-3ez"/>
+                                    <constraint firstItem="hax-4m-rCM" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.145455" id="fHZ-sC-gle"/>
+                                    <constraint firstItem="7FF-pI-CYU" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="fWS-Wc-EHS"/>
+                                    <constraint firstItem="O83-e8-SDQ" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.951515" id="faE-uT-dm5"/>
+                                    <constraint firstItem="3zY-f4-Ouf" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="hh1-Ob-2Z1"/>
+                                    <constraint firstItem="uCm-TE-cQF" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.951515" id="ibf-Yx-UI9"/>
+                                    <constraint firstItem="uCm-TE-cQF" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="om0-hs-jSn"/>
+                                    <constraint firstItem="7FF-pI-CYU" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="pK7-JZ-Lx4"/>
+                                    <constraint firstItem="3zY-f4-Ouf" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="tXK-hA-JSH"/>
+                                    <constraint firstItem="3zY-f4-Ouf" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.951515" id="vdo-1g-zD7"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yao-hh-LvN" firstAttribute="height" secondItem="RX4-AR-uc1" secondAttribute="height" multiplier="0.671196" id="8CC-hI-PXV"/>
+                            <constraint firstItem="yao-hh-LvN" firstAttribute="centerY" secondItem="K0q-FF-QP3" secondAttribute="centerY" id="Kys-GO-1pg"/>
+                            <constraint firstItem="yao-hh-LvN" firstAttribute="width" secondItem="RX4-AR-uc1" secondAttribute="width" multiplier="0.797101" id="Nj1-YB-t6c"/>
+                            <constraint firstItem="yao-hh-LvN" firstAttribute="centerX" secondItem="K0q-FF-QP3" secondAttribute="centerX" id="t1f-2k-h1Y"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="K0q-FF-QP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="lOa-em-dtd"/>
@@ -138,7 +163,7 @@
         <image name="CountriesButton" width="480" height="79"/>
         <image name="Nature" width="480" height="79"/>
         <image name="Play" width="480" height="79"/>
-        <image name="ScrambledLettersUniform" width="414" height="736"/>
+        <image name="ScrambledLettersUniform" width="375" height="667"/>
         <image name="Space" width="480" height="79"/>
         <image name="TitleWords" width="557" height="140"/>
     </resources>
