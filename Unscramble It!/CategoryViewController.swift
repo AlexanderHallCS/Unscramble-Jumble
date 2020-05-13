@@ -9,26 +9,29 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
-
-    @IBOutlet var categoryLabel: UILabel!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
        // categoryLabel.backgroundColor = UIColor(patternImage: UIImage(named: "Categories")!)
-        
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.animateIn()
+    }
+    
+    deinit {
+        print("did deinit2!")
     }
     
     @IBAction func backOut(_ sender: UIButton) {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
-        }, completion:{(doneAnimating : Bool)  in
+        }, completion:{ (doneAnimating : Bool) in
             if (doneAnimating)
             {
-                self.view.removeFromSuperview()
+                self.removeFromParent()
+                //self.view.removeFromSuperview()
             }
         });
     }

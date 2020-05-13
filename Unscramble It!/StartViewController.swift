@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMobileAds
-import NotificationCenter
 
 class StartViewController: UIViewController, GADBannerViewDelegate {
     
