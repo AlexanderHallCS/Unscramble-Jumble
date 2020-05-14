@@ -6,7 +6,9 @@ target 'Unscramble It!' do
   use_frameworks!
 
   # Pods for Unscramble It!
-  pod 'Google-Mobile-Ads-SDK'
+
+  pod 'Firebase/Core'
+  pod 'Firebase/AdMob'
 
   target 'Unscramble It!Tests' do
     inherit! :search_paths

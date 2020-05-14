@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>581889485204-g8bgoh41g1c260fp6d9v8s3rp094ahgj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.581889485204-g8bgoh41g1c260fp6d9v8s3rp094ahgj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCqB8AofaK-d2qL4kP-QWO7nRaN3etJxyU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>581889485204</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.alexanderhallcs.Unscramble-It</string>
+	<key>PROJECT_ID</key>
+	<string>unscramble-it-ac31a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>unscramble-it-ac31a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:581889485204:ios:ef4a84e4f8e2003ebb8781</string>
+	<key>DATABASE_URL</key>
+	<string>https://unscramble-it-ac31a.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-7041973892357973~4379900737</string>
+</dict>
+</plist>
