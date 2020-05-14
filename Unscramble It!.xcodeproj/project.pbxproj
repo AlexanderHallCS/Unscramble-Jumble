@@ -23,9 +23,9 @@
 		11D793C52428822A00435B54 /* Space.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C02428822A00435B54 /* Space.txt */; };
 		11D793C62428822A00435B54 /* Countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C12428822A00435B54 /* Countries.txt */; };
 		11D793C72428822A00435B54 /* Adjectives.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C22428822A00435B54 /* Adjectives.txt */; };
-		69A2962295201B740091DAFC /* Pods_Unscramble_It_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA33A7B727F216B09B7D08A4 /* Pods_Unscramble_It_.framework */; };
-		A294218368454C5EFA32A749 /* Pods_Unscramble_It__Unscramble_It_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4570D7AF1EFBC7A0F0CD79E /* Pods_Unscramble_It__Unscramble_It_UITests.framework */; };
-		C559F62D648F0F9243D99FB5 /* Pods_Unscramble_It_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F849056C12EC03E25584012 /* Pods_Unscramble_It_Tests.framework */; };
+		1B65CED25D6BE3E2D3DA6E00 /* Pods_Unscramble_It_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB132CF45679508EC5E99FC /* Pods_Unscramble_It_.framework */; };
+		859EB320A20244AE729D75CE /* Pods_Unscramble_It__Unscramble_It_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C610820DAD930670592C3 /* Pods_Unscramble_It__Unscramble_It_UITests.framework */; };
+		AC4188D6EA15B4EF26E573CB /* Pods_Unscramble_It_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2ABBE4071424EE5E34F1B26 /* Pods_Unscramble_It_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		076D9F7D75C24F9D714D1F08 /* Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		03F0ACCC701189D8C008B4CD /* Pods-Unscramble It!Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!Tests.release.xcconfig"; path = "Target Support Files/Pods-Unscramble It!Tests/Pods-Unscramble It!Tests.release.xcconfig"; sourceTree = "<group>"; };
+		0DE625961B95F47288B8B2D1 /* Pods-Unscramble It!Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!Tests.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble It!Tests/Pods-Unscramble It!Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1105871A2424338E0005B62D /* Unscramble It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unscramble It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1105871D2424338E0005B62D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1105871F2424338E0005B62D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,14 +70,13 @@
 		11D793C02428822A00435B54 /* Space.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Space.txt; sourceTree = "<group>"; };
 		11D793C12428822A00435B54 /* Countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Countries.txt; sourceTree = "<group>"; };
 		11D793C22428822A00435B54 /* Adjectives.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Adjectives.txt; sourceTree = "<group>"; };
-		5F849056C12EC03E25584012 /* Pods_Unscramble_It_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unscramble_It_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87490563364F103E1A5E42AA /* Pods-Unscramble It!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!.release.xcconfig"; path = "Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!.release.xcconfig"; sourceTree = "<group>"; };
-		8754852AA3C9135D9EDCA60D /* Pods-Unscramble It!.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!.debug.xcconfig"; sourceTree = "<group>"; };
-		87815DE16115BC37D5B2F22E /* Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig"; path = "Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig"; sourceTree = "<group>"; };
-		A42AB87C12889EBE53A8BFF5 /* Pods-Unscramble It!Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!Tests.release.xcconfig"; path = "Target Support Files/Pods-Unscramble It!Tests/Pods-Unscramble It!Tests.release.xcconfig"; sourceTree = "<group>"; };
-		B0E94E1BC85F171E42984707 /* Pods-Unscramble It!Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!Tests.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble It!Tests/Pods-Unscramble It!Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F4570D7AF1EFBC7A0F0CD79E /* Pods_Unscramble_It__Unscramble_It_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unscramble_It__Unscramble_It_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA33A7B727F216B09B7D08A4 /* Pods_Unscramble_It_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unscramble_It_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		276C610820DAD930670592C3 /* Pods_Unscramble_It__Unscramble_It_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unscramble_It__Unscramble_It_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FB422ED80A51D513A37F51B /* Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig"; path = "Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig"; sourceTree = "<group>"; };
+		ACB132CF45679508EC5E99FC /* Pods_Unscramble_It_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unscramble_It_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2ABBE4071424EE5E34F1B26 /* Pods_Unscramble_It_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unscramble_It_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE9FF1DF226AD9A143E1CD52 /* Pods-Unscramble It!.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!.debug.xcconfig"; sourceTree = "<group>"; };
+		C8C6B7DB19B41F68C3A1946B /* Pods-Unscramble It!.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!.release.xcconfig"; path = "Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!.release.xcconfig"; sourceTree = "<group>"; };
+		CD474C3474C8FC195BEDFBD3 /* Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69A2962295201B740091DAFC /* Pods_Unscramble_It_.framework in Frameworks */,
+				1B65CED25D6BE3E2D3DA6E00 /* Pods_Unscramble_It_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C559F62D648F0F9243D99FB5 /* Pods_Unscramble_It_Tests.framework in Frameworks */,
+				AC4188D6EA15B4EF26E573CB /* Pods_Unscramble_It_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A294218368454C5EFA32A749 /* Pods_Unscramble_It__Unscramble_It_UITests.framework in Frameworks */,
+				859EB320A20244AE729D75CE /* Pods_Unscramble_It__Unscramble_It_UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,8 +114,8 @@
 				11058736242433900005B62D /* Unscramble It!Tests */,
 				11058741242433910005B62D /* Unscramble It!UITests */,
 				1105871B2424338E0005B62D /* Products */,
-				D5A1C2B447115E6E25903CC3 /* Pods */,
-				2F0E6BD890C8245A4468EAAD /* Frameworks */,
+				FB797A47E0B8BE37B0A69770 /* Pods */,
+				72F59B2936BA5A5416AAF8C9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -177,25 +177,25 @@
 			path = "Text File References";
 			sourceTree = "<group>";
 		};
-		2F0E6BD890C8245A4468EAAD /* Frameworks */ = {
+		72F59B2936BA5A5416AAF8C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FA33A7B727F216B09B7D08A4 /* Pods_Unscramble_It_.framework */,
-				F4570D7AF1EFBC7A0F0CD79E /* Pods_Unscramble_It__Unscramble_It_UITests.framework */,
-				5F849056C12EC03E25584012 /* Pods_Unscramble_It_Tests.framework */,
+				ACB132CF45679508EC5E99FC /* Pods_Unscramble_It_.framework */,
+				276C610820DAD930670592C3 /* Pods_Unscramble_It__Unscramble_It_UITests.framework */,
+				B2ABBE4071424EE5E34F1B26 /* Pods_Unscramble_It_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D5A1C2B447115E6E25903CC3 /* Pods */ = {
+		FB797A47E0B8BE37B0A69770 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8754852AA3C9135D9EDCA60D /* Pods-Unscramble It!.debug.xcconfig */,
-				87490563364F103E1A5E42AA /* Pods-Unscramble It!.release.xcconfig */,
-				076D9F7D75C24F9D714D1F08 /* Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig */,
-				87815DE16115BC37D5B2F22E /* Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig */,
-				B0E94E1BC85F171E42984707 /* Pods-Unscramble It!Tests.debug.xcconfig */,
-				A42AB87C12889EBE53A8BFF5 /* Pods-Unscramble It!Tests.release.xcconfig */,
+				BE9FF1DF226AD9A143E1CD52 /* Pods-Unscramble It!.debug.xcconfig */,
+				C8C6B7DB19B41F68C3A1946B /* Pods-Unscramble It!.release.xcconfig */,
+				CD474C3474C8FC195BEDFBD3 /* Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig */,
+				7FB422ED80A51D513A37F51B /* Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig */,
+				0DE625961B95F47288B8B2D1 /* Pods-Unscramble It!Tests.debug.xcconfig */,
+				03F0ACCC701189D8C008B4CD /* Pods-Unscramble It!Tests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -208,11 +208,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11058747242433910005B62D /* Build configuration list for PBXNativeTarget "Unscramble It!" */;
 			buildPhases = (
-				52EF7989026FE0A3371E5406 /* [CP] Check Pods Manifest.lock */,
+				DB299A8CFB1C6ABE88F8F778 /* [CP] Check Pods Manifest.lock */,
 				110587162424338E0005B62D /* Sources */,
 				110587172424338E0005B62D /* Frameworks */,
 				110587182424338E0005B62D /* Resources */,
-				88BE6DD019B69BA0F44B8A73 /* [CP] Embed Pods Frameworks */,
+				09717B34AE71B17152B3AACC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -227,7 +227,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1105874A242433910005B62D /* Build configuration list for PBXNativeTarget "Unscramble It!Tests" */;
 			buildPhases = (
-				96022283950BBDD293F09667 /* [CP] Check Pods Manifest.lock */,
+				DFADA442BDCD493697DF19F6 /* [CP] Check Pods Manifest.lock */,
 				1105872F242433900005B62D /* Sources */,
 				11058730242433900005B62D /* Frameworks */,
 				11058731242433900005B62D /* Resources */,
@@ -246,11 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1105874D242433910005B62D /* Build configuration list for PBXNativeTarget "Unscramble It!UITests" */;
 			buildPhases = (
-				328677342EC1785914CA2600 /* [CP] Check Pods Manifest.lock */,
+				D60F0BF0CF587D64F0478DED /* [CP] Check Pods Manifest.lock */,
 				1105873A242433910005B62D /* Sources */,
 				1105873B242433910005B62D /* Frameworks */,
 				1105873C242433910005B62D /* Resources */,
-				419E25C32CFEB58DB90D7F21 /* [CP] Embed Pods Frameworks */,
+				AAEEBEB3C0664E15ADFDD7AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,7 +339,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		328677342EC1785914CA2600 /* [CP] Check Pods Manifest.lock */ = {
+		09717B34AE71B17152B3AACC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAEEBEB3C0664E15ADFDD7AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D60F0BF0CF587D64F0478DED /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,24 +395,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		419E25C32CFEB58DB90D7F21 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!-Unscramble It!UITests/Pods-Unscramble It!-Unscramble It!UITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		52EF7989026FE0A3371E5406 /* [CP] Check Pods Manifest.lock */ = {
+		DB299A8CFB1C6ABE88F8F778 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -400,24 +417,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		88BE6DD019B69BA0F44B8A73 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Unscramble It!/Pods-Unscramble It!-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		96022283950BBDD293F09667 /* [CP] Check Pods Manifest.lock */ = {
+		DFADA442BDCD493697DF19F6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -621,7 +621,7 @@
 		};
 		11058748242433910005B62D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8754852AA3C9135D9EDCA60D /* Pods-Unscramble It!.debug.xcconfig */;
+			baseConfigurationReference = BE9FF1DF226AD9A143E1CD52 /* Pods-Unscramble It!.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -645,7 +645,7 @@
 		};
 		11058749242433910005B62D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87490563364F103E1A5E42AA /* Pods-Unscramble It!.release.xcconfig */;
+			baseConfigurationReference = C8C6B7DB19B41F68C3A1946B /* Pods-Unscramble It!.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -669,7 +669,7 @@
 		};
 		1105874B242433910005B62D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0E94E1BC85F171E42984707 /* Pods-Unscramble It!Tests.debug.xcconfig */;
+			baseConfigurationReference = 0DE625961B95F47288B8B2D1 /* Pods-Unscramble It!Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -692,7 +692,7 @@
 		};
 		1105874C242433910005B62D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A42AB87C12889EBE53A8BFF5 /* Pods-Unscramble It!Tests.release.xcconfig */;
+			baseConfigurationReference = 03F0ACCC701189D8C008B4CD /* Pods-Unscramble It!Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -715,7 +715,7 @@
 		};
 		1105874E242433910005B62D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 076D9F7D75C24F9D714D1F08 /* Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig */;
+			baseConfigurationReference = CD474C3474C8FC195BEDFBD3 /* Pods-Unscramble It!-Unscramble It!UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -736,7 +736,7 @@
 		};
 		1105874F242433910005B62D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87815DE16115BC37D5B2F22E /* Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig */;
+			baseConfigurationReference = 7FB422ED80A51D513A37F51B /* Pods-Unscramble It!-Unscramble It!UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
