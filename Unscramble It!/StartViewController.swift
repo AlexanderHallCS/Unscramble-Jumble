@@ -37,7 +37,7 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         self.addChild(categoryVC)
         categoryVC.view.frame = self.view.frame
         self.view.addSubview(categoryVC.view)
-        categoryVC.didMove(toParent: self)
+        //categoryVC.didMove(toParent: self)
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {

@@ -23,6 +23,8 @@ class CategoryViewController: UIViewController {
         print("did deinit2!")
     }
     
+    
+    
     @IBAction func backOut(_ sender: UIButton) {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -31,7 +33,6 @@ class CategoryViewController: UIViewController {
             if (doneAnimating)
             {
                 self.removeFromParent()
-                //self.view.removeFromSuperview()
             }
         });
     }
