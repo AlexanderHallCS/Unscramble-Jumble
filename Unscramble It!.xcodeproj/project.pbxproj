@@ -16,6 +16,7 @@
 		1105872D242433900005B62D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1105872B242433900005B62D /* LaunchScreen.storyboard */; };
 		11058738242433900005B62D /* Unscramble_It_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058737242433900005B62D /* Unscramble_It_Tests.swift */; };
 		11058743242433910005B62D /* Unscramble_It_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058742242433910005B62D /* Unscramble_It_UITests.swift */; };
+		11343DBB2470584900748375 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11343DBA2470584900748375 /* GameViewController.swift */; };
 		11820E1B246E4C8000497D90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11820E1A246E4C8000497D90 /* GoogleService-Info.plist */; };
 		118D74C6242C7048007DB21E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D74C5242C7048007DB21E /* CategoryViewController.swift */; };
 		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
@@ -63,6 +64,7 @@
 		1105873E242433910005B62D /* Unscramble It!UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unscramble It!UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11058742242433910005B62D /* Unscramble_It_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unscramble_It_UITests.swift; sourceTree = "<group>"; };
 		11058744242433910005B62D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11343DBA2470584900748375 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		11820E1A246E4C8000497D90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		118D74C5242C7048007DB21E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				1105871F2424338E0005B62D /* SceneDelegate.swift */,
 				110587212424338E0005B62D /* StartViewController.swift */,
 				110587232424338E0005B62D /* Main.storyboard */,
+				11343DBA2470584900748375 /* GameViewController.swift */,
 				118D74C5242C7048007DB21E /* CategoryViewController.swift */,
 				11058729242433900005B62D /* Assets.xcassets */,
 				1105872B242433900005B62D /* LaunchScreen.storyboard */,
@@ -449,6 +452,7 @@
 				110587222424338E0005B62D /* StartViewController.swift in Sources */,
 				1105871E2424338E0005B62D /* AppDelegate.swift in Sources */,
 				110587282424338E0005B62D /* Unscramble_It_.xcdatamodeld in Sources */,
+				11343DBB2470584900748375 /* GameViewController.swift in Sources */,
 				110587202424338E0005B62D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

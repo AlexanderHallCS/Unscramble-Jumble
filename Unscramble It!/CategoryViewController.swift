@@ -17,6 +17,8 @@ class CategoryViewController: UIViewController {
        // categoryLabel.backgroundColor = UIColor(patternImage: UIImage(named: "Categories")!)
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.animateIn()
+        
+       // self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     deinit {
@@ -46,14 +48,16 @@ class CategoryViewController: UIViewController {
         });
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("was called!")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
