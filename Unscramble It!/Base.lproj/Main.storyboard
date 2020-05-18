@@ -49,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1043.4782608695652" y="113.31521739130436"/>
+            <point key="canvasLocation" x="3219.140625" y="112.88433382137627"/>
         </scene>
         <!--Category View Controller-->
         <scene sceneID="eT3-VS-Y5e">
@@ -65,35 +65,35 @@
                                         <rect key="frame" x="19.5" y="193" width="777" height="91"/>
                                         <state key="normal" backgroundImage="Adjectives"/>
                                         <connections>
-                                            <segue destination="Y3p-mg-j3y" kind="show" identifier="adjectivesToGame" id="6sn-ld-s5a"/>
+                                            <action selector="adjectivesToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="pVY-Ag-6Js"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-f4-Ouf" userLabel="Countries">
                                         <rect key="frame" x="19.5" y="494" width="777" height="90.5"/>
                                         <state key="normal" backgroundImage="CountriesButton"/>
                                         <connections>
-                                            <segue destination="Y3p-mg-j3y" kind="show" identifier="countriesToGame" id="mzJ-Th-2le"/>
+                                            <action selector="countriesToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="iXm-Sa-ecZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O83-e8-SDQ" userLabel="Nature">
                                         <rect key="frame" x="19.5" y="644" width="777" height="91"/>
                                         <state key="normal" backgroundImage="Nature"/>
                                         <connections>
-                                            <segue destination="Y3p-mg-j3y" kind="show" identifier="natureToGame" id="2Cz-SL-snV"/>
+                                            <action selector="natureToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="nFs-cj-Mgl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCm-TE-cQF" userLabel="Space">
                                         <rect key="frame" x="19.5" y="794.5" width="777" height="91"/>
                                         <state key="normal" backgroundImage="Space"/>
                                         <connections>
-                                            <segue destination="Y3p-mg-j3y" kind="show" identifier="spaceToGame" id="vPK-Q0-1Bj"/>
+                                            <action selector="spaceToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="6zg-4P-F8G"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-pI-CYU" userLabel="Common Words">
                                         <rect key="frame" x="19.5" y="343.5" width="777" height="91"/>
                                         <state key="normal" backgroundImage="Common Words"/>
                                         <connections>
-                                            <segue destination="Y3p-mg-j3y" kind="show" identifier="commonWordsToGame" id="Y8k-hw-T7M"/>
+                                            <action selector="commonWordsToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="zDt-I8-VPy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hax-4m-rCM">
@@ -150,10 +150,17 @@
                         <viewLayoutGuide key="safeArea" id="K0q-FF-QP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="lOa-em-dtd"/>
+                    <connections>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="adjectivesToGame" id="XW0-nI-bbu"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="commonWordsToGame" id="fCs-Dl-3sc"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="countriesToGame" id="FzA-oP-uEn"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="natureToGame" id="pbh-Dt-RRw"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="spaceToGame" id="Xtd-O8-0jn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MxW-bi-lG3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1962" y="113"/>
+            <point key="canvasLocation" x="3998.4374999999995" y="112.88433382137627"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="5qp-bf-8od">
@@ -168,7 +175,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="BackButton"/>
                                 <connections>
-                                    <segue destination="WTo-qK-deV" kind="unwind" unwindAction="unwindToStartWithSegue:" id="lux-vw-3jD"/>
+                                    <segue destination="WTo-qK-deV" kind="unwind" unwindAction="unwindToStartWithSegue:" id="p3G-8M-bmu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -180,11 +187,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2MB-IC-3pS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="WTo-qK-deV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2846" y="113"/>
+            <point key="canvasLocation" x="4764.2578125" y="112.88433382137627"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vPK-Q0-1Bj"/>
+        <segue reference="Xtd-O8-0jn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Adjectives" width="480" height="79"/>
