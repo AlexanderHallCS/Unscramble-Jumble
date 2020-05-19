@@ -10,17 +10,17 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
-    struct Segues {
-        static let adjectivesToGame = "adjectivesToGame"
-        static let commonWordsToGame = "commonWordsToGame"
-        static let countriesToGame = "countriesToGame"
-        static let natureToGame = "natureToGame"
-        static let spaceToGame = "spaceToGame"
+    enum Segues: String {
+        case adjectivesToGame
+        case commonWordsToGame
+        case countriesToGame
+        case natureToGame
+        case spaceToGame
     }
     
-    struct ImageNames {
+    enum BackgroundImageNames: String {
         // TODO: Add more later
-        static let natureImageName = "NatureBG"
+        case NatureBG
     }
     
     override func viewDidLoad() {
@@ -32,19 +32,19 @@ class CategoryViewController: UIViewController {
 
     // segue to GameViewController and remove CategoryViewController right after
     @IBAction func adjectivesToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.adjectivesToGame)
+        segueAndRemoveSelf(segueName: Segues.adjectivesToGame.rawValue)
     }
     @IBAction func commonWordsToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.commonWordsToGame)
+        segueAndRemoveSelf(segueName: Segues.commonWordsToGame.rawValue)
     }
     @IBAction func countriesToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.countriesToGame)
+        segueAndRemoveSelf(segueName: Segues.countriesToGame.rawValue)
     }
     @IBAction func natureToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.natureToGame)
+        segueAndRemoveSelf(segueName: Segues.natureToGame.rawValue)
     }
     @IBAction func spaceToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.spaceToGame)
+        segueAndRemoveSelf(segueName: Segues.spaceToGame.rawValue)
     }
     
     
@@ -81,23 +81,23 @@ class CategoryViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {
-                case Segues.adjectivesToGame:
+                case Segues.adjectivesToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         // pass data that makes it an adjectives VC
                     }
-                case Segues.commonWordsToGame:
+                case Segues.commonWordsToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         // pass data that makes it a common words VC
                     }
-                case Segues.countriesToGame:
+                case Segues.countriesToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         // pass data that makes it a countries VC
                     }
-                case Segues.natureToGame:
+                case Segues.natureToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = ImageNames.natureImageName
+                        destVC.imageName = BackgroundImageNames.NatureBG.rawValue
                     }
-                case Segues.spaceToGame:
+                case Segues.spaceToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         // pass data that makes it a space VC
                     }
