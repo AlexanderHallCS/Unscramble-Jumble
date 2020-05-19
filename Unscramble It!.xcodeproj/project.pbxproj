@@ -135,14 +135,12 @@
 			isa = PBXGroup;
 			children = (
 				11D793C82428823600435B54 /* Text File References */,
-				1105871D2424338E0005B62D /* AppDelegate.swift */,
-				1105871F2424338E0005B62D /* SceneDelegate.swift */,
+				11DAC5F72473835A00AF718C /* Supporting Files */,
 				110587212424338E0005B62D /* StartViewController.swift */,
 				110587232424338E0005B62D /* Main.storyboard */,
 				118D74C5242C7048007DB21E /* CategoryViewController.swift */,
 				11343DBA2470584900748375 /* GameViewController.swift */,
 				11058729242433900005B62D /* Assets.xcassets */,
-				1105872B242433900005B62D /* LaunchScreen.storyboard */,
 				11820E1A246E4C8000497D90 /* GoogleService-Info.plist */,
 				1105872E242433900005B62D /* Info.plist */,
 				110587262424338E0005B62D /* Unscramble_It_.xcdatamodeld */,
@@ -178,6 +176,16 @@
 				11D793C02428822A00435B54 /* Space.txt */,
 			);
 			path = "Text File References";
+			sourceTree = "<group>";
+		};
+		11DAC5F72473835A00AF718C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1105871D2424338E0005B62D /* AppDelegate.swift */,
+				1105871F2424338E0005B62D /* SceneDelegate.swift */,
+				1105872B242433900005B62D /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		72F59B2936BA5A5416AAF8C9 /* Frameworks */ = {

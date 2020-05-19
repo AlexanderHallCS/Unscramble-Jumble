@@ -10,7 +10,7 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
-    enum Segues {
+    struct Segues {
         static let adjectivesToGame = "adjectivesToGame"
         static let commonWordsToGame = "commonWordsToGame"
         static let countriesToGame = "countriesToGame"
@@ -18,17 +18,18 @@ class CategoryViewController: UIViewController {
         static let spaceToGame = "spaceToGame"
     }
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-       // categoryLabel.backgroundColor = UIColor(patternImage: UIImage(named: "Categories")!)
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        self.animateIn()
-        
-       // self.navigationController?.setNavigationBarHidden(true, animated: false)
+    struct ImageNames {
+        // TODO: Add more later
+        static let natureImageName = "NatureBG"
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        self.animateIn()
+    }
+
     // segue to GameViewController and remove CategoryViewController right after
     @IBAction func adjectivesToGame(_ sender: UIButton) {
         segueAndRemoveSelf(segueName: Segues.adjectivesToGame)
@@ -94,7 +95,7 @@ class CategoryViewController: UIViewController {
                     }
                 case Segues.natureToGame:
                     if let destVC = segue.destination as? GameViewController {
-                        // pass data that makes it a nature VC
+                        destVC.imageName = ImageNames.natureImageName
                     }
                 case Segues.spaceToGame:
                     if let destVC = segue.destination as? GameViewController {

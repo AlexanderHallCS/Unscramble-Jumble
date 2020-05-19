@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,16 +12,16 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="StartViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScrambledLettersUniform" translatesAutoresizingMaskIntoConstraints="NO" id="5jW-Rb-k5D">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1376"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleWords" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-fk-KUb">
-                                <rect key="frame" x="49.5" y="199.5" width="925" height="259.5"/>
+                                <rect key="frame" x="20" y="127.66666666666667" width="374" height="170.33333333333331"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adX-qb-4XT" userLabel="Play!">
-                                <rect key="frame" x="49.5" y="872.5" width="925" height="117"/>
+                                <rect key="frame" x="20" y="558.66666666666663" width="374" height="77"/>
                                 <state key="normal" backgroundImage="Play"/>
                                 <connections>
                                     <action selector="goToCategoryVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bN-kV-nmG"/>
@@ -56,55 +56,55 @@
             <objects>
                 <viewController storyboardIdentifier="CategoryPopUpID" modalPresentationStyle="fullScreen" id="mIU-lr-PUK" customClass="CategoryViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX4-AR-uc1">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yao-hh-LvN">
-                                <rect key="frame" x="104" y="214.5" width="816" height="917"/>
+                                <rect key="frame" x="42" y="152.33333333333331" width="330" height="601.33333333333348"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-BN-m2b" userLabel="Adjectives">
-                                        <rect key="frame" x="19.5" y="193" width="777" height="91"/>
+                                        <rect key="frame" x="8" y="126.66666666666667" width="314" height="59.666666666666671"/>
                                         <state key="normal" backgroundImage="Adjectives"/>
                                         <connections>
                                             <action selector="adjectivesToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="pVY-Ag-6Js"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-f4-Ouf" userLabel="Countries">
-                                        <rect key="frame" x="19.5" y="494" width="777" height="90.5"/>
+                                        <rect key="frame" x="8" y="323.66666666666663" width="314" height="59.666666666666686"/>
                                         <state key="normal" backgroundImage="CountriesButton"/>
                                         <connections>
                                             <action selector="countriesToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="iXm-Sa-ecZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O83-e8-SDQ" userLabel="Nature">
-                                        <rect key="frame" x="19.5" y="644" width="777" height="91"/>
+                                        <rect key="frame" x="8" y="422.33333333333326" width="314" height="59.666666666666686"/>
                                         <state key="normal" backgroundImage="Nature"/>
                                         <connections>
                                             <action selector="natureToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="nFs-cj-Mgl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCm-TE-cQF" userLabel="Space">
-                                        <rect key="frame" x="19.5" y="794.5" width="777" height="91"/>
+                                        <rect key="frame" x="8" y="521" width="314" height="59.666666666666629"/>
                                         <state key="normal" backgroundImage="Space"/>
                                         <connections>
                                             <action selector="spaceToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="6zg-4P-F8G"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-pI-CYU" userLabel="Common Words">
-                                        <rect key="frame" x="19.5" y="343.5" width="777" height="91"/>
+                                        <rect key="frame" x="8" y="225.33333333333334" width="314" height="59.666666666666657"/>
                                         <state key="normal" backgroundImage="Common Words"/>
                                         <connections>
                                             <action selector="commonWordsToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="zDt-I8-VPy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hax-4m-rCM">
-                                        <rect key="frame" x="0.0" y="0.0" width="118.5" height="74.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48.666666666666664"/>
                                         <state key="normal" title="BackButton" image="BackButton"/>
                                         <connections>
                                             <action selector="backOut:" destination="mIU-lr-PUK" eventType="touchUpInside" id="vrb-u5-8jd"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Categories" translatesAutoresizingMaskIntoConstraints="NO" id="RME-sb-hoC">
-                                        <rect key="frame" x="106.5" y="80" width="603" height="79.5"/>
+                                        <rect key="frame" x="43" y="52.333333333333314" width="244" height="52.333333333333343"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.34931546450000001" green="0.84235852960000002" blue="0.97819107770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -167,9 +167,12 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="Y3p-mg-j3y" customClass="GameViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zks-3k-ZQJ">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4xB-Cm-8XO">
+                                <rect key="frame" x="0.0" y="-5" width="414" height="906"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPq-8e-mZg">
                                 <rect key="frame" x="20" y="20" width="118" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -180,14 +183,23 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4xB-Cm-8XO" firstAttribute="centerX" secondItem="Zks-3k-ZQJ" secondAttribute="centerX" id="P2o-fM-gTo"/>
+                            <constraint firstItem="4xB-Cm-8XO" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" constant="10" id="V1W-7e-VFB"/>
+                            <constraint firstItem="4xB-Cm-8XO" firstAttribute="centerY" secondItem="Zks-3k-ZQJ" secondAttribute="centerY" id="ch8-b2-b2c"/>
+                            <constraint firstItem="4xB-Cm-8XO" firstAttribute="width" secondItem="Zks-3k-ZQJ" secondAttribute="width" id="lGy-VN-Ahp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9Hq-CQ-6zp"/>
                     </view>
                     <navigationItem key="navigationItem" id="blE-2F-BLq"/>
+                    <connections>
+                        <outlet property="backgroundImage" destination="4xB-Cm-8XO" id="abk-cs-1pc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2MB-IC-3pS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="WTo-qK-deV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4764.2578125" y="112.88433382137627"/>
+            <point key="canvasLocation" x="4920" y="113"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -201,7 +213,7 @@
         <image name="CountriesButton" width="480" height="79"/>
         <image name="Nature" width="480" height="79"/>
         <image name="Play" width="480" height="79"/>
-        <image name="ScrambledLettersUniform" width="405" height="540"/>
+        <image name="ScrambledLettersUniform" width="414" height="736"/>
         <image name="Space" width="480" height="79"/>
         <image name="TitleWords" width="557" height="140"/>
     </resources>

@@ -9,10 +9,14 @@
 import UIKit
 
 class GameViewController: UIViewController {
-
+    
+    @IBOutlet var backgroundImage: UIImageView!
+    
+    var imageName: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        backgroundImage.image = UIImage(named: imageName)
         // Do any additional setup after loading the view.
     }
     
