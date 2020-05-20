@@ -20,7 +20,10 @@ class CategoryViewController: UIViewController {
     
     enum BackgroundImageNames: String {
         // TODO: Add more later
+        case AdjectivesBG
+        case CountriesBG
         case NatureBG
+        case SpaceBG
     }
     
     override func viewDidLoad() {
@@ -83,6 +86,7 @@ class CategoryViewController: UIViewController {
             switch identifier {
                 case Segues.adjectivesToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
+                        destVC.imageName = BackgroundImageNames.AdjectivesBG.rawValue
                         // pass data that makes it an adjectives VC
                     }
                 case Segues.commonWordsToGame.rawValue:
@@ -91,6 +95,7 @@ class CategoryViewController: UIViewController {
                     }
                 case Segues.countriesToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
+                        destVC.imageName = BackgroundImageNames.CountriesBG.rawValue
                         // pass data that makes it a countries VC
                     }
                 case Segues.natureToGame.rawValue:
@@ -99,6 +104,7 @@ class CategoryViewController: UIViewController {
                     }
                 case Segues.spaceToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
+                        destVC.imageName = BackgroundImageNames.SpaceBG.rawValue
                         // pass data that makes it a space VC
                     }
                 default: break
