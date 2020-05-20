@@ -21,6 +21,7 @@ class CategoryViewController: UIViewController {
     enum BackgroundImageNames: String {
         // TODO: Add more later
         case AdjectivesBG
+        case CommonWordsBG
         case CountriesBG
         case NatureBG
         case SpaceBG
@@ -91,6 +92,7 @@ class CategoryViewController: UIViewController {
                     }
                 case Segues.commonWordsToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
+                        destVC.imageName = BackgroundImageNames.CommonWordsBG.rawValue
                         // pass data that makes it a common words VC
                     }
                 case Segues.countriesToGame.rawValue:

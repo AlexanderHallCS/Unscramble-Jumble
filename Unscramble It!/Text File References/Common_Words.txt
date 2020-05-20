@@ -626,7 +626,6 @@ quite
 broke
 case
 middle
-kill
 son
 lake
 moment
@@ -678,7 +677,6 @@ row
 mouth
 exact
 symbol
-die
 least
 trouble
 shout
@@ -811,7 +809,6 @@ yellow
 gun
 allow
 print
-dead
 spot
 desert
 suit
@@ -871,7 +868,6 @@ claim
 continent
 oxygen
 sugar
-death
 pretty
 skill
 women
@@ -931,7 +927,6 @@ connect
 post
 spend
 chord
-fat
 glad
 original
 share
