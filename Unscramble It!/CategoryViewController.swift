@@ -88,26 +88,27 @@ class CategoryViewController: UIViewController {
                 case Segues.adjectivesToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         destVC.imageName = BackgroundImageNames.AdjectivesBG.rawValue
-                        // pass data that makes it an adjectives VC
+                        destVC.gameTheme = "Adjectives"
                     }
                 case Segues.commonWordsToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         destVC.imageName = BackgroundImageNames.CommonWordsBG.rawValue
-                        // pass data that makes it a common words VC
+                        destVC.gameTheme = "Common Words"
                     }
                 case Segues.countriesToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         destVC.imageName = BackgroundImageNames.CountriesBG.rawValue
-                        // pass data that makes it a countries VC
+                        destVC.gameTheme = "Countries"
                     }
                 case Segues.natureToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         destVC.imageName = BackgroundImageNames.NatureBG.rawValue
+                        destVC.gameTheme = "Nature"
                     }
                 case Segues.spaceToGame.rawValue:
                     if let destVC = segue.destination as? GameViewController {
                         destVC.imageName = BackgroundImageNames.SpaceBG.rawValue
-                        // pass data that makes it a space VC
+                        destVC.gameTheme = "Space"
                     }
                 default: break
             }

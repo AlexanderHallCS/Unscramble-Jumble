@@ -7,23 +7,35 @@
 //
 
 import UIKit
+import NotificationCenter
 
 class GameViewController: UIViewController {
     
     @IBOutlet var backgroundImage: UIImageView!
     
+    var game = Game?
+    
+    var gameTheme: String = ""
     var imageName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
-        // Do any additional setup after loading the view.
+        //maybe change the event of willResignActiveNotification to something more forgiving
+        NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        game = Game(theme: gameTheme)
     }
     
     deinit {
         print("did deinit3!")
     }
 
+    // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
+    @objc func pauseGame() {
+        print("pause game!")
+    }
+    
     /*
     // MARK: - Navigation
 
