@@ -11,7 +11,7 @@
 		110587202424338E0005B62D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1105871F2424338E0005B62D /* SceneDelegate.swift */; };
 		110587222424338E0005B62D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110587212424338E0005B62D /* StartViewController.swift */; };
 		110587252424338E0005B62D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 110587232424338E0005B62D /* Main.storyboard */; };
-		110587282424338E0005B62D /* Unscramble_It_.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 110587262424338E0005B62D /* Unscramble_It_.xcdatamodeld */; };
+		110587282424338E0005B62D /* Unscramble_It.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 110587262424338E0005B62D /* Unscramble_It.xcdatamodeld */; };
 		1105872A242433900005B62D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11058729242433900005B62D /* Assets.xcassets */; };
 		1105872D242433900005B62D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1105872B242433900005B62D /* LaunchScreen.storyboard */; };
 		11058738242433900005B62D /* Unscramble_It_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058737242433900005B62D /* Unscramble_It_Tests.swift */; };
@@ -146,7 +146,7 @@
 				11058729242433900005B62D /* Assets.xcassets */,
 				11820E1A246E4C8000497D90 /* GoogleService-Info.plist */,
 				1105872E242433900005B62D /* Info.plist */,
-				110587262424338E0005B62D /* Unscramble_It_.xcdatamodeld */,
+				110587262424338E0005B62D /* Unscramble_It.xcdatamodeld */,
 			);
 			path = "Unscramble It!";
 			sourceTree = "<group>";
@@ -471,7 +471,7 @@
 				111A7EAE24763D07006CF80D /* Game.swift in Sources */,
 				110587222424338E0005B62D /* StartViewController.swift in Sources */,
 				1105871E2424338E0005B62D /* AppDelegate.swift in Sources */,
-				110587282424338E0005B62D /* Unscramble_It_.xcdatamodeld in Sources */,
+				110587282424338E0005B62D /* Unscramble_It.xcdatamodeld in Sources */,
 				11343DBB2470584900748375 /* GameViewController.swift in Sources */,
 				110587202424338E0005B62D /* SceneDelegate.swift in Sources */,
 			);
@@ -820,13 +820,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		110587262424338E0005B62D /* Unscramble_It_.xcdatamodeld */ = {
+		110587262424338E0005B62D /* Unscramble_It.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				110587272424338E0005B62D /* Unscramble_It_.xcdatamodel */,
 			);
 			currentVersion = 110587272424338E0005B62D /* Unscramble_It_.xcdatamodel */;
-			path = Unscramble_It_.xcdatamodeld;
+			path = Unscramble_It.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

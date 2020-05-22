@@ -12,26 +12,41 @@ class Game {
 
     var word = ""
     
+    enum fileName: String {
+        case Adjectives
+        case Common_Words
+        case Countries
+        case Nature
+        case Space
+    }
+    
     init?(theme: String) {
         word = getRandomShuffledWord(from: theme)
     }
     
     //MARK: Finish switch statement and consider changing strings to an enum in CategoryViewController
     private func getRandomShuffledWord(from fileName: String) -> String {
+        
+        var randomWord = ""
+        
         /*switch fileName {
-        case "Adjectives": return
+        case fileName.Adjectives.rawValue: return
         } */
-        return ""
+        return shuffleLetters(word: randomWord)
     }
     
-    //MARK: Implement functionality by using Array(String).shuffled() -> [String]
     private func shuffleLetters(word: String) -> String {
-        //make sure to check if the shuffled words are not equal to the same word before it was shuffled
-        // ^^ do this with hasWordChanged(firstWord, secondWord) function
-        return ""
+    
+        var shuffledWord = ""
+        
+        repeat {
+            shuffledWord = String(Array(word).shuffled())
+        } while !hasWordChanged(word, shuffledWord)
+        
+        return shuffledWord
     }
    
-    private func hasWordChanged(firstWord: String, secondWord: String) -> Bool {
+    private func hasWordChanged(_ firstWord: String, _ secondWord: String) -> Bool {
         if firstWord != secondWord {
             return true
         }

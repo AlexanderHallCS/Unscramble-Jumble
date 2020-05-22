@@ -13,7 +13,7 @@ class GameViewController: UIViewController {
     
     @IBOutlet var backgroundImage: UIImageView!
     
-    var game = Game?
+    var game: Game?
     
     var gameTheme: String = ""
     var imageName: String = ""
@@ -23,7 +23,6 @@ class GameViewController: UIViewController {
         backgroundImage.image = UIImage(named: imageName)
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
-        
         game = Game(theme: gameTheme)
     }
     
