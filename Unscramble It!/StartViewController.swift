@@ -18,13 +18,10 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         
         // setting up banner ad
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = Keys.adUnitID
         bannerView.rootViewController = self
         bannerView.delegate = self
         loadBannerAd()
-        /*let adjectivesFilePath = Bundle.main.path(forResource: "Adjectives", ofType: "txt")
-        let adjectivesContents = try! String(contentsOfFile: adjectivesFilePath!, encoding: String.Encoding.utf8)
-        print(adjectivesContents) */
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }

@@ -20,6 +20,7 @@
 		11343DBB2470584900748375 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11343DBA2470584900748375 /* GameViewController.swift */; };
 		11820E1B246E4C8000497D90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11820E1A246E4C8000497D90 /* GoogleService-Info.plist */; };
 		118D74C6242C7048007DB21E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D74C5242C7048007DB21E /* CategoryViewController.swift */; };
+		1191C5012478E25A00F38E9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C5002478E25A00F38E9C /* Constants.swift */; };
 		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
 		11D793C42428822A00435B54 /* Nature.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BF2428822A00435B54 /* Nature.txt */; };
 		11D793C52428822A00435B54 /* Space.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C02428822A00435B54 /* Space.txt */; };
@@ -69,6 +70,7 @@
 		11343DBA2470584900748375 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		11820E1A246E4C8000497D90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		118D74C5242C7048007DB21E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		1191C5002478E25A00F38E9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
 		11D793BF2428822A00435B54 /* Nature.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Nature.txt; sourceTree = "<group>"; };
 		11D793C02428822A00435B54 /* Space.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Space.txt; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				11D793C82428823600435B54 /* Text File References */,
 				11DAC5F72473835A00AF718C /* Supporting Files */,
+				1191C5002478E25A00F38E9C /* Constants.swift */,
 				110587212424338E0005B62D /* StartViewController.swift */,
 				110587232424338E0005B62D /* Main.storyboard */,
 				118D74C5242C7048007DB21E /* CategoryViewController.swift */,
@@ -474,6 +477,7 @@
 				110587282424338E0005B62D /* Unscramble_It.xcdatamodeld in Sources */,
 				11343DBB2470584900748375 /* GameViewController.swift in Sources */,
 				110587202424338E0005B62D /* SceneDelegate.swift in Sources */,
+				1191C5012478E25A00F38E9C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,21 +10,12 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
-    enum Segues: String {
-        case adjectivesToGame
-        case commonWordsToGame
-        case countriesToGame
-        case natureToGame
-        case spaceToGame
-    }
-    
-    enum BackgroundImageNames: String {
-        // TODO: Add more later
-        case AdjectivesBG
-        case CommonWordsBG
-        case CountriesBG
-        case NatureBG
-        case SpaceBG
+    enum Segues {
+        static let adjectivesToGame = "adjectivesToGame"
+        static let commonWordsToGame = "commonWordsToGame"
+        static let countriesToGame = "countriesToGame"
+        static let natureToGame = "natureToGame"
+        static let spaceToGame = "spaceToGame"
     }
     
     override func viewDidLoad() {
@@ -36,27 +27,25 @@ class CategoryViewController: UIViewController {
 
     // segue to GameViewController and remove CategoryViewController right after
     @IBAction func adjectivesToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.adjectivesToGame.rawValue)
+        segueAndRemoveSelf(segueName: Segues.adjectivesToGame)
     }
     @IBAction func commonWordsToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.commonWordsToGame.rawValue)
+        segueAndRemoveSelf(segueName: Segues.commonWordsToGame)
     }
     @IBAction func countriesToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.countriesToGame.rawValue)
+        segueAndRemoveSelf(segueName: Segues.countriesToGame)
     }
     @IBAction func natureToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.natureToGame.rawValue)
+        segueAndRemoveSelf(segueName: Segues.natureToGame)
     }
     @IBAction func spaceToGame(_ sender: UIButton) {
-        segueAndRemoveSelf(segueName: Segues.spaceToGame.rawValue)
+        segueAndRemoveSelf(segueName: Segues.spaceToGame)
     }
     
     
     deinit {
         print("did deinit2!")
     }
-    
-    
     
     @IBAction func backOut(_ sender: UIButton) {
         UIView.animate(withDuration: 0.25, animations: {
@@ -81,34 +70,33 @@ class CategoryViewController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {
-                case Segues.adjectivesToGame.rawValue:
+                case Segues.adjectivesToGame:
                     if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = BackgroundImageNames.AdjectivesBG.rawValue
-                        destVC.gameTheme = "Adjectives"
+                        destVC.imageName = FileNames.BGImageFileNames.adjectives
+                        destVC.themeFileName = FileNames.WordFileNames.adjectives
                     }
-                case Segues.commonWordsToGame.rawValue:
+                case Segues.commonWordsToGame:
                     if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = BackgroundImageNames.CommonWordsBG.rawValue
-                        destVC.gameTheme = "Common Words"
+                        destVC.imageName = FileNames.BGImageFileNames.commonWords
+                        destVC.themeFileName = FileNames.WordFileNames.commonWords
                     }
-                case Segues.countriesToGame.rawValue:
+                case Segues.countriesToGame:
                     if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = BackgroundImageNames.CountriesBG.rawValue
-                        destVC.gameTheme = "Countries"
+                        destVC.imageName = FileNames.BGImageFileNames.countries
+                        destVC.themeFileName = FileNames.WordFileNames.countries
                     }
-                case Segues.natureToGame.rawValue:
+                case Segues.natureToGame:
                     if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = BackgroundImageNames.NatureBG.rawValue
-                        destVC.gameTheme = "Nature"
+                        destVC.imageName = FileNames.BGImageFileNames.nature
+                        destVC.themeFileName = FileNames.WordFileNames.nature
                     }
-                case Segues.spaceToGame.rawValue:
+                case Segues.spaceToGame:
                     if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = BackgroundImageNames.SpaceBG.rawValue
-                        destVC.gameTheme = "Space"
+                        destVC.imageName = FileNames.BGImageFileNames.space
+                        destVC.themeFileName = FileNames.WordFileNames.space
                     }
                 default: break
             }

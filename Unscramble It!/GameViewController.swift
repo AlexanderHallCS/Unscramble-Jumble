@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     
     var game: Game?
     
-    var gameTheme: String = ""
+    var themeFileName: String = ""
     var imageName: String = ""
     
     override func viewDidLoad() {
@@ -23,7 +23,8 @@ class GameViewController: UIViewController {
         backgroundImage.image = UIImage(named: imageName)
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
-        game = Game(theme: gameTheme)
+        
+        game = Game(themeFile: themeFileName)
     }
     
     deinit {

@@ -12,26 +12,20 @@ class Game {
 
     var word = ""
     
-    enum fileName: String {
-        case Adjectives
-        case Common_Words
-        case Countries
-        case Nature
-        case Space
+    init?(themeFile: String) {
+        word = getRandomShuffledWord(from: themeFile)
+        /*for _ in 0...40 {
+            print(getRandomShuffledWord(from: themeFile) + "\n")
+        } */
     }
     
-    init?(theme: String) {
-        word = getRandomShuffledWord(from: theme)
-    }
-    
-    //MARK: Finish switch statement and consider changing strings to an enum in CategoryViewController
     private func getRandomShuffledWord(from fileName: String) -> String {
         
-        var randomWord = ""
+        let filePath = Bundle.main.path(forResource: fileName, ofType: "txt")
+        let fileContents = try! String(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
+        let allWordsInFile = fileContents.components(separatedBy: ["\n"])
+        let randomWord = allWordsInFile.randomElement()!
         
-        /*switch fileName {
-        case fileName.Adjectives.rawValue: return
-        } */
         return shuffleLetters(word: randomWord)
     }
     
@@ -43,10 +37,15 @@ class Game {
             shuffledWord = String(Array(word).shuffled())
         } while !hasWordChanged(word, shuffledWord)
         
+        // remove carriage return in the word that appears in the file
+        if shuffledWord.contains("\r") {
+            shuffledWord.remove(at: shuffledWord.firstIndex(of: "\r")!)
+        }
+        
         return shuffledWord
     }
    
-    private func hasWordChanged(_ firstWord: String, _ secondWord: String) -> Bool {
+    public func hasWordChanged(_ firstWord: String, _ secondWord: String) -> Bool {
         if firstWord != secondWord {
             return true
         }
