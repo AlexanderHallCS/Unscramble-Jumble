@@ -36,6 +36,10 @@ class GameViewController: UIViewController {
         print("pause game!")
     }
     
+    func gameOver() {
+        
+    }
+    
     /*
     // MARK: - Navigation
 
