@@ -224,13 +224,40 @@
                     <view key="view" contentMode="scaleToFill" id="xqL-Tu-hPI">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Paused" translatesAutoresizingMaskIntoConstraints="NO" id="CNG-tN-1jv">
+                                <rect key="frame" x="149" y="65" width="536" height="285"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsD-EG-ezD" userLabel="ContinueButton">
+                                <rect key="frame" x="247.5" y="444.5" width="339" height="285"/>
+                                <state key="normal" backgroundImage="ContinueButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-Zc-y7o" userLabel="QuitButton">
+                                <rect key="frame" x="240" y="966.5" width="354" height="116"/>
+                                <state key="normal" backgroundImage="QuitButton"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bCg-Zc-y7o" firstAttribute="height" secondItem="xqL-Tu-hPI" secondAttribute="height" multiplier="0.0971524" id="0Aw-dD-PLD"/>
+                            <constraint firstItem="bCg-Zc-y7o" firstAttribute="centerX" secondItem="fKm-JI-sRQ" secondAttribute="centerX" id="0gF-c4-Psg"/>
+                            <constraint firstItem="CNG-tN-1jv" firstAttribute="height" secondItem="xqL-Tu-hPI" secondAttribute="height" multiplier="0.238693" id="Ffu-bz-WpA"/>
+                            <constraint firstItem="FsD-EG-ezD" firstAttribute="centerX" secondItem="fKm-JI-sRQ" secondAttribute="centerX" id="Noj-GC-3fL"/>
+                            <constraint firstItem="bCg-Zc-y7o" firstAttribute="width" secondItem="xqL-Tu-hPI" secondAttribute="width" multiplier="0.42446" id="Of9-DU-ZCi"/>
+                            <constraint firstItem="CNG-tN-1jv" firstAttribute="top" secondItem="fKm-JI-sRQ" secondAttribute="bottom" multiplier="60/1080" id="Xu6-gE-MSm"/>
+                            <constraint firstItem="CNG-tN-1jv" firstAttribute="width" secondItem="xqL-Tu-hPI" secondAttribute="width" multiplier="0.642686" id="bsK-pb-yjx"/>
+                            <constraint firstItem="FsD-EG-ezD" firstAttribute="centerY" secondItem="fKm-JI-sRQ" secondAttribute="centerY" id="eex-DH-qhr"/>
+                            <constraint firstItem="FsD-EG-ezD" firstAttribute="height" secondItem="xqL-Tu-hPI" secondAttribute="height" multiplier="0.238693" id="pml-of-W1F"/>
+                            <constraint firstItem="CNG-tN-1jv" firstAttribute="centerX" secondItem="fKm-JI-sRQ" secondAttribute="centerX" id="wi3-2Q-b40"/>
+                            <constraint firstItem="FsD-EG-ezD" firstAttribute="width" secondItem="xqL-Tu-hPI" secondAttribute="width" multiplier="0.406475" id="xe4-KG-F6t"/>
+                            <constraint firstItem="bCg-Zc-y7o" firstAttribute="top" secondItem="fKm-JI-sRQ" secondAttribute="bottom" multiplier="889/1080" id="z6V-nn-FdX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fKm-JI-sRQ"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5M-tN-4SW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5807" y="113"/>
+            <point key="canvasLocation" x="5806.4748201438852" y="112.56281407035176"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -241,10 +268,13 @@
         <image name="BackButton" width="158" height="133"/>
         <image name="Categories" width="389" height="71"/>
         <image name="Common Words" width="480" height="79"/>
+        <image name="ContinueButton" width="158" height="133"/>
         <image name="CountriesButton" width="480" height="79"/>
         <image name="Nature" width="480" height="79"/>
         <image name="PauseButton" width="150" height="150"/>
+        <image name="Paused" width="266" height="57"/>
         <image name="Play" width="480" height="79"/>
+        <image name="QuitButton" width="240" height="79"/>
         <image name="ScrambledLettersUniform" width="405" height="540"/>
         <image name="Space" width="480" height="79"/>
         <image name="TitleWords" width="557" height="140"/>
