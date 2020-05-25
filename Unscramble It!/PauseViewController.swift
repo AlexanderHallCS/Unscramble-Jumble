@@ -17,7 +17,29 @@ class PauseViewController: UIViewController {
         self.animateIn()
     }
     
-    /*@IBAction func backOut(_ sender: UIButton) {
+    deinit {
+        print("did deinit4!")
+    }
+    
+    @IBAction func backOutToGameVC(_ sender: UIButton) {
+        animateOut()
+    }
+    
+    func animateIn() {
+        self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.view.alpha = 0.0;
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.alpha = 1.0
+            self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        });
+    }
+    
+    
+    @IBAction func backOutToStartVC(_ sender: UIButton) {
+        animateOut()
+    }
+    
+    private func animateOut() {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
@@ -26,15 +48,6 @@ class PauseViewController: UIViewController {
             {
                 self.removeFromParent()
             }
-        });
-    } */
-    
-    func animateIn() {
-        self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        self.view.alpha = 0.0;
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.alpha = 1.0
-            self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         });
     }
     

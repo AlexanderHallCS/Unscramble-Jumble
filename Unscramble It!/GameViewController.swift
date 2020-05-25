@@ -36,6 +36,16 @@ class GameViewController: UIViewController {
         print("pause game!")
     }
     
+    @IBAction func goToPauseVC(_ sender: UIButton) {
+        let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PausePopUpID") as! PauseViewController
+        self.addChild(pauseVC)
+        pauseVC.view.frame = self.view.frame
+        self.view.addSubview(pauseVC.view)
+        pauseVC.didMove(toParent: self)
+        
+        pauseGame()
+    }
+    
     func gameOver() {
         
     }

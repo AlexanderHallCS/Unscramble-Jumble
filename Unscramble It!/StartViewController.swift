@@ -71,7 +71,7 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         categoryVC.didMove(toParent: self)
     }
     
-    @IBAction func unwindToStart(segue: UIStoryboardSegue) {
+    @IBAction func unwindToStartFromPauseVC(segue: UIStoryboardSegue) {
         //self.dismiss(animated: true, completion: nil)
         print("unwinded!")
     }

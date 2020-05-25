@@ -173,17 +173,12 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4xB-Cm-8XO">
                                 <rect key="frame" x="0.0" y="-5" width="834" height="1204"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPq-8e-mZg">
-                                <rect key="frame" x="20" y="38" width="118" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="BackButton"/>
-                                <connections>
-                                    <segue destination="WTo-qK-deV" kind="unwind" unwindAction="unwindToStartWithSegue:" id="p3G-8M-bmu"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-CZ-dBf" userLabel="PauseButton">
                                 <rect key="frame" x="719" y="31" width="94.5" height="95.5"/>
                                 <state key="normal" backgroundImage="PauseButton"/>
+                                <connections>
+                                    <action selector="goToPauseVC:" destination="Y3p-mg-j3y" eventType="touchUpInside" id="Dea-hN-tAp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -213,14 +208,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2MB-IC-3pS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="WTo-qK-deV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4918.840579710145" y="112.5"/>
         </scene>
         <!--Pause View Controller-->
         <scene sceneID="K0U-Hb-IWG">
             <objects>
-                <viewController id="1GC-hQ-JTF" customClass="PauseViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PausePopUpID" id="1GC-hQ-JTF" customClass="PauseViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xqL-Tu-hPI">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -231,10 +225,17 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsD-EG-ezD" userLabel="ContinueButton">
                                 <rect key="frame" x="247.5" y="444.5" width="339" height="285"/>
                                 <state key="normal" backgroundImage="ContinueButton"/>
+                                <connections>
+                                    <action selector="backOutToGameVC:" destination="1GC-hQ-JTF" eventType="touchUpInside" id="60I-ll-21g"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-Zc-y7o" userLabel="QuitButton">
                                 <rect key="frame" x="240" y="966.5" width="354" height="116"/>
                                 <state key="normal" backgroundImage="QuitButton"/>
+                                <connections>
+                                    <action selector="backOutToStartVC:" destination="1GC-hQ-JTF" eventType="touchUpInside" id="x6J-x1-Xvz"/>
+                                    <segue destination="hfA-Kh-IzV" kind="unwind" unwindAction="unwindToStartFromPauseVCWithSegue:" id="8qr-Ag-eDf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -256,6 +257,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5M-tN-4SW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="hfA-Kh-IzV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5806.4748201438852" y="112.56281407035176"/>
         </scene>
