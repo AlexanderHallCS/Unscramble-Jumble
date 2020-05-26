@@ -70,11 +70,21 @@ class GameViewController: UIViewController {
                 letters.append(UIImageView(image: UIImage(named: String(game!.scrambledWord[letter].uppercased()))!))
             }
         }
-        letters[0].frame = CGRect(x: self.view.frame.width/2 - 23.4375, y: self.view.frame.height/6*5, width: self.view.frame.width/8, height: self.view.frame.width/8)
+        //let xValue = self.view.frame.width/2 - letters[0].bounds.width/2
+        //print("X Value: \(xValue)")
+        /*let frameWidth2 = self.view.frame.width/2
+        print("self.view.frame.width/2 + \(frameWidth2)")
+        let letterBoundWidth = letters[0].bounds.width/2
+        print("letters[0].bounds.width/2 + \(letterBoundWidth)") */
+        letters[0].frame = CGRect(x: self.view.frame.width/2 - self.view.frame.width/8/2, y: self.view.frame.height/6*5, width: self.view.frame.width/8, height: self.view.frame.width/8)
+        let xValue = self.view.frame.width/2 - letters[0].bounds.width/2
+        //print("X Value: \(xValue)")
         self.view.addSubview(letters[0])
+        /*print(self.view.frame.width/2)
         print(letters[0].bounds.width/2)
-        print(self.view.frame.width)
-        print(self.view.frame.width/2)
+        print("Added values: \(self.view.frame.width/2 + letters[0].bounds.width/2)")
+        print("Subtracted values: \(self.view.frame.width/2 - letters[0].bounds.width/2)") */
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
