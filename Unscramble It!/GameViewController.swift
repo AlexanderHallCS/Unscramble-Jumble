@@ -18,6 +18,9 @@ class GameViewController: UIViewController {
     var themeFileName: String = ""
     var imageName: String = ""
     
+    var blankSpaces = [UIImage]()
+    var letters = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
@@ -25,6 +28,9 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
         
         game = Game(themeFile: themeFileName)
+        
+        addBlankSpaces()
+        addLetters()
     }
     
     deinit {
@@ -46,18 +52,27 @@ class GameViewController: UIViewController {
         pauseGame()
     }
     
-    func gameOver() {
+    private func gameOver() {
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func addBlankSpaces() {
+        for _ in 0..<game!.unscrambledWord.count {
+            blankSpaces.append(UIImage(named: "Blank Space")!)
+        }
     }
-    */
-
+    
+    private func addLetters() {
+        for letter in game!.scrambledWord {
+            letters.append(UIImage(named: String(letter.uppercased()))!)
+            
+        }
+        
+        print(letters)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    }
+    
 }

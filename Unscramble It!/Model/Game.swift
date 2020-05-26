@@ -10,23 +10,27 @@ import Foundation
 
 class Game {
 
-    var word = ""
+    var scrambledWord = ""
+    var unscrambledWord = ""
     
     init?(themeFile: String) {
-        word = getRandomShuffledWord(from: themeFile)
+        unscrambledWord = getRandomWord(from: themeFile)
+        scrambledWord = shuffleLetters(word: unscrambledWord)
+        print(unscrambledWord)
+        print(scrambledWord)
         /*for _ in 0...40 {
             print(getRandomShuffledWord(from: themeFile) + "\n")
         } */
     }
     
-    private func getRandomShuffledWord(from fileName: String) -> String {
+    private func getRandomWord(from fileName: String) -> String {
         
         let filePath = Bundle.main.path(forResource: fileName, ofType: "txt")
         let fileContents = try! String(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
         let allWordsInFile = fileContents.components(separatedBy: ["\n"])
         let randomWord = allWordsInFile.randomElement()!
         
-        return shuffleLetters(word: randomWord)
+        return randomWord
     }
     
     private func shuffleLetters(word: String) -> String {
