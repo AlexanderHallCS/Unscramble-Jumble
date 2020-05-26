@@ -18,12 +18,13 @@ class GameViewController: UIViewController {
     var themeFileName: String = ""
     var imageName: String = ""
     
-    var blankSpaces = [UIImage]()
-    var letters = [UIImage]()
+    var blankSpaces = [UIImageView]()
+    var letters = [UIImageView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
+        backgroundImage.layer.zPosition = -1
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
         
@@ -58,17 +59,22 @@ class GameViewController: UIViewController {
     
     private func addBlankSpaces() {
         for _ in 0..<game!.unscrambledWord.count {
-            blankSpaces.append(UIImage(named: "Blank Space")!)
+            blankSpaces.append(UIImageView(image: UIImage(named: "Blank Space")!))
         }
+        
     }
     
     private func addLetters() {
-        for letter in game!.scrambledWord {
-            letters.append(UIImage(named: String(letter.uppercased()))!)
-            
+        for letter in game!.scrambledWord.indices {
+            if game!.scrambledWord[letter] != " " {
+                letters.append(UIImageView(image: UIImage(named: String(game!.scrambledWord[letter].uppercased()))!))
+            }
         }
-        
-        print(letters)
+        letters[0].frame = CGRect(x: self.view.frame.width/2 - 23.4375, y: self.view.frame.height/6*5, width: self.view.frame.width/8, height: self.view.frame.width/8)
+        self.view.addSubview(letters[0])
+        print(letters[0].bounds.width/2)
+        print(self.view.frame.width)
+        print(self.view.frame.width/2)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
