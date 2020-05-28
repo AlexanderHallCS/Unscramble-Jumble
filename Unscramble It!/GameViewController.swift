@@ -79,10 +79,11 @@ class GameViewController: UIViewController {
         var firstLetterInRowIndex = 0
         // for loop to define how many rows of letters there are
         for row in stride(from: 0.0, to: ceil(Double(letters.count)/6.0), by: 1.0) {
-            // check if on last row and last row doesn't have 6 letters
+            // check if this iteration is the last row and last row doesn't have 6 letters
             if(row ==  ceil(Double(letters.count)/6.0) - 1 && letters.count%6 != 0) {
                 let unevenLetterOffset = widthOfLetterPlusSpacing*CGFloat(6-letters.count%6)
-                xShift = (centerXOfFrame - widthOfLetterPlusSpacing * 3) + unevenLetterOffset
+                //xShift = (centerXOfFrame - widthOfLetterPlusSpacing * 3) + unevenLetterOffset
+                xShift = centerXOfFrame - widthOfLetterPlusSpacing * CGFloat(letters.count%6 - 1)/2
                 // ex: 6->7 to format 1 letter; 12->14 to format 2 letters
                 for letterIndex in (letters.count-letters.count%6)..<letters.count {
                     print("FRACTURED ROW ENTER: \(letterIndex)")
@@ -91,14 +92,16 @@ class GameViewController: UIViewController {
                     xShift += widthOfLetterPlusSpacing
                 }
             } else {
-                // for all rows that aren't the last row unless the last row also has 6 letters
+                // this for loop is for all rows that aren't the last row unless the last row also has 6 letters
                 for letterIndex in firstLetterInRowIndex..<firstLetterInRowIndex+6 {
                     print("6 ROW ENTER: \(letterIndex)")
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*11 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
-                xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * 3
+                // reset xShift value
+                xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * 2.5
+                // go to next row
                 firstLetterInRowIndex += 6
             }
             
