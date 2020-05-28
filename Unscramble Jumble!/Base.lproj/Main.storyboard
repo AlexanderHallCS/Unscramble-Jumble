@@ -10,7 +10,7 @@
         <!--Start View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="StartViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="StartViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <subviews>
@@ -54,7 +54,7 @@
         <!--Category View Controller-->
         <scene sceneID="eT3-VS-Y5e">
             <objects>
-                <viewController storyboardIdentifier="CategoryPopUpID" modalPresentationStyle="fullScreen" id="mIU-lr-PUK" customClass="CategoryViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryPopUpID" modalPresentationStyle="fullScreen" id="mIU-lr-PUK" customClass="CategoryViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX4-AR-uc1">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <subviews>
@@ -165,7 +165,7 @@
         <!--Game View Controller-->
         <scene sceneID="5qp-bf-8od">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Y3p-mg-j3y" customClass="GameViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Y3p-mg-j3y" customClass="GameViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zks-3k-ZQJ">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -214,7 +214,7 @@
         <!--Pause View Controller-->
         <scene sceneID="K0U-Hb-IWG">
             <objects>
-                <viewController storyboardIdentifier="PausePopUpID" id="1GC-hQ-JTF" customClass="PauseViewController" customModule="Unscramble_It_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PausePopUpID" id="1GC-hQ-JTF" customClass="PauseViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xqL-Tu-hPI">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
