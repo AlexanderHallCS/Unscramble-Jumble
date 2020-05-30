@@ -58,8 +58,24 @@ class GameViewController: UIViewController {
     }
     
     private func addBlankSpaces() {
-        for _ in 0..<game!.unscrambledWord.count {
+        let blankSpaceShrinkingFactor: CGFloat = CGFloat((game!.unscrambledWord.count - 1) + 4)
+        let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/blankSpaceShrinkingFactor/2
+        let widthOfLetterPlusSpacing = self.view.frame.width/blankSpaceShrinkingFactor + self.view.frame.width/32
+        var xShift: CGFloat = centerXOfFrame - (widthOfLetterPlusSpacing) * (blankSpaceShrinkingFactor/4)
+        var yShift: CGFloat = 0.0
+        for _ in 0..<game!.unscrambledWord.count-1 {
             blankSpaces.append(UIImageView(image: UIImage(named: "Blank Space")!))
+        }
+        
+        for blankSpaceIndex in 0..<blankSpaces.count {
+            if Array(game!.unscrambledWord)[blankSpaceIndex] == " " {
+                yShift += widthOfLetterPlusSpacing
+                xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * (blankSpaceShrinkingFactor/4)
+                continue
+            }
+            blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 + yShift, width: widthOfLetterPlusSpacing - self.view.frame.width/32, height: widthOfLetterPlusSpacing - self.view.frame.width/32)
+            self.view.addSubview(blankSpaces[blankSpaceIndex])
+            xShift += widthOfLetterPlusSpacing
         }
         
     }
@@ -86,7 +102,7 @@ class GameViewController: UIViewController {
                 // ex: 6->7 to format 1 letter; 12->14 to format 2 letters
                 for letterIndex in (letters.count-letters.count%6)..<letters.count {
                     print("FRACTURED ROW ENTER: \(letterIndex)")
-                    letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*11 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*21 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -94,7 +110,7 @@ class GameViewController: UIViewController {
                 // this for loop is for all rows that aren't the last row unless the last row also has 6 letters
                 for letterIndex in firstLetterInRowIndex..<firstLetterInRowIndex+6 {
                     print("6 ROW ENTER: \(letterIndex)")
-                    letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*11 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*21 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -105,7 +121,7 @@ class GameViewController: UIViewController {
             }
             
             print("weeee!")
-            yShift += self.view.frame.width/8 + self.view.frame.width/32
+            yShift += widthOfLetterPlusSpacing
         }
     }
     
