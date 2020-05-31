@@ -82,20 +82,26 @@ class GameViewController: UIViewController {
         if wordsLessThanLengthSix == game!.unscrambledWord.split(separator: " ").count {
             let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/8/2
             let widthOfLetterPlusSpacing = self.view.frame.width/8 + self.view.frame.width/32
-            let unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(blankSpaces.count%6 - 1)/2
-            print("UNEVEN LETTER OFFEST: \(unevenLetterOffset)")
-            var xShift: CGFloat = centerXOfFrame - unevenLetterOffset
-            print("X SHIFT VALUE: \(xShift)")
+            var unevenLetterOffset: CGFloat = 0.0
+            var xShift: CGFloat = 0.0
+            var firstLetterInRowIndex = 0
             // ex: 6->7 to format 1 blank space; 12->14 to format 2 letters
             for word in game!.unscrambledWord.split(separator: " ") {
-                for blankSpaceIndex in 0..<word.count {
+                // unevenLetterOffset and xShift are redefined here to account for words with spaces
+                // (it would recalculate spacing based on the current word)
+                unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(word.count%6 - 1)/2
+                xShift = centerXOfFrame - unevenLetterOffset
+                if word.count == 6 {
+                    xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * 2.5
+                }
+                for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
                     print("6 ROW BLANK SPACES ENTER: \(blankSpaceIndex)")
                     blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
                 yShift += widthOfLetterPlusSpacing
-                xShift = centerXOfFrame - unevenLetterOffset
+                firstLetterInRowIndex += word.count
             }
         }
         // end of formatting blank spaces for words/word phrases where all words are <= 6 characters long
