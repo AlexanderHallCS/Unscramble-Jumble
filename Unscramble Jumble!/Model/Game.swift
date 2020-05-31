@@ -14,7 +14,7 @@ class Game {
     var unscrambledWord = ""
     
     init?(themeFile: String) {
-        unscrambledWord = getRandomWord(from: themeFile)
+        unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
         scrambledWord = shuffleLetters(word: unscrambledWord)
         print(unscrambledWord)
         print(scrambledWord)
@@ -41,12 +41,20 @@ class Game {
             shuffledWord = String(Array(word).shuffled())
         } while !hasWordChanged(word, shuffledWord)
         
-        // remove carriage return in the word that appears in the file
-        if shuffledWord.contains("\r") {
-            shuffledWord.remove(at: shuffledWord.firstIndex(of: "\r")!)
-        }
+        
+        shuffledWord = removeCarriageReturn(from: shuffledWord)
         
         return shuffledWord
+    }
+    
+    // remove carriage return from the word that appears in the file(all words in the file have one except
+    // the last word in the file)
+    private func removeCarriageReturn(from word: String) -> String {
+        var wordCopy = word
+        if wordCopy.contains("\r") {
+            wordCopy.remove(at: wordCopy.firstIndex(of: "\r")!)
+        }
+        return wordCopy
     }
    
     public func hasWordChanged(_ firstWord: String, _ secondWord: String) -> Bool {

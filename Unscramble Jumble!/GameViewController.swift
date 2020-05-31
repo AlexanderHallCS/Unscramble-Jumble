@@ -58,16 +58,49 @@ class GameViewController: UIViewController {
     }
     
     private func addBlankSpaces() {
-        let blankSpaceShrinkingFactor: CGFloat = CGFloat((game!.unscrambledWord.count - 1) + 4)
+        /*let blankSpaceShrinkingFactor: CGFloat = CGFloat((game!.unscrambledWord.count - 1) + 4)
         let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/blankSpaceShrinkingFactor/2
         let widthOfLetterPlusSpacing = self.view.frame.width/blankSpaceShrinkingFactor + self.view.frame.width/32
-        var xShift: CGFloat = centerXOfFrame - (widthOfLetterPlusSpacing) * (blankSpaceShrinkingFactor/4)
+        var xShift: CGFloat = centerXOfFrame - (widthOfLetterPlusSpacing) * (blankSpaceShrinkingFactor/4)*/
         var yShift: CGFloat = 0.0
-        for _ in 0..<game!.unscrambledWord.count-1 {
-            blankSpaces.append(UIImageView(image: UIImage(named: "Blank Space")!))
+        for letter in game!.unscrambledWord.indices {
+            if game!.unscrambledWord[letter] != " " {
+                blankSpaces.append(UIImageView(image: UIImage(named: "Blank Space")!))
+            }
         }
         
-        for blankSpaceIndex in 0..<blankSpaces.count {
+        // start of formatting blank spaces for words/word phrases where all words are <= 6 characters long
+        var wordsLessThanLengthSix = 0
+        for word in game!.unscrambledWord.split(separator: " "){
+            print("Word Length: \(word.count), Word: \(word)")
+            if word.count <= 6 {
+                wordsLessThanLengthSix += 1
+            }
+        }
+        print("words less than length six: \(wordsLessThanLengthSix)")
+        print("Words: \(game!.unscrambledWord.split(separator: " ").count)")
+        if wordsLessThanLengthSix == game!.unscrambledWord.split(separator: " ").count {
+            let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/8/2
+            let widthOfLetterPlusSpacing = self.view.frame.width/8 + self.view.frame.width/32
+            let unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(blankSpaces.count%6 - 1)/2
+            print("UNEVEN LETTER OFFEST: \(unevenLetterOffset)")
+            var xShift: CGFloat = centerXOfFrame - unevenLetterOffset
+            print("X SHIFT VALUE: \(xShift)")
+            // ex: 6->7 to format 1 blank space; 12->14 to format 2 letters
+            for word in game!.unscrambledWord.split(separator: " ") {
+                for blankSpaceIndex in 0..<word.count {
+                    print("6 ROW BLANK SPACES ENTER: \(blankSpaceIndex)")
+                    blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    self.view.addSubview(blankSpaces[blankSpaceIndex])
+                    xShift += widthOfLetterPlusSpacing
+                }
+                yShift += widthOfLetterPlusSpacing
+                xShift = centerXOfFrame - unevenLetterOffset
+            }
+        }
+        // end of formatting blank spaces for words/word phrases where all words are <= 6 characters long
+        
+        /*for blankSpaceIndex in 0..<blankSpaces.count {
             if Array(game!.unscrambledWord)[blankSpaceIndex] == " " {
                 yShift += widthOfLetterPlusSpacing
                 xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * (blankSpaceShrinkingFactor/4)
@@ -76,7 +109,7 @@ class GameViewController: UIViewController {
             blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 + yShift, width: widthOfLetterPlusSpacing - self.view.frame.width/32, height: widthOfLetterPlusSpacing - self.view.frame.width/32)
             self.view.addSubview(blankSpaces[blankSpaceIndex])
             xShift += widthOfLetterPlusSpacing
-        }
+        } */
         
     }
     
@@ -98,7 +131,9 @@ class GameViewController: UIViewController {
             // check if this iteration is the last row and last row doesn't have 6 letters
             if(row ==  ceil(Double(letters.count)/6.0) - 1 && letters.count%6 != 0) {
                 let unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(letters.count%6 - 1)/2
+                print("UNEVEN LETTER OFFEST: \(unevenLetterOffset)")
                 xShift = centerXOfFrame - unevenLetterOffset
+                print("X SHIFT VALUE: \(xShift)")
                 // ex: 6->7 to format 1 letter; 12->14 to format 2 letters
                 for letterIndex in (letters.count-letters.count%6)..<letters.count {
                     print("FRACTURED ROW ENTER: \(letterIndex)")
