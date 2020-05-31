@@ -20,7 +20,6 @@ Biome
 Savanna
 Desert
 Tundra
-Permafrost
 Seed
 Root
 Forest

@@ -544,7 +544,6 @@ winter
 sat
 written
 wild
-instrument
 kept
 glass
 grass
@@ -609,7 +608,6 @@ tall
 sand
 soil
 roll
-temperature
 finger
 industry
 value
@@ -637,7 +635,6 @@ child
 straight
 consonant
 nation
-dictionary
 milk
 speed
 method
@@ -656,7 +653,6 @@ cool
 design
 poor
 lot
-experiment
 bottom
 key
 iron
@@ -824,7 +820,6 @@ success
 company
 subtract
 event
-particular
 deal
 swim
 term
@@ -879,7 +874,6 @@ thank
 branch
 match
 suffix
-especially
 fig
 afraid
 huge
@@ -889,7 +883,6 @@ discuss
 forward
 similar
 guide
-experience
 score
 apple
 bought

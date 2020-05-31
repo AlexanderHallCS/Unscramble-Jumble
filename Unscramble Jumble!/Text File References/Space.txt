@@ -16,7 +16,6 @@ Satellite
 Space
 Nebula
 Astronomy
-Constellation
 Cosmos
 Meteorite
 Starlight
@@ -30,7 +29,6 @@ Orion
 Scorpius
 Virgo
 Gemini
-Saggitarius
 Libra
 Capricorn
 Cancer
@@ -38,5 +36,4 @@ Aries
 Pisces
 Aquarius
 Taurus
-Betelgeuse
 Polaris
