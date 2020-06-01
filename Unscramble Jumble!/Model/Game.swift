@@ -17,8 +17,8 @@ class Game {
         /*unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
         scrambledWord = shuffleLetters(word: unscrambledWord) */
         // MARK: Change this later
-        unscrambledWord = removeCarriageReturn(from: "Solomon Islands Zo")
-        scrambledWord = shuffleLetters(word: "Solomon Islands Zambia")
+        unscrambledWord = removeCarriageReturn(from: "Papuad")
+        scrambledWord = shuffleLetters(word: "Papuad")
         print(unscrambledWord)
         print(scrambledWord)
         /*for _ in 0...40 {

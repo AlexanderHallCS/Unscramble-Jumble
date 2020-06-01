@@ -59,6 +59,7 @@ class GameViewController: UIViewController {
     
     private func addBlankSpaces() {
         var yShift: CGFloat = 0.0
+        let yRowShift: CGFloat = self.view.frame.width/10 * CGFloat(game!.unscrambledWord.split(separator: " ").count)
         for letter in game!.unscrambledWord.indices {
             if game!.unscrambledWord[letter] != " " {
                 blankSpaces.append(UIImageView(image: UIImage(named: "Blank Space")!))
@@ -91,17 +92,14 @@ class GameViewController: UIViewController {
             let unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(longestSubWordLength%6 - 1)/2
             // ex: 6->7 to format 1 blank space; 12->14 to format 2 letters
             for word in game!.unscrambledWord.split(separator: " ") {
-                // unevenLetterOffset and xShift are redefined here to account for words with spaces
-                // (it would recalculate spacing based on the current word)
-                //unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(word.count%6 - 1)/2
-                // reset xShift value
+                // xShift is redefined here to account for words with spaces
                 xShift = centerXOfFrame - unevenLetterOffset
                 if longestSubWordLength == 6 {
                     xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * 2.5
                 }
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
                     print("6 ROW BLANK SPACES ENTER: \(blankSpaceIndex)")
-                    blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -117,6 +115,7 @@ class GameViewController: UIViewController {
                     longestSubWordLength = subWord.count
                 }
             }
+            let longWordYPushback = self.view.frame.width/10
             let constantSpacing = self.view.frame.width/32
             let widthShrinkingFactor = CGFloat((32*longestSubWordLength))/CGFloat((30-longestSubWordLength))
             let width = self.view.frame.width/widthShrinkingFactor
@@ -125,7 +124,7 @@ class GameViewController: UIViewController {
             var firstLetterInRowIndex = 0
             for word in game!.unscrambledWord.split(separator: " ") {
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
-                    blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 + yShift, width: width, height: width)
+                    blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 - yRowShift  - longWordYPushback + yShift, width: width, height: width)
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += width + constantSpacing
                 }
@@ -149,6 +148,7 @@ class GameViewController: UIViewController {
         // the intial xShift value is the x position of the leftmost letter in a row of six letters
         var xShift: CGFloat = centerXOfFrame - (widthOfLetterPlusSpacing) * 2.5
         var yShift: CGFloat = 0.0
+        let yRowShift: CGFloat = self.view.frame.width/12 * CGFloat(ceil(Double(game!.scrambledWord.count)/6))
         var firstLetterInRowIndex = 0
         // for loop to define how many rows of letters there are
         for row in stride(from: 0.0, to: ceil(Double(letters.count)/6.0), by: 1.0) {
@@ -161,7 +161,7 @@ class GameViewController: UIViewController {
                 // ex: 6->7 to format 1 letter; 12->14 to format 2 letters
                 for letterIndex in (letters.count-letters.count%6)..<letters.count {
                     print("FRACTURED ROW ENTER: \(letterIndex)")
-                    letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*21 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -169,7 +169,7 @@ class GameViewController: UIViewController {
                 // this for loop is for all rows that aren't the last row unless the last row also has 6 letters
                 for letterIndex in firstLetterInRowIndex..<firstLetterInRowIndex+6 {
                     print("6 ROW ENTER: \(letterIndex)")
-                    letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*21 + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
