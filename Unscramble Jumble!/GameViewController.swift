@@ -118,8 +118,8 @@ class GameViewController: UIViewController {
                 }
             }
             let constantSpacing = self.view.frame.width/32
-            let widthShrinkingFactor: CGFloat = CGFloat((32*longestSubWordLength)/(30-longestSubWordLength))
-            let width = self.view.frame.width/(widthShrinkingFactor)
+            let widthShrinkingFactor = CGFloat((32*longestSubWordLength))/CGFloat((30-longestSubWordLength))
+            let width = self.view.frame.width/widthShrinkingFactor
             let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/8/2
             var xShift = centerXOfFrame - (self.view.frame.width/8 + self.view.frame.width/32) * 2.5
             var firstLetterInRowIndex = 0
