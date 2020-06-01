@@ -78,17 +78,25 @@ class GameViewController: UIViewController {
         if wordsLessThanLengthSix == game!.unscrambledWord.split(separator: " ").count {
             let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/8/2
             let widthOfLetterPlusSpacing = self.view.frame.width/8 + self.view.frame.width/32
-            var unevenLetterOffset: CGFloat = 0.0
+            //var unevenLetterOffset: CGFloat = 0.0
             var xShift: CGFloat = 0.0
             var firstLetterInRowIndex = 0
+            //getting the longest sub word's length so that the width of the blank spaces is based on it
+            var longestSubWordLength = 0
+            for subWord in game!.unscrambledWord.split(separator: " ") {
+                if longestSubWordLength < subWord.count {
+                    longestSubWordLength = subWord.count
+                }
+            }
+            let unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(longestSubWordLength%6 - 1)/2
             // ex: 6->7 to format 1 blank space; 12->14 to format 2 letters
             for word in game!.unscrambledWord.split(separator: " ") {
                 // unevenLetterOffset and xShift are redefined here to account for words with spaces
                 // (it would recalculate spacing based on the current word)
-                unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(word.count%6 - 1)/2
+                //unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(word.count%6 - 1)/2
                 // reset xShift value
                 xShift = centerXOfFrame - unevenLetterOffset
-                if word.count == 6 {
+                if longestSubWordLength == 6 {
                     xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * 2.5
                 }
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
@@ -102,6 +110,7 @@ class GameViewController: UIViewController {
             }
         // end of formatting blank spaces for words/word phrases where all words are <= 6 characters long
         } else {
+            //getting the longest sub word's length so that the width of the blank spaces is based on it
             var longestSubWordLength = 0
             for subWord in game!.unscrambledWord.split(separator: " ") {
                 if longestSubWordLength < subWord.count {
