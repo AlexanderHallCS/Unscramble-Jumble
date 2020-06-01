@@ -58,10 +58,6 @@ class GameViewController: UIViewController {
     }
     
     private func addBlankSpaces() {
-        /*let blankSpaceShrinkingFactor: CGFloat = CGFloat((game!.unscrambledWord.count - 1) + 4)
-        let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/blankSpaceShrinkingFactor/2
-        let widthOfLetterPlusSpacing = self.view.frame.width/blankSpaceShrinkingFactor + self.view.frame.width/32
-        var xShift: CGFloat = centerXOfFrame - (widthOfLetterPlusSpacing) * (blankSpaceShrinkingFactor/4)*/
         var yShift: CGFloat = 0.0
         for letter in game!.unscrambledWord.indices {
             if game!.unscrambledWord[letter] != " " {
@@ -90,6 +86,7 @@ class GameViewController: UIViewController {
                 // unevenLetterOffset and xShift are redefined here to account for words with spaces
                 // (it would recalculate spacing based on the current word)
                 unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(word.count%6 - 1)/2
+                // reset xShift value
                 xShift = centerXOfFrame - unevenLetterOffset
                 if word.count == 6 {
                     xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * 2.5
@@ -103,19 +100,31 @@ class GameViewController: UIViewController {
                 yShift += widthOfLetterPlusSpacing
                 firstLetterInRowIndex += word.count
             }
-        }
         // end of formatting blank spaces for words/word phrases where all words are <= 6 characters long
-        
-        /*for blankSpaceIndex in 0..<blankSpaces.count {
-            if Array(game!.unscrambledWord)[blankSpaceIndex] == " " {
-                yShift += widthOfLetterPlusSpacing
-                xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * (blankSpaceShrinkingFactor/4)
-                continue
+        } else {
+            var longestSubWordLength = 0
+            for subWord in game!.unscrambledWord.split(separator: " ") {
+                if longestSubWordLength < subWord.count {
+                    longestSubWordLength = subWord.count
+                }
             }
-            blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 + yShift, width: widthOfLetterPlusSpacing - self.view.frame.width/32, height: widthOfLetterPlusSpacing - self.view.frame.width/32)
-            self.view.addSubview(blankSpaces[blankSpaceIndex])
-            xShift += widthOfLetterPlusSpacing
-        } */
+            let constantSpacing = self.view.frame.width/32
+            let widthShrinkingFactor: CGFloat = CGFloat((32*longestSubWordLength)/(30-longestSubWordLength))
+            let width = self.view.frame.width/(widthShrinkingFactor)
+            let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/8/2
+            var xShift = centerXOfFrame - (self.view.frame.width/8 + self.view.frame.width/32) * 2.5
+            var firstLetterInRowIndex = 0
+            for word in game!.unscrambledWord.split(separator: " ") {
+                for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
+                    blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 + yShift, width: width, height: width)
+                    self.view.addSubview(blankSpaces[blankSpaceIndex])
+                    xShift += width + constantSpacing
+                }
+                xShift = centerXOfFrame - (self.view.frame.width/8 + self.view.frame.width/32) * 2.5
+                yShift += width + constantSpacing
+                firstLetterInRowIndex += word.count
+            }
+        }
         
     }
     
