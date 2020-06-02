@@ -28,6 +28,8 @@ class GameViewController: UIViewController {
     
     var chosenLetters = [UIImageView]()
     
+    var nextUnvisitedBlankSpace = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
@@ -223,9 +225,11 @@ class GameViewController: UIViewController {
     //NOTE: Once that the letter/uiimageview set its .isUserInteractionEnabled = false then set it to true once some remove letter button is pressed. Shrink the letter if self.game!.containsWordLongerThanSixLetters()
     private func animateTowardsBlankSpace(letter: UIImageView) {
         UIView.animate(withDuration: 1.5, animations: {
-                letter.frame = CGRect(x: self.blankSpaces[0].frame.origin.x, y: self.blankSpaces[0].frame.origin.y, width: self.blankSpaces[0].frame.width, height: self.blankSpaces[0].frame.height)
-            //add rotating animation and put in proper x position
+            letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
+            letter.rotate()
         })
+        blankSpaces[nextUnvisitedBlankSpace].isUserInteractionEnabled = false
+        nextUnvisitedBlankSpace += 1
     }
     
     // @IBAction func popLastLetterOff(_ sender: UIButton) { } // here set .isUserInteractionEnabled of the last button in the array to true and move it back to its original position using the letterX/YPositions arrays. Also make sure to grow the letter in size if self.game!.containsWordLongerThanSixLetters()
@@ -233,5 +237,17 @@ class GameViewController: UIViewController {
     //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces()
     private func createNewWord() {
         
+    }
+}
+
+extension UIImageView {
+    func rotate() {
+        let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = Double.pi * 2
+        rotation.duration = 0.3
+        rotation.isCumulative = true
+        // animation duration divided by rotation.duration
+        rotation.repeatCount = 5
+        self.layer.add(rotation, forKey: "rotationAnimation")
     }
 }
