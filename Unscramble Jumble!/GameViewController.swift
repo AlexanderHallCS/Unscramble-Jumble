@@ -21,6 +21,11 @@ class GameViewController: UIViewController {
     var blankSpaces = [UIImageView]()
     var letters = [UIImageView]()
     
+    var blankSpaceXPositions = [CGFloat]()
+    var blankSpaceYPositions = [CGFloat]()
+    var letterXPositions = [CGFloat]()
+    var letterYPositions = [CGFloat]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
@@ -100,6 +105,10 @@ class GameViewController: UIViewController {
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
                     print("6 ROW BLANK SPACES ENTER: \(blankSpaceIndex)")
                     blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    blankSpaceXPositions.append(blankSpaces[blankSpaceIndex].frame.minX)
+                    blankSpaceYPositions.append(blankSpaces[blankSpaceIndex].frame.minY)
+                    print("xShift: \(xShift), arrayx: \(blankSpaceXPositions[blankSpaceIndex])")
+                    print("yShift: \(self.view.frame.height/16*7 - yRowShift + yShift), arrayy: \(blankSpaceYPositions[blankSpaceIndex])")
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -125,6 +134,8 @@ class GameViewController: UIViewController {
             for word in game!.unscrambledWord.split(separator: " ") {
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
                     blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 - yRowShift  - longWordYPushback + yShift, width: width, height: width)
+                    blankSpaceXPositions.append(blankSpaces[blankSpaceIndex].frame.minX)
+                    blankSpaceYPositions.append(blankSpaces[blankSpaceIndex].frame.minY)
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += width + constantSpacing
                 }
@@ -141,6 +152,11 @@ class GameViewController: UIViewController {
             if game!.scrambledWord[letter] != " " {
                 letters.append(UIImageView(image: UIImage(named: String(game!.scrambledWord[letter].uppercased()))!))
             }
+        }
+        
+        // allowing touch events to be registered on the letters
+        for letter in letters {
+            letter.isUserInteractionEnabled = true
         }
         
         let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/8/2
@@ -162,6 +178,8 @@ class GameViewController: UIViewController {
                 for letterIndex in (letters.count-letters.count%6)..<letters.count {
                     print("FRACTURED ROW ENTER: \(letterIndex)")
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    letterXPositions.append(letters[letterIndex].frame.minX)
+                    letterYPositions.append(letters[letterIndex].frame.minY)
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -170,6 +188,8 @@ class GameViewController: UIViewController {
                 for letterIndex in firstLetterInRowIndex..<firstLetterInRowIndex+6 {
                     print("6 ROW ENTER: \(letterIndex)")
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
+                    letterXPositions.append(letters[letterIndex].frame.minX)
+                    letterYPositions.append(letters[letterIndex].frame.minY)
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -185,7 +205,14 @@ class GameViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        if let firstTouch = touches.first {
+            
+            for letterView in letters {
+                if firstTouch.view == letterView {
+                    print("\(letterView) was tapped!")
+                }
+            }
+        }
     }
     
 }

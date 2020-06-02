@@ -14,11 +14,11 @@ class Game {
     var unscrambledWord = ""
     
     init?(themeFile: String) {
-        /*unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
-        scrambledWord = shuffleLetters(word: unscrambledWord) */
+        unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
+        scrambledWord = shuffleLetters(word: unscrambledWord)
         // MARK: Change this later
-        unscrambledWord = removeCarriageReturn(from: "Papuad")
-        scrambledWord = shuffleLetters(word: "Papuad")
+        /*unscrambledWord = removeCarriageReturn(from: "Papuad")
+        scrambledWord = shuffleLetters(word: "Papuad") */
         print(unscrambledWord)
         print(scrambledWord)
         /*for _ in 0...40 {
