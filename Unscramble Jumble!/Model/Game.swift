@@ -67,4 +67,13 @@ class Game {
         return false
     }
     
+    /*public func containsWordLongerThanSixLetters() -> Bool {
+        for word in unscrambledWord.split(separator: " ") {
+            if word.count > 6 {
+                return true
+            }
+        }
+        return false
+    } */
+    
 }
