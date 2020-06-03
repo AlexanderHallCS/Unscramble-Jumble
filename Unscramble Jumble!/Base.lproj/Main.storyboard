@@ -183,6 +183,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZ1-bp-2VR" userLabel="UndoLetter">
                                 <rect key="frame" x="18" y="37.5" width="65.5" height="28.5"/>
                                 <state key="normal" backgroundImage="UndoLetterButton"/>
+                                <connections>
+                                    <action selector="popLastLetterOff:" destination="Y3p-mg-j3y" eventType="touchUpInside" id="PpU-XT-V6z"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

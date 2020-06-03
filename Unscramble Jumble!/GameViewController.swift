@@ -21,14 +21,16 @@ class GameViewController: UIViewController {
     var blankSpaces = [UIImageView]()
     var letters = [UIImageView]()
     
-    var blankSpaceXPositions = [CGFloat]()
-    var blankSpaceYPositions = [CGFloat]()
+    //var blankSpaceXPositions = [CGFloat]()
+    //var blankSpaceYPositions = [CGFloat]()
     var letterXPositions = [CGFloat]()
     var letterYPositions = [CGFloat]()
+    var letterAndIndex: [UIImageView:Int] = [:]
     
-    var chosenLetters = [UIImageView]()
+    var chosenLetterStack = [UIImageView]()
     
     var nextUnvisitedBlankSpace = 0
+    var isLetterAnimating = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,10 +112,10 @@ class GameViewController: UIViewController {
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
                     print("6 ROW BLANK SPACES ENTER: \(blankSpaceIndex)")
                     blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
-                    blankSpaceXPositions.append(blankSpaces[blankSpaceIndex].frame.origin.x)
-                    blankSpaceYPositions.append(blankSpaces[blankSpaceIndex].frame.origin.y)
-                    print("xShift: \(xShift), arrayx: \(blankSpaceXPositions[blankSpaceIndex])")
-                    print("yShift: \(self.view.frame.height/16*7 - yRowShift + yShift), arrayy: \(blankSpaceYPositions[blankSpaceIndex])")
+                    //blankSpaceXPositions.append(blankSpaces[blankSpaceIndex].frame.origin.x)
+                    //blankSpaceYPositions.append(blankSpaces[blankSpaceIndex].frame.origin.y)
+                    //print("xShift: \(xShift), arrayx: \(blankSpaceXPositions[blankSpaceIndex])")
+                    //print("yShift: \(self.view.frame.height/16*7 - yRowShift + yShift), arrayy: \(blankSpaceYPositions[blankSpaceIndex])")
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -139,8 +141,8 @@ class GameViewController: UIViewController {
             for word in game!.unscrambledWord.split(separator: " ") {
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
                     blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 - yRowShift  - longWordYPushback + yShift, width: width, height: width)
-                    blankSpaceXPositions.append(blankSpaces[blankSpaceIndex].frame.origin.x)
-                    blankSpaceYPositions.append(blankSpaces[blankSpaceIndex].frame.origin.y)
+                    //blankSpaceXPositions.append(blankSpaces[blankSpaceIndex].frame.origin.x)
+                    //blankSpaceYPositions.append(blankSpaces[blankSpaceIndex].frame.origin.y)
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += width + constantSpacing
                 }
@@ -186,6 +188,7 @@ class GameViewController: UIViewController {
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     letterXPositions.append(letters[letterIndex].frame.origin.x)
                     letterYPositions.append(letters[letterIndex].frame.origin.y)
+                    letterAndIndex[letters[letterIndex]] = letterIndex
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -196,6 +199,7 @@ class GameViewController: UIViewController {
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     letterXPositions.append(letters[letterIndex].frame.origin.x)
                     letterYPositions.append(letters[letterIndex].frame.origin.y)
+                    letterAndIndex[letters[letterIndex]] = letterIndex
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -224,15 +228,29 @@ class GameViewController: UIViewController {
     
     //NOTE: Once that the letter/uiimageview set its .isUserInteractionEnabled = false then set it to true once some remove letter button is pressed. Shrink the letter if self.game!.containsWordLongerThanSixLetters()
     private func animateTowardsBlankSpace(letter: UIImageView) {
+        chosenLetterStack.append(letter)
         UIView.animate(withDuration: 1.5, animations: {
+            self.isLetterAnimating = true
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
-        })
+        }/*, completion: ------>>>>check if the word is equal to the right word here<<<<--------*/)
+        isLetterAnimating = false
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
         nextUnvisitedBlankSpace += 1
     }
     
-    // @IBAction func popLastLetterOff(_ sender: UIButton) { } // here set .isUserInteractionEnabled of the last button in the array to true and move it back to its original position using the letterX/YPositions arrays. Also make sure to grow the letter in size if self.game!.containsWordLongerThanSixLetters()
+    @IBAction func popLastLetterOff(_ sender: UIButton) {
+        if isLetterAnimating {
+            chosenLetterStack.last!.layer.removeAllAnimations()
+        }
+        guard let lastLetterInStack = chosenLetterStack.last else {
+            return
+        }
+        lastLetterInStack.frame = CGRect(x: letterXPositions[letterAndIndex[lastLetterInStack]!], y: letterYPositions[letterAndIndex[lastLetterInStack]!], width: self.view.frame.width/8, height: self.view.frame.width/8)
+        chosenLetterStack.removeLast()
+        nextUnvisitedBlankSpace -= 1
+        letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
+    }
     
     //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces()
     private func createNewWord() {
