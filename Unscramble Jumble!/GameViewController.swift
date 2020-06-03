@@ -228,7 +228,7 @@ class GameViewController: UIViewController {
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
         })
-        blankSpaces[nextUnvisitedBlankSpace].isUserInteractionEnabled = false
+        letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
         nextUnvisitedBlankSpace += 1
     }
     
