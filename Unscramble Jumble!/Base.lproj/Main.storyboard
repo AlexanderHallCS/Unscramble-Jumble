@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,16 +12,16 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="StartViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScrambledLettersUniform" translatesAutoresizingMaskIntoConstraints="NO" id="5jW-Rb-k5D">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="822"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="906"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleWords" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-fk-KUb">
-                                <rect key="frame" x="18" y="115.33333333333333" width="339" height="154.33333333333337"/>
+                                <rect key="frame" x="20" y="127.66666666666667" width="374" height="170.33333333333331"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adX-qb-4XT" userLabel="Play!">
-                                <rect key="frame" x="18" y="504.33333333333331" width="339" height="69.666666666666686"/>
+                                <rect key="frame" x="20" y="558.66666666666663" width="374" height="77"/>
                                 <state key="normal" backgroundImage="Play"/>
                                 <connections>
                                     <action selector="goToCategoryVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bN-kV-nmG"/>
@@ -56,55 +56,55 @@
             <objects>
                 <viewController storyboardIdentifier="CategoryPopUpID" modalPresentationStyle="fullScreen" id="mIU-lr-PUK" customClass="CategoryViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX4-AR-uc1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yao-hh-LvN">
-                                <rect key="frame" x="38" y="138.33333333333331" width="299" height="545.33333333333348"/>
+                                <rect key="frame" x="42" y="152.33333333333331" width="330" height="601.33333333333348"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-BN-m2b" userLabel="Adjectives">
-                                        <rect key="frame" x="7.3333333333333428" y="115" width="284.33333333333326" height="54"/>
+                                        <rect key="frame" x="8" y="126.66666666666667" width="314" height="59.666666666666671"/>
                                         <state key="normal" backgroundImage="Adjectives"/>
                                         <connections>
                                             <action selector="adjectivesToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="pVY-Ag-6Js"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-f4-Ouf" userLabel="Countries">
-                                        <rect key="frame" x="7.3333333333333428" y="293.66666666666663" width="284.33333333333326" height="54"/>
+                                        <rect key="frame" x="8" y="323.66666666666663" width="314" height="59.666666666666686"/>
                                         <state key="normal" backgroundImage="CountriesButton"/>
                                         <connections>
                                             <action selector="countriesToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="iXm-Sa-ecZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O83-e8-SDQ" userLabel="Nature">
-                                        <rect key="frame" x="7.3333333333333428" y="383" width="284.33333333333326" height="54"/>
+                                        <rect key="frame" x="8" y="422.33333333333326" width="314" height="59.666666666666686"/>
                                         <state key="normal" backgroundImage="Nature"/>
                                         <connections>
                                             <action selector="natureToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="nFs-cj-Mgl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCm-TE-cQF" userLabel="Space">
-                                        <rect key="frame" x="7.3333333333333428" y="472.33333333333326" width="284.33333333333326" height="54"/>
+                                        <rect key="frame" x="8" y="521" width="314" height="59.666666666666629"/>
                                         <state key="normal" backgroundImage="Space"/>
                                         <connections>
                                             <action selector="spaceToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="6zg-4P-F8G"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-pI-CYU" userLabel="Common Words">
-                                        <rect key="frame" x="7.3333333333333428" y="204.33333333333334" width="284.33333333333326" height="54.000000000000028"/>
+                                        <rect key="frame" x="8" y="225.33333333333334" width="314" height="59.666666666666657"/>
                                         <state key="normal" backgroundImage="Common Words"/>
                                         <connections>
                                             <action selector="commonWordsToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="zDt-I8-VPy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hax-4m-rCM">
-                                        <rect key="frame" x="0.0" y="0.0" width="43.666666666666664" height="44.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48.666666666666664"/>
                                         <state key="normal" title="BackButton" image="BackButton"/>
                                         <connections>
                                             <action selector="backOut:" destination="mIU-lr-PUK" eventType="touchUpInside" id="vrb-u5-8jd"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Categories" translatesAutoresizingMaskIntoConstraints="NO" id="RME-sb-hoC">
-                                        <rect key="frame" x="39" y="47.666666666666657" width="221" height="47.333333333333343"/>
+                                        <rect key="frame" x="43" y="52.333333333333314" width="244" height="52.333333333333343"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.34931546450000001" green="0.84235852960000002" blue="0.97819107770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -167,35 +167,42 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="Y3p-mg-j3y" customClass="GameViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zks-3k-ZQJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4xB-Cm-8XO">
-                                <rect key="frame" x="0.0" y="-5" width="375" height="822"/>
+                                <rect key="frame" x="0.0" y="-5" width="414" height="906"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopSeparator" translatesAutoresizingMaskIntoConstraints="NO" id="lPE-dJ-Unf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="123.66666666666667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-CZ-dBf" userLabel="PauseButton">
-                                <rect key="frame" x="305.33333333333331" y="34.666666666666671" width="51.666666666666686" height="51.666666666666671"/>
+                                <rect key="frame" x="337" y="38" width="67" height="67"/>
                                 <state key="normal" backgroundImage="PauseButton"/>
                                 <connections>
                                     <action selector="goToPauseVC:" destination="Y3p-mg-j3y" eventType="touchUpInside" id="Dea-hN-tAp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZ1-bp-2VR" userLabel="UndoLetter">
-                                <rect key="frame" x="18" y="43" width="65.333333333333329" height="34.666666666666657"/>
+                                <rect key="frame" x="100" y="53.333333333333343" width="77" height="43"/>
                                 <state key="normal" backgroundImage="UndoLetterButton"/>
                                 <connections>
                                     <action selector="popLastLetterOff:" destination="Y3p-mg-j3y" eventType="touchUpInside" id="PpU-XT-V6z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x89-ml-3c9" userLabel="HintsButton">
-                                <rect key="frame" x="90.666666666666671" y="34" width="62.666666666666671" height="52.333333333333343"/>
+                                <rect key="frame" x="15" y="35" width="69.666666666666671" height="70"/>
                                 <state key="normal" backgroundImage="HintsButton"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hints Left: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usf-0T-FQS">
-                                <rect key="frame" x="20" y="196" width="83" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hints Left: 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usf-0T-FQS">
+                                <rect key="frame" x="9" y="111" width="93" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ud-ow-aNn">
+                                <rect key="frame" x="9" y="132" width="64" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -204,18 +211,18 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="PZ1-bp-2VR" firstAttribute="bottom" secondItem="9Hq-CQ-6zp" secondAttribute="bottom" multiplier="95/895" id="8ET-15-AGG">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-5"/>
+                            <constraint firstItem="PZ1-bp-2VR" firstAttribute="bottom" secondItem="9Hq-CQ-6zp" secondAttribute="bottom" multiplier="100/895" id="8ET-15-AGG">
                                 <variation key="heightClass=regular-widthClass=regular" constant="-12"/>
                             </constraint>
                             <constraint firstItem="x89-ml-3c9" firstAttribute="width" secondItem="Zks-3k-ZQJ" secondAttribute="width" multiplier="0.126953" id="8ls-Ik-dr6">
-                                <variation key="heightClass=regular-widthClass=compact" constant="15"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="17"/>
                             </constraint>
                             <constraint firstItem="PWC-CZ-dBf" firstAttribute="width" secondItem="Zks-3k-ZQJ" secondAttribute="width" multiplier="0.137681" id="Aiu-Us-HoM">
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="-20"/>
                             </constraint>
                             <constraint firstItem="x89-ml-3c9" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" multiplier="0.0951684" id="MBp-bL-aZW">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-25"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-15"/>
                             </constraint>
                             <constraint firstAttribute="top" secondItem="lPE-dJ-Unf" secondAttribute="top" id="NpQ-j6-RLm"/>
                             <constraint firstItem="lPE-dJ-Unf" firstAttribute="centerX" secondItem="9Hq-CQ-6zp" secondAttribute="centerX" id="OAb-2d-Swo"/>
@@ -223,24 +230,31 @@
                             <constraint firstItem="lPE-dJ-Unf" firstAttribute="width" secondItem="Zks-3k-ZQJ" secondAttribute="width" id="U4a-I7-5XA"/>
                             <constraint firstItem="4xB-Cm-8XO" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" constant="10" id="V1W-7e-VFB"/>
                             <constraint firstItem="PZ1-bp-2VR" firstAttribute="width" secondItem="4xB-Cm-8XO" secondAttribute="width" multiplier="0.173913" id="XR6-lr-aMA">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="-20"/>
                             </constraint>
                             <constraint firstItem="4xB-Cm-8XO" firstAttribute="centerY" secondItem="Zks-3k-ZQJ" secondAttribute="centerY" id="ch8-b2-b2c"/>
-                            <constraint firstItem="PWC-CZ-dBf" firstAttribute="bottom" secondItem="Zks-3k-ZQJ" secondAttribute="bottom" multiplier="95/895" id="iVZ-tp-YRs">
-                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            <constraint firstItem="PWC-CZ-dBf" firstAttribute="bottom" secondItem="Zks-3k-ZQJ" secondAttribute="bottom" multiplier="100/895" id="iVZ-tp-YRs">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="PZ1-bp-2VR" firstAttribute="height" secondItem="4xB-Cm-8XO" secondAttribute="height" multiplier="0.0419426" id="kPb-Lz-3OA">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
                             <constraint firstItem="4xB-Cm-8XO" firstAttribute="width" secondItem="Zks-3k-ZQJ" secondAttribute="width" id="lGy-VN-Ahp"/>
-                            <constraint firstItem="PZ1-bp-2VR" firstAttribute="leading" secondItem="9Hq-CQ-6zp" secondAttribute="trailing" multiplier="20/414" id="m3J-DK-Hxi"/>
-                            <constraint firstItem="lPE-dJ-Unf" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" multiplier="0.137931" id="qdB-Cr-pxe"/>
+                            <constraint firstItem="PZ1-bp-2VR" firstAttribute="leading" secondItem="9Hq-CQ-6zp" secondAttribute="trailing" multiplier="100/414" id="m3J-DK-Hxi"/>
+                            <constraint firstItem="lPE-dJ-Unf" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" multiplier="0.137931" id="qdB-Cr-pxe">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="PWC-CZ-dBf" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" multiplier="0.0636161" id="veH-dK-vnA">
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                             </constraint>
-                            <constraint firstItem="x89-ml-3c9" firstAttribute="leading" secondItem="Zks-3k-ZQJ" secondAttribute="trailing" multiplier="100/414" id="voF-er-wNg"/>
-                            <constraint firstItem="x89-ml-3c9" firstAttribute="bottom" secondItem="Zks-3k-ZQJ" secondAttribute="bottom" multiplier="95/895" id="wVX-KI-w4p"/>
+                            <constraint firstItem="x89-ml-3c9" firstAttribute="leading" secondItem="Zks-3k-ZQJ" secondAttribute="trailing" multiplier="15/414" id="voF-er-wNg"/>
+                            <constraint firstItem="x89-ml-3c9" firstAttribute="bottom" secondItem="Zks-3k-ZQJ" secondAttribute="bottom" multiplier="100/895" id="wVX-KI-w4p">
+                                <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                            </constraint>
                             <constraint firstItem="PWC-CZ-dBf" firstAttribute="leading" secondItem="Zks-3k-ZQJ" secondAttribute="trailing" multiplier="337/414" id="yEb-DP-QG9">
                                 <variation key="heightClass=regular-widthClass=regular" constant="40"/>
                             </constraint>
@@ -261,21 +275,21 @@
             <objects>
                 <viewController storyboardIdentifier="PausePopUpID" id="1GC-hQ-JTF" customClass="PauseViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xqL-Tu-hPI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Paused" translatesAutoresizingMaskIntoConstraints="NO" id="CNG-tN-1jv">
-                                <rect key="frame" x="67" y="43.333333333333329" width="241" height="193.66666666666669"/>
+                                <rect key="frame" x="74" y="47.999999999999986" width="266" height="213.66666666666663"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsD-EG-ezD" userLabel="ContinueButton">
-                                <rect key="frame" x="111.33333333333331" y="314" width="152.33333333333337" height="194"/>
+                                <rect key="frame" x="123" y="346" width="168" height="214"/>
                                 <state key="normal" backgroundImage="ContinueButton"/>
                                 <connections>
                                     <action selector="backOutToGameVC:" destination="1GC-hQ-JTF" eventType="touchUpInside" id="60I-ll-21g"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-Zc-y7o" userLabel="QuitButton">
-                                <rect key="frame" x="108" y="640.33333333333337" width="159" height="79"/>
+                                <rect key="frame" x="119" y="709.66666666666663" width="176" height="87"/>
                                 <state key="normal" backgroundImage="QuitButton"/>
                                 <connections>
                                     <action selector="backOutToStartVC:" destination="1GC-hQ-JTF" eventType="touchUpInside" id="x6J-x1-Xvz"/>
@@ -308,7 +322,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Xtd-O8-0jn"/>
+        <segue reference="XW0-nI-bbu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Adjectives" width="480" height="79"/>
