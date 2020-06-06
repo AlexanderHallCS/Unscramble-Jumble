@@ -233,8 +233,10 @@ class GameViewController: UIViewController {
             self.isLetterAnimating = true
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
-        }/*, completion: ------>>>>check if the word is equal to the right word here<<<<--------*/)
-        isLetterAnimating = false
+        },completion: { _ in
+            self.isLetterAnimating = false
+            /*------>>>>check if the word is equal to the right word here(call a model function)<<<<--------*/
+        })
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
         nextUnvisitedBlankSpace += 1
     }
