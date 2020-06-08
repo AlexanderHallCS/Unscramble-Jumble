@@ -19,6 +19,7 @@
 		11343DBB2470584900748375 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11343DBA2470584900748375 /* GameViewController.swift */; };
 		118D74C6242C7048007DB21E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D74C5242C7048007DB21E /* CategoryViewController.swift */; };
 		1191C5012478E25A00F38E9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C5002478E25A00F38E9C /* Constants.swift */; };
+		1198422C248ED23D00EF7B2A /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198422B248ED23D00EF7B2A /* Letter.swift */; };
 		11A022B22481F5E600D49FFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11A022B12481F5E600D49FFB /* GoogleService-Info.plist */; };
 		11A9F3FD247A6BBD0093E699 /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */; };
 		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
@@ -68,6 +69,7 @@
 		11343DBA2470584900748375 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		118D74C5242C7048007DB21E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		1191C5002478E25A00F38E9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1198422B248ED23D00EF7B2A /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		11A022B12481F5E600D49FFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewController.swift; sourceTree = "<group>"; };
 		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				110587232424338E0005B62D /* Main.storyboard */,
 				118D74C5242C7048007DB21E /* CategoryViewController.swift */,
 				11343DBA2470584900748375 /* GameViewController.swift */,
+				1198422B248ED23D00EF7B2A /* Letter.swift */,
 				11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */,
 				11A022B12481F5E600D49FFB /* GoogleService-Info.plist */,
 				111A7EAF24763DC8006CF80D /* Model */,
@@ -480,6 +483,7 @@
 				11343DBB2470584900748375 /* GameViewController.swift in Sources */,
 				110587202424338E0005B62D /* SceneDelegate.swift in Sources */,
 				1191C5012478E25A00F38E9C /* Constants.swift in Sources */,
+				1198422C248ED23D00EF7B2A /* Letter.swift in Sources */,
 				11D89DED248073910036919A /* Unscramble_Jumble.xcdatamodeld in Sources */,
 				11A9F3FD247A6BBD0093E699 /* PauseViewController.swift in Sources */,
 			);

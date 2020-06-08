@@ -27,10 +27,9 @@ class GameViewController: UIViewController {
     var letterYPositions = [CGFloat]()
     var letterAndIndex: [UIImageView:Int] = [:]
     
-    var chosenLetterStack = [UIImageView]()
+    var chosenLetterStack = [Letter]()
     
     var nextUnvisitedBlankSpace = 0
-    var isLetterAnimating = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -226,15 +225,13 @@ class GameViewController: UIViewController {
         }
     }
     
-    //NOTE: Once that the letter/uiimageview set its .isUserInteractionEnabled = false then set it to true once some remove letter button is pressed. Shrink the letter if self.game!.containsWordLongerThanSixLetters()
+    // moves(and shrinks if necessary) the letter towards the next available blank space
     private func animateTowardsBlankSpace(letter: UIImageView) {
-        chosenLetterStack.append(letter)
+        chosenLetterStack.append(Letter(letterImageView: letter))
         UIView.animate(withDuration: 1.5, animations: {
-            self.isLetterAnimating = true
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
         },completion: { _ in
-            self.isLetterAnimating = false
             /*------>>>>check if the word is equal to the right word here(call a model function)<<<<--------*/
         })
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
@@ -242,13 +239,22 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
-        if isLetterAnimating {
-            chosenLetterStack.last!.layer.removeAllAnimations()
+        removeLetter()
+    }
+    
+    @IBAction func removeAllLetters(_ sender: UIButton) {
+        for _ in chosenLetterStack {
+            removeLetter()
         }
-        guard let lastLetterInStack = chosenLetterStack.last else {
+    }
+    
+    // pops off and removes the animations of the most recent letter added
+    private func removeLetter() {
+        guard let lastLetterInStack = chosenLetterStack.last?.letterImageView else {
             return
         }
         lastLetterInStack.frame = CGRect(x: letterXPositions[letterAndIndex[lastLetterInStack]!], y: letterYPositions[letterAndIndex[lastLetterInStack]!], width: self.view.frame.width/8, height: self.view.frame.width/8)
+        chosenLetterStack.last!.letterImageView.layer.removeAllAnimations()
         chosenLetterStack.removeLast()
         nextUnvisitedBlankSpace -= 1
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
