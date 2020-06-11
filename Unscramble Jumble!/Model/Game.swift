@@ -13,12 +13,17 @@ class Game {
     var scrambledWord = ""
     var unscrambledWord = ""
     
+    var scrambledIndices: [Int] = []
+    
     init?(themeFile: String) {
         unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
-        scrambledWord = shuffleLetters(word: unscrambledWord)
+        scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())
+        //scrambledIndices = getScrambledLetterIndices()
+        print("EEEEEEEEEEEE: \(scrambledIndices)")
+        //unscrambledWordLettersArray = getWordLetters()
         // MARK: Change this later
-        /*unscrambledWord = removeCarriageReturn(from: "Papuad")
-        scrambledWord = shuffleLetters(word: "Papuad") */
+        /*unscrambledWord = removeCarriageReturn(from: "Papuad ab")
+        scrambledWord = shuffleLetters(word: "Papuad ab".split(separator: " ").joined())*/
         print(unscrambledWord)
         print(scrambledWord)
         /*for _ in 0...40 {
@@ -41,7 +46,12 @@ class Game {
         var shuffledWord = ""
         
         repeat {
-            shuffledWord = String(Array(word).shuffled())
+            shuffledWord = ""
+            scrambledIndices = Array(0..<word.count).shuffled()
+            for letterIndex in 0..<scrambledIndices.count {
+                shuffledWord.append(Array(word)[scrambledIndices[letterIndex]])
+            }
+            print("SHOOOOFOFOFOFOFOFOOOOOOOOOOO: \(shuffledWord)")
         } while !hasWordChanged(word, shuffledWord)
         
         
@@ -67,13 +77,23 @@ class Game {
         return false
     }
     
-    /*public func containsWordLongerThanSixLetters() -> Bool {
-        for word in unscrambledWord.split(separator: " ") {
-            if word.count > 6 {
-                return true
+    private func getLowercaseSpacelessScrambledWord() -> String {
+        return scrambledWord.split(separator: " ").joined().lowercased()
+    }
+   
+    /*private func getScrambledLetterIndices() -> [Int] {
+        var unscrambledWordFormattedCopy = unscrambledWord.split(separator: " ").joined().lowercased()
+        for letter in getLowercaseSpacelessScrambledWord() {
+            print("LEEETTTERRRR: \(letter)")
+            if !scrambledIndices.contains(unscrambledWordFormattedCopy.firstIndex(of: letter)!) {
+                scrambledIndices.append(unscrambledWordFormattedCopy.firstIndex(of: letter)!)
+            } else {
+                
             }
         }
-        return false
+        print("OOOO KILL EM: \(correctLetterWithIndex)")
+        return correctLetterWithIndex.values.joined().map{ Int(String($0))! }
     } */
+    
     
 }

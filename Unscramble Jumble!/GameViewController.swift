@@ -21,15 +21,15 @@ class GameViewController: UIViewController {
     var blankSpaces = [UIImageView]()
     var letters = [UIImageView]()
     
-    //var blankSpaceXPositions = [CGFloat]()
-    //var blankSpaceYPositions = [CGFloat]()
-    var letterXPositions = [CGFloat]()
-    var letterYPositions = [CGFloat]()
+    var letterXAndYPositions = [[CGFloat]]()
     var letterAndIndex: [UIImageView:Int] = [:]
+    var hintLetterIndices = [Int]()
     
     var chosenLetterStack = [Letter]()
     
     var nextUnvisitedBlankSpace = 0
+    var hintsLeft = 3
+    var hintsUsed = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,9 +156,7 @@ class GameViewController: UIViewController {
     // adds all the letters to the bottom of the screen and positions them accordingly
     private func addLetters() {
         for letter in game!.scrambledWord.indices {
-            if game!.scrambledWord[letter] != " " {
-                letters.append(UIImageView(image: UIImage(named: String(game!.scrambledWord[letter].uppercased()))!))
-            }
+            letters.append(UIImageView(image: UIImage(named: String(game!.scrambledWord[letter].uppercased()))!))
         }
         
         // allowing touch events to be registered on the letters
@@ -185,8 +183,7 @@ class GameViewController: UIViewController {
                 for letterIndex in (letters.count-letters.count%6)..<letters.count {
                     print("FRACTURED ROW ENTER: \(letterIndex)")
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
-                    letterXPositions.append(letters[letterIndex].frame.origin.x)
-                    letterYPositions.append(letters[letterIndex].frame.origin.y)
+                    letterXAndYPositions.append([letters[letterIndex].frame.origin.x,letters[letterIndex].frame.origin.y])
                     letterAndIndex[letters[letterIndex]] = letterIndex
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
@@ -196,8 +193,7 @@ class GameViewController: UIViewController {
                 for letterIndex in firstLetterInRowIndex..<firstLetterInRowIndex+6 {
                     print("6 ROW ENTER: \(letterIndex)")
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
-                    letterXPositions.append(letters[letterIndex].frame.origin.x)
-                    letterYPositions.append(letters[letterIndex].frame.origin.y)
+                    letterXAndYPositions.append([letters[letterIndex].frame.origin.x,letters[letterIndex].frame.origin.y])
                     letterAndIndex[letters[letterIndex]] = letterIndex
                     self.view.addSubview(letters[letterIndex])
                     xShift += widthOfLetterPlusSpacing
@@ -216,10 +212,10 @@ class GameViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
             
-            for letterView in letters {
-                if firstTouch.view == letterView {
-                    animateTowardsBlankSpace(letter: letterView)
-                    print("\(letterView) was tapped!")
+            for letterViewIndex in 0..<letters.count-hintsUsed {
+                if firstTouch.view == letters[letterViewIndex] {
+                    animateTowardsBlankSpace(letter: letters[letterViewIndex])
+                    //print("\(letters[letterViewIndex]) was tapped!")
                 }
             }
         }
@@ -229,11 +225,13 @@ class GameViewController: UIViewController {
     private func animateTowardsBlankSpace(letter: UIImageView) {
         chosenLetterStack.append(Letter(letterImageView: letter))
         UIView.animate(withDuration: 1.5, animations: {
+            print("animated!")
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
         },completion: { _ in
             /*------>>>>check if the word is equal to the right word here(call a model function)<<<<--------*/
         })
+        // stops the user from being able to tap on the letter while it is animating and once it finishes animating
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
         nextUnvisitedBlankSpace += 1
     }
@@ -253,14 +251,48 @@ class GameViewController: UIViewController {
         guard let lastLetterInStack = chosenLetterStack.last?.letterImageView else {
             return
         }
-        lastLetterInStack.frame = CGRect(x: letterXPositions[letterAndIndex[lastLetterInStack]!], y: letterYPositions[letterAndIndex[lastLetterInStack]!], width: self.view.frame.width/8, height: self.view.frame.width/8)
+        lastLetterInStack.frame = CGRect(x: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][0], y: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][1], width: self.view.frame.width/8, height: self.view.frame.width/8)
         chosenLetterStack.last!.letterImageView.layer.removeAllAnimations()
         chosenLetterStack.removeLast()
         nextUnvisitedBlankSpace -= 1
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
     }
     
-    //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces()
+    @IBAction func generateHint(_ sender: UIButton) {
+        hintsUsed += 1
+        hintsLeft -= 1
+        if hintsLeft == 0 {
+            //hintsButton.isEnabled = false (make an outlet for the hints button)
+        }
+        
+        // removes all the letters on the blank spaces in preparation for putting a hint in
+        for _ in chosenLetterStack {
+            removeLetter()
+        }
+        
+        var randomLetterIndex = Int.random(in: 0..<letters.count)
+        // check if the random letter index has already been chosen before if it has, keep generating random indices until it hasn't, else add it to hintLetterIndices
+        if hintLetterIndices.contains(randomLetterIndex) {
+            while hintLetterIndices.contains(randomLetterIndex) {
+                randomLetterIndex = Int.random(in: 0..<letters.count)
+                if !hintLetterIndices.contains(randomLetterIndex) {
+                    hintLetterIndices.append(randomLetterIndex)
+                    break
+                }
+            }
+        } else {
+            hintLetterIndices.append(randomLetterIndex)
+        }
+        
+        UIView.animate(withDuration: 1.5, animations: {
+            print("animated hint!")
+            self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
+            self.letters[randomLetterIndex].rotate()
+        })
+        
+    }
+    
+    //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces() --> See what is done in the viewDidLoad() function(compartmentalize by calling this function in viewDidLoad() and moving the code from there to here)
     private func createNewWord() {
         
     }
