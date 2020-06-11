@@ -34,7 +34,7 @@ Lichen
 Fungus
 Fern
 Bloom
-Prarie
+Prairie
 Deer
 Terrain
 Weather

@@ -13,6 +13,11 @@ class GameViewController: UIViewController {
     
     @IBOutlet var backgroundImage: UIImageView!
     
+    @IBOutlet var hintsButton: UIButton!
+    
+    @IBOutlet var hintsLeftLabel: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
+    
     var game: Game?
     
     var themeFileName: String = ""
@@ -28,7 +33,7 @@ class GameViewController: UIViewController {
     var chosenLetterStack = [Letter]()
     
     var nextUnvisitedBlankSpace = 0
-    var hintsLeft = 3
+    var hintsLeft = 0
     var hintsUsed = 0
     
     override func viewDidLoad() {
@@ -42,6 +47,7 @@ class GameViewController: UIViewController {
         
         addBlankSpaces()
         addLetters()
+        assignRightAmountOfHints()
     }
     
     deinit {
@@ -261,8 +267,10 @@ class GameViewController: UIViewController {
     @IBAction func generateHint(_ sender: UIButton) {
         hintsUsed += 1
         hintsLeft -= 1
+        hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
+        // don't allow the hint button to be pressed once all hints are used up
         if hintsLeft == 0 {
-            //hintsButton.isEnabled = false (make an outlet for the hints button)
+            hintsButton.isEnabled = false
         }
         
         // removes all the letters on the blank spaces in preparation for putting a hint in
@@ -286,10 +294,30 @@ class GameViewController: UIViewController {
         
         UIView.animate(withDuration: 1.5, animations: {
             print("animated hint!")
-            self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
+            self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.x, y: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.y, width: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.width, height: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.height)
             self.letters[randomLetterIndex].rotate()
         })
+        // remove the letter from the XAndYPos and letters.
+        //fix this as it doesnt workvvvvv
+        /*letters.remove(at: randomLetterIndex)
+        letterXAndYPositions.remove(at: randomLetterIndex) */
         
+    }
+    
+    func assignRightAmountOfHints() {
+        switch game!.scrambledWord.count {
+        case 3:
+            hintsLeft = 0
+        case 4...5:
+            hintsLeft = 1
+        case 6:
+            hintsLeft = 2
+        case 7:
+            hintsLeft = 3
+        default:
+            break
+        }
+        hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
     }
     
     //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces() --> See what is done in the viewDidLoad() function(compartmentalize by calling this function in viewDidLoad() and moving the code from there to here)

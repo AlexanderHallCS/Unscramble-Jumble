@@ -276,6 +276,9 @@
                     <navigationItem key="navigationItem" id="blE-2F-BLq"/>
                     <connections>
                         <outlet property="backgroundImage" destination="4xB-Cm-8XO" id="abk-cs-1pc"/>
+                        <outlet property="hintsButton" destination="x89-ml-3c9" id="c9G-lC-0lZ"/>
+                        <outlet property="hintsLeftLabel" destination="usf-0T-FQS" id="OJb-BV-uZj"/>
+                        <outlet property="scoreLabel" destination="6Ud-ow-aNn" id="cax-dc-qtp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2MB-IC-3pS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

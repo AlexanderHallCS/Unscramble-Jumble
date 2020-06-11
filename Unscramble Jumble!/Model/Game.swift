@@ -26,9 +26,14 @@ class Game {
         scrambledWord = shuffleLetters(word: "Papuad ab".split(separator: " ").joined())*/
         print(unscrambledWord)
         print(scrambledWord)
-        /*for _ in 0...40 {
-            print(getRandomShuffledWord(from: themeFile) + "\n")
+        // MARK: UNCOMMENT vvTHISvv TO TEST FOR BLANK SPACES AT END OF FILE
+        /*let filePath = Bundle.main.path(forResource: themeFile, ofType: "txt")
+        let fileContents = try! String(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
+        let allWordsInFile = fileContents.components(separatedBy: ["\n"])
+        for wooord in allWordsInFile {
+            print(wooord)
         } */
+        
     }
     
     private func getRandomWord(from fileName: String) -> String {
@@ -51,7 +56,6 @@ class Game {
             for letterIndex in 0..<scrambledIndices.count {
                 shuffledWord.append(Array(word)[scrambledIndices[letterIndex]])
             }
-            print("SHOOOOFOFOFOFOFOFOOOOOOOOOOO: \(shuffledWord)")
         } while !hasWordChanged(word, shuffledWord)
         
         
@@ -77,9 +81,9 @@ class Game {
         return false
     }
     
-    private func getLowercaseSpacelessScrambledWord() -> String {
+    /*private func getLowercaseSpacelessScrambledWord() -> String {
         return scrambledWord.split(separator: " ").joined().lowercased()
-    }
+    } */
    
     /*private func getScrambledLetterIndices() -> [Int] {
         var unscrambledWordFormattedCopy = unscrambledWord.split(separator: " ").joined().lowercased()
