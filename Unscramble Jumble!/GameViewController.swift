@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
     var letterXAndYPositions = [[CGFloat]]()
     var letterAndIndex: [UIImageView:Int] = [:]
     var hintLetterIndices = [Int]()
+    var hintLetterPositions = [Int]()
     
     var chosenLetterStack = [Letter]()
     
@@ -218,7 +219,7 @@ class GameViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
             
-            for letterViewIndex in 0..<letters.count-hintsUsed {
+            for letterViewIndex in 0..<letters.count {
                 if firstTouch.view == letters[letterViewIndex] {
                     animateTowardsBlankSpace(letter: letters[letterViewIndex])
                     //print("\(letters[letterViewIndex]) was tapped!")
@@ -232,6 +233,7 @@ class GameViewController: UIViewController {
         chosenLetterStack.append(Letter(letterImageView: letter))
         UIView.animate(withDuration: 1.5, animations: {
             print("animated!")
+            print("next unvisited blank space: \(self.nextUnvisitedBlankSpace)")
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
         },completion: { _ in
@@ -240,6 +242,11 @@ class GameViewController: UIViewController {
         // stops the user from being able to tap on the letter while it is animating and once it finishes animating
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
         nextUnvisitedBlankSpace += 1
+        print("hintLetterIndices: \(hintLetterIndices)")
+        while hintLetterPositions.contains(nextUnvisitedBlankSpace) {
+            nextUnvisitedBlankSpace += 1
+        }
+        print("next unvisited blank space omega zeta: \(nextUnvisitedBlankSpace)")
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
@@ -261,16 +268,25 @@ class GameViewController: UIViewController {
         chosenLetterStack.last!.letterImageView.layer.removeAllAnimations()
         chosenLetterStack.removeLast()
         nextUnvisitedBlankSpace -= 1
+        while hintLetterPositions.contains(nextUnvisitedBlankSpace) {
+            nextUnvisitedBlankSpace -= 1
+        }
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
     }
     
     @IBAction func generateHint(_ sender: UIButton) {
-        hintsUsed += 1
-        hintsLeft -= 1
-        hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
         // don't allow the hint button to be pressed once all hints are used up
         if hintsLeft == 0 {
             hintsButton.isEnabled = false
+        } else if hintsLeft == 1 {
+            hintsUsed += 1
+            hintsLeft -= 1
+            hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
+            hintsButton.isEnabled = false
+        } else {
+            hintsUsed += 1
+            hintsLeft -= 1
+            hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
         }
         
         // removes all the letters on the blank spaces in preparation for putting a hint in
@@ -299,8 +315,8 @@ class GameViewController: UIViewController {
         })
         // remove the letter from the XAndYPos and letters.
         //fix this as it doesnt workvvvvv
-        /*letters.remove(at: randomLetterIndex)
-        letterXAndYPositions.remove(at: randomLetterIndex) */
+        print("RANDOM LETTER INDEX: \(randomLetterIndex)")
+        hintLetterPositions.append(self.game!.scrambledIndices[randomLetterIndex])
         
     }
     
@@ -312,10 +328,10 @@ class GameViewController: UIViewController {
             hintsLeft = 1
         case 6:
             hintsLeft = 2
-        case 7:
+        case 7...9:
             hintsLeft = 3
         default:
-            break
+            hintsLeft = 4
         }
         hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
     }
