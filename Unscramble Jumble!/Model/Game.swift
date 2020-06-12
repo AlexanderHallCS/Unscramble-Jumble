@@ -18,12 +18,13 @@ class Game {
     init?(themeFile: String) {
         unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
         scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())
+        
         //scrambledIndices = getScrambledLetterIndices()
-        print("EEEEEEEEEEEE: \(scrambledIndices)")
+        print("Scrambled Indices: \(scrambledIndices)")
         //unscrambledWordLettersArray = getWordLetters()
         // MARK: Change this later
-        /*unscrambledWord = removeCarriageReturn(from: "Papuad ab")
-        scrambledWord = shuffleLetters(word: "Papuad ab".split(separator: " ").joined())*/
+        /*unscrambledWord = removeCarriageReturn(from: "Laos")
+        scrambledWord = shuffleLetters(word: "Laos".split(separator: " ").joined()) */
         print(unscrambledWord)
         print(scrambledWord)
         // MARK: UNCOMMENT vvTHISvv TO TEST FOR BLANK SPACES AT END OF FILE

@@ -236,7 +236,9 @@ class GameViewController: UIViewController {
             print("next unvisited blank space: \(self.nextUnvisitedBlankSpace)")
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
+            letter.layer.zPosition = 1
         },completion: { _ in
+            letter.layer.zPosition = 0
             /*------>>>>check if the word is equal to the right word here(call a model function)<<<<--------*/
         })
         // stops the user from being able to tap on the letter while it is animating and once it finishes animating
@@ -271,6 +273,7 @@ class GameViewController: UIViewController {
         while hintLetterPositions.contains(nextUnvisitedBlankSpace) {
             nextUnvisitedBlankSpace -= 1
         }
+        print("remove next unvisited blank space: \(nextUnvisitedBlankSpace)")
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
     }
     
@@ -312,11 +315,20 @@ class GameViewController: UIViewController {
             print("animated hint!")
             self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.x, y: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.y, width: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.width, height: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.height)
             self.letters[randomLetterIndex].rotate()
-        })
+            //self.letters[randomLetterIndex].layer.zPosition = 1
+        }/*, completion: { _ in
+            self.letters[randomLetterIndex].layer.zPosition = 0
+        }*/)
+        letters[randomLetterIndex].isUserInteractionEnabled = false
         // remove the letter from the XAndYPos and letters.
         //fix this as it doesnt workvvvvv
         print("RANDOM LETTER INDEX: \(randomLetterIndex)")
         hintLetterPositions.append(self.game!.scrambledIndices[randomLetterIndex])
+        // fixes a bug when the hint letter is the first letter of the word
+        if game!.scrambledIndices[randomLetterIndex] == 0 {
+            nextUnvisitedBlankSpace += 1
+        }
+        print("hint letter positions: \(hintLetterPositions)")
         
     }
     
