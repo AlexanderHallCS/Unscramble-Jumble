@@ -12,7 +12,7 @@ class PauseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        super.view.bringSubviewToFront(self.view)
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.9)
         self.animateIn()
     }

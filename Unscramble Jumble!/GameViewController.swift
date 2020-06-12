@@ -230,24 +230,27 @@ class GameViewController: UIViewController {
     
     // moves(and shrinks if necessary) the letter towards the next available blank space
     private func animateTowardsBlankSpace(letter: UIImageView) {
+        while hintLetterPositions.contains(nextUnvisitedBlankSpace) {
+            nextUnvisitedBlankSpace += 1
+        }
         chosenLetterStack.append(Letter(letterImageView: letter))
         UIView.animate(withDuration: 1.5, animations: {
             print("animated!")
             print("next unvisited blank space: \(self.nextUnvisitedBlankSpace)")
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
-            letter.layer.zPosition = 1
-        },completion: { _ in
+            //letter.layer.zPosition = 1
+        }/*,completion: { _ in
             letter.layer.zPosition = 0
             /*------>>>>check if the word is equal to the right word here(call a model function)<<<<--------*/
-        })
+        }*/)
         // stops the user from being able to tap on the letter while it is animating and once it finishes animating
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
-        nextUnvisitedBlankSpace += 1
-        print("hintLetterIndices: \(hintLetterIndices)")
-        while hintLetterPositions.contains(nextUnvisitedBlankSpace) {
+        if nextUnvisitedBlankSpace != letters.count-1 {
             nextUnvisitedBlankSpace += 1
         }
+        print("hintLetterIndices: \(hintLetterIndices)")
+        
         print("next unvisited blank space omega zeta: \(nextUnvisitedBlankSpace)")
     }
     
@@ -263,16 +266,19 @@ class GameViewController: UIViewController {
     
     // pops off and removes the animations of the most recent letter added
     private func removeLetter() {
+        while hintLetterPositions.contains(nextUnvisitedBlankSpace) && nextUnvisitedBlankSpace != hintLetterPositions.min() ?? -1{
+            nextUnvisitedBlankSpace -= 1
+        }
         guard let lastLetterInStack = chosenLetterStack.last?.letterImageView else {
             return
         }
         lastLetterInStack.frame = CGRect(x: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][0], y: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][1], width: self.view.frame.width/8, height: self.view.frame.width/8)
         chosenLetterStack.last!.letterImageView.layer.removeAllAnimations()
         chosenLetterStack.removeLast()
-        nextUnvisitedBlankSpace -= 1
-        while hintLetterPositions.contains(nextUnvisitedBlankSpace) {
+        if nextUnvisitedBlankSpace != 0 {
             nextUnvisitedBlankSpace -= 1
         }
+        
         print("remove next unvisited blank space: \(nextUnvisitedBlankSpace)")
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
     }
@@ -320,30 +326,25 @@ class GameViewController: UIViewController {
             self.letters[randomLetterIndex].layer.zPosition = 0
         }*/)
         letters[randomLetterIndex].isUserInteractionEnabled = false
-        // remove the letter from the XAndYPos and letters.
-        //fix this as it doesnt workvvvvv
         print("RANDOM LETTER INDEX: \(randomLetterIndex)")
         hintLetterPositions.append(self.game!.scrambledIndices[randomLetterIndex])
-        // fixes a bug when the hint letter is the first letter of the word
-        if game!.scrambledIndices[randomLetterIndex] == 0 {
-            nextUnvisitedBlankSpace += 1
-        }
         print("hint letter positions: \(hintLetterPositions)")
         
     }
     
     func assignRightAmountOfHints() {
         switch game!.scrambledWord.count {
+        //MARK: Fine tune these values later(maybe have the same number of hints as there are letters but reward 0 points for using all hints) --> unless you implement the functionality at the end when time runs out, put all letters in the right spot
         case 3:
             hintsLeft = 0
         case 4...5:
-            hintsLeft = 1
-        case 6:
-            hintsLeft = 2
-        case 7...9:
             hintsLeft = 3
-        default:
+        case 6:
             hintsLeft = 4
+        case 7...9:
+            hintsLeft = 5
+        default:
+            hintsLeft = 6
         }
         hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
     }
