@@ -239,11 +239,12 @@ class GameViewController: UIViewController {
             print("next unvisited blank space: \(self.nextUnvisitedBlankSpace)")
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
+            self.view.bringSubviewToFront(letter)
             //letter.layer.zPosition = 1
-        }/*,completion: { _ in
-            letter.layer.zPosition = 0
+        },completion: { _ in
+            //letter.layer.zPosition = 0
             /*------>>>>check if the word is equal to the right word here(call a model function)<<<<--------*/
-        }*/)
+        })
         // stops the user from being able to tap on the letter while it is animating and once it finishes animating
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
         if nextUnvisitedBlankSpace != letters.count-1 {
@@ -321,9 +322,9 @@ class GameViewController: UIViewController {
             print("animated hint!")
             self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.x, y: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.y, width: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.width, height: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.height)
             self.letters[randomLetterIndex].rotate()
-            //self.letters[randomLetterIndex].layer.zPosition = 1
+            self.view.bringSubviewToFront(self.letters[randomLetterIndex])
         }/*, completion: { _ in
-            self.letters[randomLetterIndex].layer.zPosition = 0
+            //self.letters[randomLetterIndex].layer.zPosition = 0
         }*/)
         letters[randomLetterIndex].isUserInteractionEnabled = false
         print("RANDOM LETTER INDEX: \(randomLetterIndex)")
