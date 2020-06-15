@@ -16,15 +16,15 @@ class Game {
     var scrambledIndices: [Int] = []
     
     init?(themeFile: String) {
-        unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
-        scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())
+        /*unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
+        scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())*/
         
         //scrambledIndices = getScrambledLetterIndices()
         print("Scrambled Indices: \(scrambledIndices)")
         //unscrambledWordLettersArray = getWordLetters()
         // MARK: Change this later
-        /*unscrambledWord = removeCarriageReturn(from: "Saudi Arabia")
-        scrambledWord = shuffleLetters(word: "Saudi Arabia".split(separator: " ").joined())*/
+        unscrambledWord = removeCarriageReturn(from: "Saudi Arabia")
+        scrambledWord = shuffleLetters(word: "Saudi Arabia".split(separator: " ").joined())
         print(unscrambledWord)
         print(scrambledWord)
         // MARK: UNCOMMENT vvTHISvv TO TEST FOR BLANK SPACES AT END OF FILE

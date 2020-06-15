@@ -31,7 +31,8 @@ class GameViewController: UIViewController {
     var hintLetterIndices = [Int]()
     var hintLetterPositions = [Int]()
     
-    var chosenLetterStack = [Letter]()
+    var chosenLetterStack = [UIImageView]()
+    var chosenLetterStackIndices = [Int]()
     
     var nextUnvisitedBlankSpace = 0
     var hintsLeft = 0
@@ -230,13 +231,16 @@ class GameViewController: UIViewController {
     
     // moves(and shrinks if necessary) the letter towards the next available blank space
     private func animateTowardsBlankSpace(letter: UIImageView) {
-        while hintLetterPositions.contains(nextUnvisitedBlankSpace) {
+        print("chosen letter stack indices: \(chosenLetterStackIndices)")
+        while hintLetterPositions.contains(nextUnvisitedBlankSpace) || chosenLetterStackIndices.contains(nextUnvisitedBlankSpace){
+            print("adooon")
             nextUnvisitedBlankSpace += 1
         }
-        chosenLetterStack.append(Letter(letterImageView: letter))
+        chosenLetterStack.append(letter)
+        chosenLetterStackIndices.append(nextUnvisitedBlankSpace)
         UIView.animate(withDuration: 1.5, animations: {
-            print("animated!")
-            print("next unvisited blank space: \(self.nextUnvisitedBlankSpace)")
+            print("tapped/animated!")
+            print("next unvisited as it is animating: \(self.nextUnvisitedBlankSpace)")
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
             self.view.bringSubviewToFront(letter)
@@ -247,12 +251,17 @@ class GameViewController: UIViewController {
         })
         // stops the user from being able to tap on the letter while it is animating and once it finishes animating
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
+        //nextUnvisitedBlankSpace += 1
         if nextUnvisitedBlankSpace != letters.count-1 {
             nextUnvisitedBlankSpace += 1
+        } else {
+            print("FOR VALHALLAH FOR JOTUNNHEIM")
         }
-        print("hintLetterIndices: \(hintLetterIndices)")
         
-        print("next unvisited blank space omega zeta: \(nextUnvisitedBlankSpace)")
+        print("hint letter indices: \(hintLetterIndices)")
+        print("hint letter positions: \(hintLetterPositions)")
+        
+        print("next unvisited blank when add is called: \(nextUnvisitedBlankSpace)")
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
@@ -267,20 +276,40 @@ class GameViewController: UIViewController {
     
     // pops off and removes the animations of the most recent letter added
     private func removeLetter() {
-        while hintLetterPositions.contains(nextUnvisitedBlankSpace) && nextUnvisitedBlankSpace != hintLetterPositions.min() ?? -1{
-            nextUnvisitedBlankSpace -= 1
-        }
-        guard let lastLetterInStack = chosenLetterStack.last?.letterImageView else {
+        print("remove next unvisited blank space before \(nextUnvisitedBlankSpace)")
+        print("chosen letter stack indices remove before: \(chosenLetterStackIndices)")
+        guard let lastLetterInStack = chosenLetterStack.last else {
             return
         }
         lastLetterInStack.frame = CGRect(x: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][0], y: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][1], width: self.view.frame.width/8, height: self.view.frame.width/8)
-        chosenLetterStack.last!.letterImageView.layer.removeAllAnimations()
+        chosenLetterStack.last!.layer.removeAllAnimations()
         chosenLetterStack.removeLast()
-        if nextUnvisitedBlankSpace != 0 {
+        chosenLetterStackIndices.removeLast()
+        guard let firstLetterInStackIndex = chosenLetterStackIndices.first else {
+            letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
+            return
+        }
+        if nextUnvisitedBlankSpace != firstLetterInStackIndex/* && !chosenLetterStackIndices.contains(nextUnvisitedBlankSpace-1) && !hintLetterPositions.contains(nextUnvisitedBlankSpace-1)*/ {
             nextUnvisitedBlankSpace -= 1
         }
-        
+        guard let lastLetterInStackIndex = chosenLetterStackIndices.last else {
+            letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
+            return
+        }
+        while nextUnvisitedBlankSpace != lastLetterInStackIndex {
+            print("who took the milk from the cookie jar? \(nextUnvisitedBlankSpace)")
+            nextUnvisitedBlankSpace -= 1
+        }
+        /*while hintLetterPositions.contains(nextUnvisitedBlankSpace) && nextUnvisitedBlankSpace != hintLetterPositions.min() ?? -1/* && chosenLetterStackIndices.contains(nextUnvisitedBlankSpace)*/ {
+                print("remeaux")
+                nextUnvisitedBlankSpace -= 1
+            }
+        if nextUnvisitedBlankSpace == hintLetterPositions.min() ?? -1 && hintLetterPositions.min() ?? -1 > chosenLetterStackIndices.min() ?? -1 && chosenLetterStackIndices.count != 0 {
+            print("A CLOSE ENCOUNTER! CERTAINLY!")
+            nextUnvisitedBlankSpace = chosenLetterStackIndices.min()!
+        }  */
         print("remove next unvisited blank space: \(nextUnvisitedBlankSpace)")
+        print("chosen letter stack indices remove after: \(chosenLetterStackIndices)")
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
     }
     
@@ -299,11 +328,6 @@ class GameViewController: UIViewController {
             hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
         }
         
-        // removes all the letters on the blank spaces in preparation for putting a hint in
-        for _ in chosenLetterStack {
-            removeLetter()
-        }
-        
         var randomLetterIndex = Int.random(in: 0..<letters.count)
         // check if the random letter index has already been chosen before if it has, keep generating random indices until it hasn't, else add it to hintLetterIndices
         if hintLetterIndices.contains(randomLetterIndex) {
@@ -317,6 +341,12 @@ class GameViewController: UIViewController {
         } else {
             hintLetterIndices.append(randomLetterIndex)
         }
+        hintLetterPositions.append(self.game!.scrambledIndices[randomLetterIndex])
+        
+        // removes all the letters on the blank spaces in preparation for putting a hint in
+        for _ in chosenLetterStack {
+            removeLetter()
+        }
         
         UIView.animate(withDuration: 1.5, animations: {
             print("animated hint!")
@@ -326,9 +356,17 @@ class GameViewController: UIViewController {
         }/*, completion: { _ in
             //self.letters[randomLetterIndex].layer.zPosition = 0
         }*/)
+        print("randomLetterIndex: \(randomLetterIndex)")
         letters[randomLetterIndex].isUserInteractionEnabled = false
+        
+        //vvvNot Calledvvv
+        /*if chosenLetterStack.contains(letters[randomLetterIndex]) {
+            print("WHAT ARE WE GONNA REMOVE?????: \(chosenLetterStackIndices.firstIndex(of: randomLetterIndex)) IN \(chosenLetterStackIndices)")
+            chosenLetterStack.remove(at: chosenLetterStack.firstIndex(of: letters[randomLetterIndex])!)
+            chosenLetterStackIndices.remove(at: chosenLetterStackIndices.firstIndex(of: randomLetterIndex)!)
+        } */
         print("RANDOM LETTER INDEX: \(randomLetterIndex)")
-        hintLetterPositions.append(self.game!.scrambledIndices[randomLetterIndex])
+        
         print("hint letter positions: \(hintLetterPositions)")
         
     }
