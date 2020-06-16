@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     
     @IBOutlet var hintsLeftLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet var countdownTimerLabel: UILabel!
     
     var game: Game?
     
@@ -44,7 +45,8 @@ class GameViewController: UIViewController {
         //backgroundImage.layer.zPosition = -1
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
-        
+        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:UIColor.blue, .strokeWidth:-4.0]
+        countdownTimerLabel.attributedText = NSAttributedString(string: "60", attributes: strokeTextAttributes)
         game = Game(themeFile: themeFileName)
         
         addBlankSpaces()
@@ -289,7 +291,7 @@ class GameViewController: UIViewController {
             letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
             return
         }
-        if nextUnvisitedBlankSpace != firstLetterInStackIndex/* && !chosenLetterStackIndices.contains(nextUnvisitedBlankSpace-1) && !hintLetterPositions.contains(nextUnvisitedBlankSpace-1)*/ {
+        if nextUnvisitedBlankSpace != firstLetterInStackIndex {
             nextUnvisitedBlankSpace -= 1
         }
         guard let lastLetterInStackIndex = chosenLetterStackIndices.last else {
@@ -300,14 +302,6 @@ class GameViewController: UIViewController {
             print("who took the milk from the cookie jar? \(nextUnvisitedBlankSpace)")
             nextUnvisitedBlankSpace -= 1
         }
-        /*while hintLetterPositions.contains(nextUnvisitedBlankSpace) && nextUnvisitedBlankSpace != hintLetterPositions.min() ?? -1/* && chosenLetterStackIndices.contains(nextUnvisitedBlankSpace)*/ {
-                print("remeaux")
-                nextUnvisitedBlankSpace -= 1
-            }
-        if nextUnvisitedBlankSpace == hintLetterPositions.min() ?? -1 && hintLetterPositions.min() ?? -1 > chosenLetterStackIndices.min() ?? -1 && chosenLetterStackIndices.count != 0 {
-            print("A CLOSE ENCOUNTER! CERTAINLY!")
-            nextUnvisitedBlankSpace = chosenLetterStackIndices.min()!
-        }  */
         print("remove next unvisited blank space: \(nextUnvisitedBlankSpace)")
         print("chosen letter stack indices remove after: \(chosenLetterStackIndices)")
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true

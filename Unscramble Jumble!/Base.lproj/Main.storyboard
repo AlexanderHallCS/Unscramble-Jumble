@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,16 +12,16 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="StartViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScrambledLettersUniform" translatesAutoresizingMaskIntoConstraints="NO" id="5jW-Rb-k5D">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="746"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1034"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TitleWords" translatesAutoresizingMaskIntoConstraints="NO" id="7KP-fk-KUb">
-                                <rect key="frame" x="20" y="109" width="374" height="140"/>
+                                <rect key="frame" x="37" y="151.5" width="694" height="195"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adX-qb-4XT" userLabel="Play!">
-                                <rect key="frame" x="20" y="477" width="374" height="63.333333333333371"/>
+                                <rect key="frame" x="37" y="663.5" width="694" height="88"/>
                                 <state key="normal" backgroundImage="Play"/>
                                 <connections>
                                     <action selector="goToCategoryVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3bN-kV-nmG"/>
@@ -56,55 +56,55 @@
             <objects>
                 <viewController storyboardIdentifier="CategoryPopUpID" modalPresentationStyle="fullScreen" id="mIU-lr-PUK" customClass="CategoryViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX4-AR-uc1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yao-hh-LvN">
-                                <rect key="frame" x="42" y="121" width="330" height="494"/>
+                                <rect key="frame" x="78" y="168.5" width="612" height="687"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-BN-m2b" userLabel="Adjectives">
-                                        <rect key="frame" x="8" y="104" width="314" height="49"/>
+                                        <rect key="frame" x="15" y="144.5" width="582" height="68"/>
                                         <state key="normal" backgroundImage="Adjectives"/>
                                         <connections>
                                             <action selector="adjectivesToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="pVY-Ag-6Js"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zY-f4-Ouf" userLabel="Countries">
-                                        <rect key="frame" x="8" y="266" width="314" height="49"/>
+                                        <rect key="frame" x="15" y="370" width="582" height="68"/>
                                         <state key="normal" backgroundImage="CountriesButton"/>
                                         <connections>
                                             <action selector="countriesToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="iXm-Sa-ecZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O83-e8-SDQ" userLabel="Nature">
-                                        <rect key="frame" x="8" y="347" width="314" height="49"/>
+                                        <rect key="frame" x="15" y="482.5" width="582" height="68.5"/>
                                         <state key="normal" backgroundImage="Nature"/>
                                         <connections>
                                             <action selector="natureToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="nFs-cj-Mgl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCm-TE-cQF" userLabel="Space">
-                                        <rect key="frame" x="8" y="428" width="314" height="49"/>
+                                        <rect key="frame" x="15" y="595.5" width="582" height="68"/>
                                         <state key="normal" backgroundImage="Space"/>
                                         <connections>
                                             <action selector="spaceToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="6zg-4P-F8G"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-pI-CYU" userLabel="Common Words">
-                                        <rect key="frame" x="8" y="185" width="314" height="49"/>
+                                        <rect key="frame" x="15" y="257" width="582" height="68.5"/>
                                         <state key="normal" backgroundImage="Common Words"/>
                                         <connections>
                                             <action selector="commonWordsToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="zDt-I8-VPy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hax-4m-rCM">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="89" height="55.5"/>
                                         <state key="normal" title="BackButton" image="BackButton"/>
                                         <connections>
                                             <action selector="backOut:" destination="mIU-lr-PUK" eventType="touchUpInside" id="vrb-u5-8jd"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Categories" translatesAutoresizingMaskIntoConstraints="NO" id="RME-sb-hoC">
-                                        <rect key="frame" x="43" y="43" width="244" height="43"/>
+                                        <rect key="frame" x="80" y="59.5" width="452" height="60"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.34931546450000001" green="0.84235852960000002" blue="0.97819107770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -167,31 +167,31 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="Y3p-mg-j3y" customClass="GameViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zks-3k-ZQJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4xB-Cm-8XO">
-                                <rect key="frame" x="0.0" y="-5" width="414" height="746"/>
+                                <rect key="frame" x="0.0" y="-5" width="768" height="1034"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TopSeparator" translatesAutoresizingMaskIntoConstraints="NO" id="lPE-dJ-Unf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="101.66666666666667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="141"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWC-CZ-dBf" userLabel="PauseButton">
-                                <rect key="frame" x="337" y="31.333333333333329" width="67" height="57"/>
+                                <rect key="frame" x="665" y="37.5" width="86" height="85.5"/>
                                 <state key="normal" backgroundImage="PauseButton"/>
                                 <connections>
                                     <action selector="goToPauseVC:" destination="Y3p-mg-j3y" eventType="touchUpInside" id="Dea-hN-tAp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZ1-bp-2VR" userLabel="UndoLetter">
-                                <rect key="frame" x="100" y="41.666666666666657" width="77" height="36.333333333333343"/>
+                                <rect key="frame" x="185.5" y="45.5" width="113.5" height="63"/>
                                 <state key="normal" backgroundImage="UndoLetterButton"/>
                                 <connections>
                                     <action selector="popLastLetterOff:" destination="Y3p-mg-j3y" eventType="touchUpInside" id="PpU-XT-V6z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x89-ml-3c9" userLabel="HintsButton">
-                                <rect key="frame" x="15" y="29.666666666666671" width="69.666666666666671" height="55"/>
+                                <rect key="frame" x="28" y="20.5" width="97.5" height="97"/>
                                 <state key="normal" backgroundImage="HintsButton"/>
                                 <connections>
                                     <action selector="generateHint:" destination="Y3p-mg-j3y" eventType="touchUpInside" id="JqC-3P-wAb"/>
@@ -217,12 +217,36 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tq3-b8-nM1" userLabel="RemoveAllLettersButton">
-                                <rect key="frame" x="197" y="31.999999999999996" width="54" height="52.666666666666657"/>
+                                <rect key="frame" x="365.5" y="34.5" width="100" height="83"/>
                                 <state key="normal" backgroundImage="RemoveAllLettersButton"/>
                                 <connections>
                                     <action selector="removeAllLetters:" destination="Y3p-mg-j3y" eventType="touchUpInside" id="yVq-aN-Q2l"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="Nxn-2q-Jlt" userLabel="CountdownTimerLabel">
+                                <rect key="frame" x="616" y="148.5" width="146" height="122"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="60">
+                                        <attributes>
+                                            <color key="NSColor" red="0.99991267920000004" green="1" blue="0.99988144639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="70" name="Arial-BoldMT"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <attributedString key="attributedText">
+                                        <fragment content="60">
+                                            <attributes>
+                                                <color key="NSColor" red="0.99991267920000004" green="1" blue="0.99988144639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="130" name="Arial-BoldMT"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -231,10 +255,14 @@
                             <constraint firstItem="x89-ml-3c9" firstAttribute="width" secondItem="Zks-3k-ZQJ" secondAttribute="width" multiplier="0.126953" id="8ls-Ik-dr6">
                                 <variation key="heightClass=regular-widthClass=compact" constant="17"/>
                             </constraint>
+                            <constraint firstItem="Nxn-2q-Jlt" firstAttribute="width" secondItem="Zks-3k-ZQJ" secondAttribute="width" multiplier="0.19" id="8qx-nU-KEg"/>
                             <constraint firstItem="lPE-dJ-Unf" firstAttribute="bottom" secondItem="PZ1-bp-2VR" secondAttribute="bottom" multiplier="1.3" id="A8R-RU-FZN"/>
                             <constraint firstItem="PWC-CZ-dBf" firstAttribute="width" secondItem="Zks-3k-ZQJ" secondAttribute="width" multiplier="0.137681" id="Aiu-Us-HoM">
                                 <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="-20"/>
+                            </constraint>
+                            <constraint firstItem="Nxn-2q-Jlt" firstAttribute="leading" secondItem="9Hq-CQ-6zp" secondAttribute="trailing" multiplier="316/414" id="EBb-FV-Kut">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
                             </constraint>
                             <constraint firstItem="x89-ml-3c9" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" multiplier="0.0951684" id="MBp-bL-aZW">
                                 <variation key="heightClass=regular-widthClass=compact" constant="-15"/>
@@ -251,9 +279,13 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="-20"/>
                             </constraint>
                             <constraint firstItem="4xB-Cm-8XO" firstAttribute="centerY" secondItem="Zks-3k-ZQJ" secondAttribute="centerY" id="ch8-b2-b2c"/>
+                            <constraint firstItem="Nxn-2q-Jlt" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" multiplier="0.09" id="eHr-BR-NXc">
+                                <variation key="heightClass=regular-widthClass=regular" constant="30"/>
+                            </constraint>
                             <constraint firstItem="tq3-b8-nM1" firstAttribute="height" secondItem="Zks-3k-ZQJ" secondAttribute="height" multiplier="0.0714286" id="fnt-3n-w6v">
                                 <variation key="heightClass=regular-widthClass=regular" constant="10"/>
                             </constraint>
+                            <constraint firstItem="Nxn-2q-Jlt" firstAttribute="top" secondItem="lPE-dJ-Unf" secondAttribute="bottom" multiplier="1.05" id="kKj-v3-jmJ"/>
                             <constraint firstItem="PZ1-bp-2VR" firstAttribute="height" secondItem="4xB-Cm-8XO" secondAttribute="height" multiplier="0.0419426" id="kPb-Lz-3OA">
                                 <variation key="heightClass=regular-widthClass=compact" constant="5"/>
                                 <variation key="heightClass=regular-widthClass=regular" constant="20"/>
@@ -276,6 +308,7 @@
                     <navigationItem key="navigationItem" id="blE-2F-BLq"/>
                     <connections>
                         <outlet property="backgroundImage" destination="4xB-Cm-8XO" id="abk-cs-1pc"/>
+                        <outlet property="countdownTimerLabel" destination="Nxn-2q-Jlt" id="7BW-q8-QfO"/>
                         <outlet property="hintsButton" destination="x89-ml-3c9" id="c9G-lC-0lZ"/>
                         <outlet property="hintsLeftLabel" destination="usf-0T-FQS" id="OJb-BV-uZj"/>
                         <outlet property="scoreLabel" destination="6Ud-ow-aNn" id="cax-dc-qtp"/>
@@ -290,21 +323,21 @@
             <objects>
                 <viewController storyboardIdentifier="PausePopUpID" id="1GC-hQ-JTF" customClass="PauseViewController" customModule="Unscramble_Jumble_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xqL-Tu-hPI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Paused" translatesAutoresizingMaskIntoConstraints="NO" id="CNG-tN-1jv">
-                                <rect key="frame" x="74" y="40.999999999999986" width="266" height="175.66666666666663"/>
+                                <rect key="frame" x="137" y="57" width="494" height="244.5"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsD-EG-ezD" userLabel="ContinueButton">
-                                <rect key="frame" x="123" y="280" width="168" height="176"/>
+                                <rect key="frame" x="228" y="390" width="312" height="244"/>
                                 <state key="normal" backgroundImage="ContinueButton"/>
                                 <connections>
                                     <action selector="backOutToGameVC:" destination="1GC-hQ-JTF" eventType="touchUpInside" id="60I-ll-21g"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCg-Zc-y7o" userLabel="QuitButton">
-                                <rect key="frame" x="119" y="606" width="176" height="71.333333333333371"/>
+                                <rect key="frame" x="221" y="843" width="326" height="99.5"/>
                                 <state key="normal" backgroundImage="QuitButton"/>
                                 <connections>
                                     <action selector="backOutToStartVC:" destination="1GC-hQ-JTF" eventType="touchUpInside" id="x6J-x1-Xvz"/>
@@ -353,7 +386,7 @@
         <image name="Play" width="480" height="79"/>
         <image name="QuitButton" width="240" height="79"/>
         <image name="RemoveAllLettersButton" width="114" height="133"/>
-        <image name="ScrambledLettersUniform" width="414" height="736"/>
+        <image name="ScrambledLettersUniform" width="405" height="540"/>
         <image name="Space" width="480" height="79"/>
         <image name="TitleWords" width="557" height="140"/>
         <image name="TopSeparator" width="750" height="50"/>
