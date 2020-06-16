@@ -39,14 +39,14 @@ class GameViewController: UIViewController {
     var hintsLeft = 0
     
     var countdownTimer = Timer()
-    var seconds = 10
+    var seconds = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
-        //backgroundImage.layer.zPosition = -1
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(startTimer), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         startTimer()
         
         game = Game(themeFile: themeFileName)
@@ -56,12 +56,32 @@ class GameViewController: UIViewController {
         assignRightAmountOfHints()
     }
     
+//    override func removeFromParent() {
+//        super.removeFromParent()
+//        print("FINE OK OK OK OK OK OK OK OK OK OK OK OK")
+//    }
+//    override func didMove(toParent parent: UIViewController?) {
+//        super.didMove(toParent: parent)
+//        print("OK OK OK OK OK OK OK OK OK")
+//    }
+//    override func willMove(toParent parent: UIViewController?) {
+//        super.willMove(toParent: parent)
+//        print("EXCELSIOR!!!!!!!!!!!!!!!!!")
+//    }
+//    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+//        super.dismiss(animated: flag, completion: completion)
+//        print("EXCELSIOR!")
+//    }
+    
     deinit {
-        print("did deinit3!")
+        print("did deinit3 and remove observers!")
+        NotificationCenter.default.removeObserver(self,name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
     @objc func pauseGame() {
+        countdownTimer.invalidate()
         print("pause game!")
     }
     
@@ -88,7 +108,6 @@ class GameViewController: UIViewController {
                 blankSpaces.append(UIImageView(image: UIImage(named: "Blank Space")!))
             }
         }
-        
         // start of formatting blank spaces for words/word phrases where all words are <= 6 characters long
         var wordsLessThanLengthSix = 0
         for word in game!.unscrambledWord.split(separator: " "){
@@ -97,8 +116,6 @@ class GameViewController: UIViewController {
                 wordsLessThanLengthSix += 1
             }
         }
-        print("words less than length six: \(wordsLessThanLengthSix)")
-        print("Words: \(game!.unscrambledWord.split(separator: " ").count)")
         if wordsLessThanLengthSix == game!.unscrambledWord.split(separator: " ").count {
             let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/8/2
             let widthOfLetterPlusSpacing = self.view.frame.width/8 + self.view.frame.width/32
@@ -121,12 +138,7 @@ class GameViewController: UIViewController {
                     xShift = centerXOfFrame - (widthOfLetterPlusSpacing) * 2.5
                 }
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
-                    print("6 ROW BLANK SPACES ENTER: \(blankSpaceIndex)")
                     blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
-                    //blankSpaceXPositions.append(blankSpaces[blankSpaceIndex].frame.origin.x)
-                    //blankSpaceYPositions.append(blankSpaces[blankSpaceIndex].frame.origin.y)
-                    //print("xShift: \(xShift), arrayx: \(blankSpaceXPositions[blankSpaceIndex])")
-                    //print("yShift: \(self.view.frame.height/16*7 - yRowShift + yShift), arrayy: \(blankSpaceYPositions[blankSpaceIndex])")
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += widthOfLetterPlusSpacing
                 }
@@ -152,8 +164,6 @@ class GameViewController: UIViewController {
             for word in game!.unscrambledWord.split(separator: " ") {
                 for blankSpaceIndex in firstLetterInRowIndex..<firstLetterInRowIndex+word.count {
                     blankSpaces[blankSpaceIndex].frame = CGRect(x: xShift, y: self.view.frame.height/16*7 - yRowShift  - longWordYPushback + yShift, width: width, height: width)
-                    //blankSpaceXPositions.append(blankSpaces[blankSpaceIndex].frame.origin.x)
-                    //blankSpaceYPositions.append(blankSpaces[blankSpaceIndex].frame.origin.y)
                     self.view.addSubview(blankSpaces[blankSpaceIndex])
                     xShift += width + constantSpacing
                 }
@@ -188,12 +198,9 @@ class GameViewController: UIViewController {
             // check if this iteration is the last row and last row doesn't have 6 letters
             if(row ==  ceil(Double(letters.count)/6.0) - 1 && letters.count%6 != 0) {
                 let unevenLetterOffset = widthOfLetterPlusSpacing * CGFloat(letters.count%6 - 1)/2
-                print("UNEVEN LETTER OFFEST: \(unevenLetterOffset)")
                 xShift = centerXOfFrame - unevenLetterOffset
-                print("X SHIFT VALUE: \(xShift)")
                 // ex: 6->7 to format 1 letter; 12->14 to format 2 letters
                 for letterIndex in (letters.count-letters.count%6)..<letters.count {
-                    print("FRACTURED ROW ENTER: \(letterIndex)")
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     letterXAndYPositions.append([letters[letterIndex].frame.origin.x,letters[letterIndex].frame.origin.y])
                     letterAndIndex[letters[letterIndex]] = letterIndex
@@ -203,7 +210,6 @@ class GameViewController: UIViewController {
             } else {
                 // this for loop is for all rows that aren't the last row unless the last row also has 6 letters
                 for letterIndex in firstLetterInRowIndex..<firstLetterInRowIndex+6 {
-                    print("6 ROW ENTER: \(letterIndex)")
                     letters[letterIndex].frame = CGRect(x: xShift, y: self.view.frame.height/32*27 - yRowShift + yShift, width: self.view.frame.width/8, height: self.view.frame.width/8)
                     letterXAndYPositions.append([letters[letterIndex].frame.origin.x,letters[letterIndex].frame.origin.y])
                     letterAndIndex[letters[letterIndex]] = letterIndex
@@ -215,8 +221,6 @@ class GameViewController: UIViewController {
                 // go to next row
                 firstLetterInRowIndex += 6
             }
-            
-            print("weeee!")
             yShift += widthOfLetterPlusSpacing
         }
     }
@@ -227,7 +231,6 @@ class GameViewController: UIViewController {
             for letterViewIndex in 0..<letters.count {
                 if firstTouch.view == letters[letterViewIndex] {
                     animateTowardsBlankSpace(letter: letters[letterViewIndex])
-                    //print("\(letters[letterViewIndex]) was tapped!")
                 }
             }
         }
@@ -248,24 +251,12 @@ class GameViewController: UIViewController {
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
             self.view.bringSubviewToFront(letter)
-            //letter.layer.zPosition = 1
-        },completion: { _ in
-            //letter.layer.zPosition = 0
-            /*------>>>>check if the word is equal to the right word here(call a model function)<<<<--------*/
         })
         // stops the user from being able to tap on the letter while it is animating and once it finishes animating
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
-        //nextUnvisitedBlankSpace += 1
         if nextUnvisitedBlankSpace != letters.count-1 {
             nextUnvisitedBlankSpace += 1
-        } else {
-            print("FOR VALHALLAH FOR JOTUNNHEIM")
         }
-        
-        print("hint letter indices: \(hintLetterIndices)")
-        print("hint letter positions: \(hintLetterPositions)")
-        
-        print("next unvisited blank when add is called: \(nextUnvisitedBlankSpace)")
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
@@ -309,8 +300,8 @@ class GameViewController: UIViewController {
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
     }
     
-    private func startTimer() {
-        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:UIColor.blue, .strokeWidth:-4.0]
+    @objc func startTimer() {
+        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
         countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
             if self.seconds >= 0 {

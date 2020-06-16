@@ -45,6 +45,9 @@ class PauseViewController: UIViewController {
         }, completion:{ (doneAnimating : Bool) in
             if (doneAnimating)
             {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil, userInfo: nil)
+                self.willMove(toParent: nil)
+                self.view.removeFromSuperview()
                 self.removeFromParent()
             }
         });
