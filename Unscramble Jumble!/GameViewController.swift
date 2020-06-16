@@ -37,7 +37,9 @@ class GameViewController: UIViewController {
     
     var nextUnvisitedBlankSpace = 0
     var hintsLeft = 0
-    var hintsUsed = 0
+    
+    var countdownTimer = Timer()
+    var seconds = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +47,8 @@ class GameViewController: UIViewController {
         //backgroundImage.layer.zPosition = -1
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
-        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:UIColor.blue, .strokeWidth:-4.0]
-        countdownTimerLabel.attributedText = NSAttributedString(string: "60", attributes: strokeTextAttributes)
+        startTimer()
+        
         game = Game(themeFile: themeFileName)
         
         addBlankSpaces()
@@ -307,17 +309,29 @@ class GameViewController: UIViewController {
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
     }
     
+    private func startTimer() {
+        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:UIColor.blue, .strokeWidth:-4.0]
+        countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
+            if self.seconds >= 0 {
+                self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
+                self.seconds -= 1
+            } else {
+                //NOTE: seconds is -1 when this else block is executed(could mean something)
+                self.countdownTimer.invalidate()
+            }
+        })
+    }
+    
     @IBAction func generateHint(_ sender: UIButton) {
         // don't allow the hint button to be pressed once all hints are used up
         if hintsLeft == 0 {
             hintsButton.isEnabled = false
         } else if hintsLeft == 1 {
-            hintsUsed += 1
             hintsLeft -= 1
             hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
             hintsButton.isEnabled = false
         } else {
-            hintsUsed += 1
             hintsLeft -= 1
             hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
         }
@@ -352,13 +366,6 @@ class GameViewController: UIViewController {
         }*/)
         print("randomLetterIndex: \(randomLetterIndex)")
         letters[randomLetterIndex].isUserInteractionEnabled = false
-        
-        //vvvNot Calledvvv
-        /*if chosenLetterStack.contains(letters[randomLetterIndex]) {
-            print("WHAT ARE WE GONNA REMOVE?????: \(chosenLetterStackIndices.firstIndex(of: randomLetterIndex)) IN \(chosenLetterStackIndices)")
-            chosenLetterStack.remove(at: chosenLetterStack.firstIndex(of: letters[randomLetterIndex])!)
-            chosenLetterStackIndices.remove(at: chosenLetterStackIndices.firstIndex(of: randomLetterIndex)!)
-        } */
         print("RANDOM LETTER INDEX: \(randomLetterIndex)")
         
         print("hint letter positions: \(hintLetterPositions)")
