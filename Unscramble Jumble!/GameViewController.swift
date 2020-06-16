@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
     var hintsLeft = 0
     
     var countdownTimer = Timer()
-    var seconds = 30
+    var seconds = 14
     
     override func viewDidLoad() {
         super.viewDidLoad()
