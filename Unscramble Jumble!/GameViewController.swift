@@ -29,7 +29,8 @@ class GameViewController: UIViewController {
     
     var letterXAndYPositions = [[CGFloat]]()
     var letterAndIndex: [UIImageView:Int] = [:]
-    var finalLettersAndIndex: [UIImageView:Int] = [:]
+    var finalLettersWithIndexAndStringRep: [UIImageView:(index: Int, stringRep: String)] = [:]
+    var indexOfTappedLetter = [Int]()
     
     var hintLetterIndices = [Int]()
     var hintLetterPositions = [Int]()
@@ -210,6 +211,7 @@ class GameViewController: UIViewController {
             
             for letterViewIndex in 0..<letters.count {
                 if firstTouch.view == letters[letterViewIndex] {
+                    indexOfTappedLetter.append(letterViewIndex)
                     animateTowardsBlankSpace(letter: letters[letterViewIndex])
                 }
             }
@@ -220,13 +222,13 @@ class GameViewController: UIViewController {
     private func animateTowardsBlankSpace(letter: UIImageView) {
         print("chosen letter stack indices: \(chosenLetterStackIndices)")
         print("what is next unvisisted blank space when adding?: \(nextUnvisitedBlankSpace)")
-        while hintLetterPositions.contains(nextUnvisitedBlankSpace) || chosenLetterStackIndices.contains(nextUnvisitedBlankSpace){
+        while hintLetterPositions.contains(nextUnvisitedBlankSpace) || chosenLetterStackIndices.contains(nextUnvisitedBlankSpace) {
             print("adooon")
             nextUnvisitedBlankSpace += 1
         }
         chosenLetterStack.append(letter)
         chosenLetterStackIndices.append(nextUnvisitedBlankSpace)
-        finalLettersAndIndex[letter] = nextUnvisitedBlankSpace
+        finalLettersWithIndexAndStringRep[letter] = (nextUnvisitedBlankSpace, game!.getLetterStringRepresentation(from: indexOfTappedLetter.last!))
         UIView.animate(withDuration: 1.5, animations: {
             print("tapped/animated!")
             print("next unvisited as it is animating: \(self.nextUnvisitedBlankSpace)")
@@ -239,7 +241,7 @@ class GameViewController: UIViewController {
         if nextUnvisitedBlankSpace != letters.count-1 {
             nextUnvisitedBlankSpace += 1
         }
-        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersAndIndex.values)")
+        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersWithIndexAndStringRep.values)")
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
@@ -257,25 +259,22 @@ class GameViewController: UIViewController {
         print("remove next unvisited blank space before \(nextUnvisitedBlankSpace)")
         print("chosen letter stack indices remove before: \(chosenLetterStackIndices)")
         guard let lastLetterInStack = chosenLetterStack.last else {
-            print("AT LONG LAST")
             return
         }
         lastLetterInStack.frame = CGRect(x: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][0], y: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][1], width: self.view.frame.width/8, height: self.view.frame.width/8)
-        //here
         guard let firstLetterInStackIndex = chosenLetterStackIndices.first else {
-            print("IT HAS BEEN DONE MY LIEGE")
             letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
             return
         }
-        finalLettersAndIndex.removeValue(forKey: chosenLetterStack.last!)
+        finalLettersWithIndexAndStringRep.removeValue(forKey: chosenLetterStack.last!)
         chosenLetterStack.last!.layer.removeAllAnimations()
         chosenLetterStack.removeLast()
         chosenLetterStackIndices.removeLast()
+        indexOfTappedLetter.removeLast()
         if nextUnvisitedBlankSpace != firstLetterInStackIndex {
             nextUnvisitedBlankSpace -= 1
         }
         guard let lastLetterInStackIndex = chosenLetterStackIndices.last else {
-            print("TYRANNICAL SYCOPHANT!")
             letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
             return
         }
@@ -286,7 +285,7 @@ class GameViewController: UIViewController {
         print("remove next unvisited blank space: \(nextUnvisitedBlankSpace)")
         print("chosen letter stack indices remove after: \(chosenLetterStackIndices)")
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
-        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersAndIndex.values)")
+        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersWithIndexAndStringRep.values)")
     }
     
     @IBAction func generateHint(_ sender: UIButton) {
@@ -316,7 +315,7 @@ class GameViewController: UIViewController {
             hintLetterIndices.append(randomLetterIndex)
         }
         hintLetterPositions.append(game!.scrambledIndices[randomLetterIndex])
-        finalLettersAndIndex[letters[randomLetterIndex]] = game!.scrambledIndices[randomLetterIndex]
+        finalLettersWithIndexAndStringRep[letters[randomLetterIndex]] = (game!.scrambledIndices[randomLetterIndex], game!.getLetterStringRepresentation(from: randomLetterIndex))
         
         // removes all the letters on the blank spaces in preparation for putting a hint in
         for _ in chosenLetterStack {
@@ -336,7 +335,7 @@ class GameViewController: UIViewController {
         print("RANDOM LETTER INDEX: \(randomLetterIndex)")
         
         print("hint letter positions: \(hintLetterPositions)")
-        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersAndIndex.values)")
+        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersWithIndexAndStringRep.values)")
     }
     
     func assignRightAmountOfHints() {
@@ -373,7 +372,7 @@ class GameViewController: UIViewController {
     // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
     @objc func pauseGame() {
         countdownTimer.invalidate()
-        for letter in finalLettersAndIndex.keys {
+        for letter in finalLettersWithIndexAndStringRep.keys {
             pauseLetter(layer: letter.layer)
         }
         print("pause game!")
@@ -396,7 +395,7 @@ class GameViewController: UIViewController {
     
     @objc func resumeGame() {
         startTimer()
-        for letter in finalLettersAndIndex.keys {
+        for letter in finalLettersWithIndexAndStringRep.keys {
             resumeLayer(layer: letter.layer)
         }
     }

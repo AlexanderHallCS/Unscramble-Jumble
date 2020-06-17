@@ -82,6 +82,11 @@ class Game {
         return false
     }
     
+    // gets the string representation of the letter that was tapped
+    func getLetterStringRepresentation(from index: Int) -> String {
+        return String(Array(scrambledWord)[index]).uppercased()
+    }
+    
     /*private func getLowercaseSpacelessScrambledWord() -> String {
         return scrambledWord.split(separator: " ").joined().lowercased()
     } */
