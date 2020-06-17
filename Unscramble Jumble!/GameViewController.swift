@@ -29,6 +29,8 @@ class GameViewController: UIViewController {
     
     var letterXAndYPositions = [[CGFloat]]()
     var letterAndIndex: [UIImageView:Int] = [:]
+    var finalLettersAndIndex: [UIImageView:Int] = [:]
+    
     var hintLetterIndices = [Int]()
     var hintLetterPositions = [Int]()
     
@@ -36,17 +38,18 @@ class GameViewController: UIViewController {
     var chosenLetterStackIndices = [Int]()
     
     var nextUnvisitedBlankSpace = 0
+    
     var hintsLeft = 0
     
     var countdownTimer = Timer()
-    var seconds = 14
+    var seconds = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(startTimer), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeGame), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         startTimer()
         
         game = Game(themeFile: themeFileName)
@@ -56,33 +59,10 @@ class GameViewController: UIViewController {
         assignRightAmountOfHints()
     }
     
-//    override func removeFromParent() {
-//        super.removeFromParent()
-//        print("FINE OK OK OK OK OK OK OK OK OK OK OK OK")
-//    }
-//    override func didMove(toParent parent: UIViewController?) {
-//        super.didMove(toParent: parent)
-//        print("OK OK OK OK OK OK OK OK OK")
-//    }
-//    override func willMove(toParent parent: UIViewController?) {
-//        super.willMove(toParent: parent)
-//        print("EXCELSIOR!!!!!!!!!!!!!!!!!")
-//    }
-//    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-//        super.dismiss(animated: flag, completion: completion)
-//        print("EXCELSIOR!")
-//    }
-    
     deinit {
         print("did deinit3 and remove observers!")
         NotificationCenter.default.removeObserver(self,name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
-    }
-
-    // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
-    @objc func pauseGame() {
-        countdownTimer.invalidate()
-        print("pause game!")
     }
     
     @IBAction func goToPauseVC(_ sender: UIButton) {
@@ -239,12 +219,14 @@ class GameViewController: UIViewController {
     // moves(and shrinks if necessary) the letter towards the next available blank space
     private func animateTowardsBlankSpace(letter: UIImageView) {
         print("chosen letter stack indices: \(chosenLetterStackIndices)")
+        print("what is next unvisisted blank space when adding?: \(nextUnvisitedBlankSpace)")
         while hintLetterPositions.contains(nextUnvisitedBlankSpace) || chosenLetterStackIndices.contains(nextUnvisitedBlankSpace){
             print("adooon")
             nextUnvisitedBlankSpace += 1
         }
         chosenLetterStack.append(letter)
         chosenLetterStackIndices.append(nextUnvisitedBlankSpace)
+        finalLettersAndIndex[letter] = nextUnvisitedBlankSpace
         UIView.animate(withDuration: 1.5, animations: {
             print("tapped/animated!")
             print("next unvisited as it is animating: \(self.nextUnvisitedBlankSpace)")
@@ -257,6 +239,7 @@ class GameViewController: UIViewController {
         if nextUnvisitedBlankSpace != letters.count-1 {
             nextUnvisitedBlankSpace += 1
         }
+        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersAndIndex.values)")
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
@@ -274,20 +257,25 @@ class GameViewController: UIViewController {
         print("remove next unvisited blank space before \(nextUnvisitedBlankSpace)")
         print("chosen letter stack indices remove before: \(chosenLetterStackIndices)")
         guard let lastLetterInStack = chosenLetterStack.last else {
+            print("AT LONG LAST")
             return
         }
         lastLetterInStack.frame = CGRect(x: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][0], y: letterXAndYPositions[letterAndIndex[lastLetterInStack]!][1], width: self.view.frame.width/8, height: self.view.frame.width/8)
-        chosenLetterStack.last!.layer.removeAllAnimations()
-        chosenLetterStack.removeLast()
-        chosenLetterStackIndices.removeLast()
+        //here
         guard let firstLetterInStackIndex = chosenLetterStackIndices.first else {
+            print("IT HAS BEEN DONE MY LIEGE")
             letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
             return
         }
+        finalLettersAndIndex.removeValue(forKey: chosenLetterStack.last!)
+        chosenLetterStack.last!.layer.removeAllAnimations()
+        chosenLetterStack.removeLast()
+        chosenLetterStackIndices.removeLast()
         if nextUnvisitedBlankSpace != firstLetterInStackIndex {
             nextUnvisitedBlankSpace -= 1
         }
         guard let lastLetterInStackIndex = chosenLetterStackIndices.last else {
+            print("TYRANNICAL SYCOPHANT!")
             letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
             return
         }
@@ -298,20 +286,7 @@ class GameViewController: UIViewController {
         print("remove next unvisited blank space: \(nextUnvisitedBlankSpace)")
         print("chosen letter stack indices remove after: \(chosenLetterStackIndices)")
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
-    }
-    
-    @objc func startTimer() {
-        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
-        countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
-        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
-            if self.seconds >= 0 {
-                self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
-                self.seconds -= 1
-            } else {
-                //NOTE: seconds is -1 when this else block is executed(could mean something)
-                self.countdownTimer.invalidate()
-            }
-        })
+        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersAndIndex.values)")
     }
     
     @IBAction func generateHint(_ sender: UIButton) {
@@ -340,7 +315,8 @@ class GameViewController: UIViewController {
         } else {
             hintLetterIndices.append(randomLetterIndex)
         }
-        hintLetterPositions.append(self.game!.scrambledIndices[randomLetterIndex])
+        hintLetterPositions.append(game!.scrambledIndices[randomLetterIndex])
+        finalLettersAndIndex[letters[randomLetterIndex]] = game!.scrambledIndices[randomLetterIndex]
         
         // removes all the letters on the blank spaces in preparation for putting a hint in
         for _ in chosenLetterStack {
@@ -360,7 +336,7 @@ class GameViewController: UIViewController {
         print("RANDOM LETTER INDEX: \(randomLetterIndex)")
         
         print("hint letter positions: \(hintLetterPositions)")
-        
+        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersAndIndex.values)")
     }
     
     func assignRightAmountOfHints() {
@@ -378,6 +354,51 @@ class GameViewController: UIViewController {
             hintsLeft = 6
         }
         hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
+    }
+    
+    func startTimer() {
+        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
+        countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
+            if self.seconds >= 0 {
+                self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
+                self.seconds -= 1
+            } else {
+                //NOTE: seconds is -1 when this else block is executed(could mean something)
+                self.countdownTimer.invalidate()
+            }
+        })
+    }
+    
+    // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
+    @objc func pauseGame() {
+        countdownTimer.invalidate()
+        for letter in finalLettersAndIndex.keys {
+            pauseLetter(layer: letter.layer)
+        }
+        print("pause game!")
+    }
+    
+    func pauseLetter(layer: CALayer) {
+        let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
+        layer.speed = 0.0
+        layer.timeOffset = pausedTime
+    }
+    
+    func resumeLayer(layer: CALayer) {
+        let pausedTime: CFTimeInterval = layer.timeOffset
+        layer.speed = 1.0
+        layer.timeOffset = 0.0
+        layer.beginTime = 0.0
+        let timeSincePause: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime
+        layer.beginTime = timeSincePause
+    }
+    
+    @objc func resumeGame() {
+        startTimer()
+        for letter in finalLettersAndIndex.keys {
+            resumeLayer(layer: letter.layer)
+        }
     }
     
     //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces() --> See what is done in the viewDidLoad() function(compartmentalize by calling this function in viewDidLoad() and moving the code from there to here)
