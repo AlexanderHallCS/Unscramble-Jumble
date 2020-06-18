@@ -12,6 +12,7 @@ class Game {
 
     var scrambledWord = ""
     var unscrambledWord = ""
+    var unscrambledWordWithoutSpaces = ""
     
     var scrambledIndices: [Int] = []
     
@@ -25,6 +26,7 @@ class Game {
         // MARK: Change this later
         unscrambledWord = removeCarriageReturn(from: "Saudi Arabia")
         scrambledWord = shuffleLetters(word: "Saudi Arabia".split(separator: " ").joined())
+        unscrambledWordWithoutSpaces = unscrambledWord.split(separator: " ").joined().uppercased()
         print(unscrambledWord)
         print(scrambledWord)
         // MARK: UNCOMMENT vvTHISvv TO TEST FOR BLANK SPACES AT END OF FILE
@@ -86,24 +88,4 @@ class Game {
     func getLetterStringRepresentation(from index: Int) -> String {
         return String(Array(scrambledWord)[index]).uppercased()
     }
-    
-    /*private func getLowercaseSpacelessScrambledWord() -> String {
-        return scrambledWord.split(separator: " ").joined().lowercased()
-    } */
-   
-    /*private func getScrambledLetterIndices() -> [Int] {
-        var unscrambledWordFormattedCopy = unscrambledWord.split(separator: " ").joined().lowercased()
-        for letter in getLowercaseSpacelessScrambledWord() {
-            print("LEEETTTERRRR: \(letter)")
-            if !scrambledIndices.contains(unscrambledWordFormattedCopy.firstIndex(of: letter)!) {
-                scrambledIndices.append(unscrambledWordFormattedCopy.firstIndex(of: letter)!)
-            } else {
-                
-            }
-        }
-        print("OOOO KILL EM: \(correctLetterWithIndex)")
-        return correctLetterWithIndex.values.joined().map{ Int(String($0))! }
-    } */
-    
-    
 }

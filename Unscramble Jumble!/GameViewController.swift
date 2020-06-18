@@ -220,28 +220,37 @@ class GameViewController: UIViewController {
     
     // moves(and shrinks if necessary) the letter towards the next available blank space
     private func animateTowardsBlankSpace(letter: UIImageView) {
-        print("chosen letter stack indices: \(chosenLetterStackIndices)")
-        print("what is next unvisisted blank space when adding?: \(nextUnvisitedBlankSpace)")
         while hintLetterPositions.contains(nextUnvisitedBlankSpace) || chosenLetterStackIndices.contains(nextUnvisitedBlankSpace) {
-            print("adooon")
             nextUnvisitedBlankSpace += 1
         }
         chosenLetterStack.append(letter)
         chosenLetterStackIndices.append(nextUnvisitedBlankSpace)
         finalLettersWithIndexAndStringRep[letter] = (nextUnvisitedBlankSpace, game!.getLetterStringRepresentation(from: indexOfTappedLetter.last!))
         UIView.animate(withDuration: 1.5, animations: {
-            print("tapped/animated!")
-            print("next unvisited as it is animating: \(self.nextUnvisitedBlankSpace)")
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
             self.view.bringSubviewToFront(letter)
         })
+        // checking when all letters are tapped if the final word is equal to the actual word
+        if self.finalLettersWithIndexAndStringRep.count == self.game!.unscrambledWordWithoutSpaces.count {
+            var correctValues = 0
+            let unscrambledWordWithoutSpacesArray = Array(self.game!.unscrambledWordWithoutSpaces)
+            for value in self.finalLettersWithIndexAndStringRep.values {
+                if String(unscrambledWordWithoutSpacesArray[value.index]) == value.stringRep {
+                    correctValues += 1
+                }
+            }
+            if correctValues == unscrambledWordWithoutSpacesArray.count {
+                print("YOU WON!")
+            } else {
+                print("INCORRECT >w< TRY AGAIN!")
+            }
+        }
         // stops the user from being able to tap on the letter while it is animating and once it finishes animating
         letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
         if nextUnvisitedBlankSpace != letters.count-1 {
             nextUnvisitedBlankSpace += 1
         }
-        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersWithIndexAndStringRep.values)")
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
@@ -256,8 +265,6 @@ class GameViewController: UIViewController {
     
     // pops off and removes the animations of the most recent letter added
     private func removeLetter() {
-        print("remove next unvisited blank space before \(nextUnvisitedBlankSpace)")
-        print("chosen letter stack indices remove before: \(chosenLetterStackIndices)")
         guard let lastLetterInStack = chosenLetterStack.last else {
             return
         }
@@ -279,13 +286,9 @@ class GameViewController: UIViewController {
             return
         }
         while nextUnvisitedBlankSpace != lastLetterInStackIndex {
-            print("who took the milk from the cookie jar? \(nextUnvisitedBlankSpace)")
             nextUnvisitedBlankSpace -= 1
         }
-        print("remove next unvisited blank space: \(nextUnvisitedBlankSpace)")
-        print("chosen letter stack indices remove after: \(chosenLetterStackIndices)")
         letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
-        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersWithIndexAndStringRep.values)")
     }
     
     @IBAction func generateHint(_ sender: UIButton) {
@@ -323,19 +326,11 @@ class GameViewController: UIViewController {
         }
         
         UIView.animate(withDuration: 1.5, animations: {
-            print("animated hint!")
             self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.x, y: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.y, width: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.width, height: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.height)
             self.letters[randomLetterIndex].rotate()
             self.view.bringSubviewToFront(self.letters[randomLetterIndex])
-        }/*, completion: { _ in
-            //self.letters[randomLetterIndex].layer.zPosition = 0
-        }*/)
-        print("randomLetterIndex: \(randomLetterIndex)")
+        })
         letters[randomLetterIndex].isUserInteractionEnabled = false
-        print("RANDOM LETTER INDEX: \(randomLetterIndex)")
-        
-        print("hint letter positions: \(hintLetterPositions)")
-        print("FINAL LETTERS AND INDEX VALUES: \(finalLettersWithIndexAndStringRep.values)")
     }
     
     func assignRightAmountOfHints() {
