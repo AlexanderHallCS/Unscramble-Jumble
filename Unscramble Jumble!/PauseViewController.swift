@@ -21,7 +21,19 @@ class PauseViewController: UIViewController {
     }
     
     @IBAction func backOutToGameVC(_ sender: UIButton) {
-        animateOut()
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.view.alpha = 0.0;
+        }, completion:{ (doneAnimating : Bool) in
+            if (doneAnimating)
+            {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil, userInfo: nil)
+                self.willMove(toParent: nil)
+                self.view.removeFromSuperview()
+                self.removeFromParent()
+            }
+        });
     }
     
     func animateIn() {
@@ -45,7 +57,6 @@ class PauseViewController: UIViewController {
         }, completion:{ (doneAnimating : Bool) in
             if (doneAnimating)
             {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil, userInfo: nil)
                 self.willMove(toParent: nil)
                 self.view.removeFromSuperview()
                 self.removeFromParent()

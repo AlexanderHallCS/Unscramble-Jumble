@@ -43,13 +43,16 @@ class GameViewController: UIViewController {
     var hintsLeft = 0
     
     var countdownTimer = Timer()
-    var seconds = 30
+    var seconds = 30.0
+    
+    var isPaused = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
         //maybe change the event of willResignActiveNotification to something more forgiving
-        NotificationCenter.default.addObserver(self, selector: #selector(pauseGame), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeGame), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         startTimer()
         
@@ -67,17 +70,13 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func goToPauseVC(_ sender: UIButton) {
+        isPaused = true
         let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PausePopUpID") as! PauseViewController
         self.addChild(pauseVC)
         pauseVC.view.frame = self.view.frame
         self.view.addSubview(pauseVC.view)
         pauseVC.didMove(toParent: self)
-        
         pauseGame()
-    }
-    
-    private func gameOver() {
-        
     }
     
     // adds all the blank spaces to the top of the screen and positions/shrinks them accordingly
@@ -352,20 +351,44 @@ class GameViewController: UIViewController {
     
     func startTimer() {
         let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
-        countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
-        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { (Timer) in
-            if self.seconds >= 0 {
-                self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(self.seconds)", attributes: strokeTextAttributes)
-                self.seconds -= 1
+        countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
+            if self.seconds > 0.0 {
+                if Double(String(format: "%.0f", self.seconds.truncatingRemainder(dividingBy: 1.0))) == 0.0 {
+                self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+                }
+                //print("TRUNCATING REMAINDER: \(self.seconds.truncatingRemainder(dividingBy: 1.0))")
+                self.seconds -= 0.1
             } else {
-                //NOTE: seconds is -1 when this else block is executed(could mean something)
+                self.countdownTimerLabel.attributedText = NSAttributedString(string: "0", attributes: strokeTextAttributes)
                 self.countdownTimer.invalidate()
+                // IMPLEMENT THIS FUNCTIONALITY(storing stuff in Core Data, adding a game over child VC, etc.)
+                self.gameOver()
             }
         })
     }
+    // called when someone closes the app or someone gets a call, etc.
+    @objc private func suddenlyPauseGame() {
+        if isPaused == false {
+            isPaused = true
+            //UserDefaults.standard.set("\(seconds)", forKey: "TimerState")
+            let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PausePopUpID") as! PauseViewController
+            self.addChild(pauseVC)
+            pauseVC.view.frame = self.view.frame
+            self.view.addSubview(pauseVC.view)
+            pauseVC.didMove(toParent: self)
+            pauseGame()
+        }
+    }
+    
+    @objc private func restorePausedState() {
+        print("RESTORED!")
+        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
+        countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+    }
     
     // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
-    @objc func pauseGame() {
+    private func pauseGame() {
         countdownTimer.invalidate()
         for letter in finalLettersWithIndexAndStringRep.keys {
             pauseLetter(layer: letter.layer)
@@ -389,6 +412,8 @@ class GameViewController: UIViewController {
     }
     
     @objc func resumeGame() {
+        isPaused = false
+        print("GAME HAS BEEN RESUMED!")
         startTimer()
         for letter in finalLettersWithIndexAndStringRep.keys {
             resumeLayer(layer: letter.layer)
@@ -397,6 +422,10 @@ class GameViewController: UIViewController {
     
     //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces() --> See what is done in the viewDidLoad() function(compartmentalize by calling this function in viewDidLoad() and moving the code from there to here)
     private func createNewWord() {
+        
+    }
+    
+    private func gameOver() {
         
     }
 }
