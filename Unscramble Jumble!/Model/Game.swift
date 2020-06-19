@@ -24,8 +24,8 @@ class Game {
         print("Scrambled Indices: \(scrambledIndices)")
         //unscrambledWordLettersArray = getWordLetters()
         // MARK: Change this later
-        unscrambledWord = removeCarriageReturn(from: "Saudi Arabia")
-        scrambledWord = shuffleLetters(word: "Saudi Arabia".split(separator: " ").joined())
+        unscrambledWord = removeCarriageReturn(from: "Papua New Guinea")
+        scrambledWord = shuffleLetters(word: "Papua New Guinea".split(separator: " ").joined())
         unscrambledWordWithoutSpaces = unscrambledWord.split(separator: " ").joined().uppercased()
         print(unscrambledWord)
         print(scrambledWord)

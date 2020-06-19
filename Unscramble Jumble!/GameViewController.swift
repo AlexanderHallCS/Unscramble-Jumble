@@ -58,6 +58,8 @@ class GameViewController: UIViewController {
         
         game = Game(themeFile: themeFileName)
         
+        //countdownTimerLabel.adjustsFontSizeToFitWidth = true
+        
         addBlankSpaces()
         addLetters()
         assignRightAmountOfHints()
@@ -71,18 +73,26 @@ class GameViewController: UIViewController {
     
     @IBAction func goToPauseVC(_ sender: UIButton) {
         isPaused = true
+        print("GAME IS PAUSED")
+        print("INT CEIL SELF.SECONDS PAUSE: \(Int(ceil(self.seconds)))")
+        print("CEIL SELF.SECONDS PAUSE: \(ceil(self.seconds))")
+        print("SELF.SECONDS PAUSE: \(self.seconds)")
+        pauseGame()
+        print("GAME IS PAUSED")
+        print("INT CEIL SELF.SECONDS PAUSE AFTER: \(Int(ceil(self.seconds)))")
+        print("CEIL SELF.SECONDS PAUSE AFTER: \(ceil(self.seconds))")
+        print("SELF.SECONDS PAUSE AFTER: \(self.seconds)")
         let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PausePopUpID") as! PauseViewController
         self.addChild(pauseVC)
         pauseVC.view.frame = self.view.frame
         self.view.addSubview(pauseVC.view)
         pauseVC.didMove(toParent: self)
-        pauseGame()
     }
     
     // adds all the blank spaces to the top of the screen and positions/shrinks them accordingly
     private func addBlankSpaces() {
         var yShift: CGFloat = 0.0
-        let yRowShift: CGFloat = self.view.frame.width/10 * CGFloat(game!.unscrambledWord.split(separator: " ").count)
+        let yRowShift: CGFloat = self.view.frame.width/10 * CGFloat(game!.unscrambledWord.split(separator: " ").count-1)
         for letter in game!.unscrambledWord.indices {
             if game!.unscrambledWord[letter] != " " {
                 blankSpaces.append(UIImageView(image: UIImage(named: "Blank Space")!))
@@ -385,11 +395,20 @@ class GameViewController: UIViewController {
         print("RESTORED!")
         let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
         countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+        print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
+        print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
+        print("SELF.SECONDS: \(self.seconds)")
     }
     
     // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
     private func pauseGame() {
+        print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
+        print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
+        print("SELF.SECONDS: \(self.seconds)")
         countdownTimer.invalidate()
+        print("INT CEIL SELF.SECONDS2: \(Int(ceil(self.seconds)))")
+        print("CEIL SELF.SECONDS2: \(ceil(self.seconds))")
+        print("SELF.SECONDS2: \(self.seconds)")
         for letter in finalLettersWithIndexAndStringRep.keys {
             pauseLetter(layer: letter.layer)
         }
