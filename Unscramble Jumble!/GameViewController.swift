@@ -363,6 +363,7 @@ class GameViewController: UIViewController {
         let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
         countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
+            print("SELF.SECONDS IN TIMER: \(self.seconds)")
             if self.seconds > 0.0 {
                 if Double(String(format: "%.0f", self.seconds.truncatingRemainder(dividingBy: 1.0))) == 0.0 {
                 self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
