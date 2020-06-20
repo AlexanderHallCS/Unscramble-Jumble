@@ -446,8 +446,18 @@ class GameViewController: UIViewController {
     }
     
     private func gameOver() {
-        
+        self.performSegue(withIdentifier: "segueFromGameToGameOver", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueFromGameToGameOver" {
+            if let destVC = segue.destination as? GameOverViewController {
+                print("IM ETHAN BRADBERRY")
+                // Add destVC.totalWords = #, destVC.timeSpent = #s, destVC.hintsUsed = x/totalHints
+            }
+        }
+    }
+    
 }
 
 extension UIImageView {

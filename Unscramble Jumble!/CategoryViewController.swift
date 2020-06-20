@@ -72,33 +72,25 @@ class CategoryViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
-            switch identifier {
-                case Segues.adjectivesToGame:
-                    if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = FileNames.BGImageFileNames.adjectives
-                        destVC.themeFileName = FileNames.WordFileNames.adjectives
-                    }
-                case Segues.commonWordsToGame:
-                    if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = FileNames.BGImageFileNames.commonWords
-                        destVC.themeFileName = FileNames.WordFileNames.commonWords
-                    }
-                case Segues.countriesToGame:
-                    if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = FileNames.BGImageFileNames.countries
-                        destVC.themeFileName = FileNames.WordFileNames.countries
-                    }
-                case Segues.natureToGame:
-                    if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = FileNames.BGImageFileNames.nature
-                        destVC.themeFileName = FileNames.WordFileNames.nature
-                    }
-                case Segues.spaceToGame:
-                    if let destVC = segue.destination as? GameViewController {
-                        destVC.imageName = FileNames.BGImageFileNames.space
-                        destVC.themeFileName = FileNames.WordFileNames.space
-                    }
-                default: break
+            if let destVC = segue.destination as? GameViewController {
+                switch identifier {
+                    case Segues.adjectivesToGame:
+                            destVC.imageName = FileNames.BGImageFileNames.adjectives
+                            destVC.themeFileName = FileNames.WordFileNames.adjectives
+                    case Segues.commonWordsToGame:
+                            destVC.imageName = FileNames.BGImageFileNames.commonWords
+                            destVC.themeFileName = FileNames.WordFileNames.commonWords
+                    case Segues.countriesToGame:
+                            destVC.imageName = FileNames.BGImageFileNames.countries
+                            destVC.themeFileName = FileNames.WordFileNames.countries
+                    case Segues.natureToGame:
+                            destVC.imageName = FileNames.BGImageFileNames.nature
+                            destVC.themeFileName = FileNames.WordFileNames.nature
+                    case Segues.spaceToGame:
+                            destVC.imageName = FileNames.BGImageFileNames.space
+                            destVC.themeFileName = FileNames.WordFileNames.space
+                    default: break
+                }
             }
         }
     }
