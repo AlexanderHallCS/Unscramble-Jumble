@@ -77,7 +77,7 @@ class Game {
         return wordCopy
     }
    
-    public func hasWordChanged(_ firstWord: String, _ secondWord: String) -> Bool {
+    private func hasWordChanged(_ firstWord: String, _ secondWord: String) -> Bool {
         if firstWord != secondWord {
             return true
         }
@@ -85,7 +85,7 @@ class Game {
     }
     
     // gets the string representation of the letter that was tapped
-    func getLetterStringRepresentation(from index: Int) -> String {
+    public func getLetterStringRepresentation(from index: Int) -> String {
         return String(Array(scrambledWord)[index]).uppercased()
     }
 }
