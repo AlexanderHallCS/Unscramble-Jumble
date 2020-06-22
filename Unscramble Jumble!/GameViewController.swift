@@ -43,9 +43,13 @@ class GameViewController: UIViewController {
     var hintsLeft = 0
     
     var countdownTimer = Timer()
-    var seconds = 30.0
+    var seconds = 15.0
     
     var isPaused = false
+    
+    var totalWordsSolvedThisGame = 0
+    var totalScoreThisGame = 0
+    var totalHintsUsedThisGame = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +61,6 @@ class GameViewController: UIViewController {
         startTimer()
         
         game = Game(themeFile: themeFileName)
-        
-        //countdownTimerLabel.adjustsFontSizeToFitWidth = true
         
         addBlankSpaces()
         addLetters()
@@ -250,16 +252,20 @@ class GameViewController: UIViewController {
                 }
             }
             if correctValues == unscrambledWordWithoutSpacesArray.count {
+                totalWordsSolvedThisGame += 1
+                createNewWord()
                 print("YOU WON!")
             } else {
                 print("INCORRECT >w< TRY AGAIN!")
             }
+        } else {
+            // stops the user from being able to tap on the letter while it is animating and once it finishes animating
+            letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
+            if nextUnvisitedBlankSpace != letters.count-1 {
+                nextUnvisitedBlankSpace += 1
+            }
         }
-        // stops the user from being able to tap on the letter while it is animating and once it finishes animating
-        letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
-        if nextUnvisitedBlankSpace != letters.count-1 {
-            nextUnvisitedBlankSpace += 1
-        }
+        
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
@@ -301,10 +307,12 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func generateHint(_ sender: UIButton) {
+        
         // don't allow the hint button to be pressed once all hints are used up
         if hintsLeft == 0 {
             hintsButton.isEnabled = false
         } else if hintsLeft == 1 {
+            totalHintsUsedThisGame += 1
             hintsLeft -= 1
             hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
             hintsButton.isEnabled = false
@@ -347,6 +355,7 @@ class GameViewController: UIViewController {
         //MARK: Fine tune these values later(maybe have the same number of hints as there are letters but reward 0 points for using all hints) --> unless you implement the functionality at the end when time runs out, put all letters in the right spot
         case 3:
             hintsLeft = 0
+            hintsButton.isEnabled = false
         case 4...5:
             hintsLeft = 3
         case 6:
@@ -363,10 +372,10 @@ class GameViewController: UIViewController {
         let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
         countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
-            print("SELF.SECONDS IN TIMER: \(self.seconds)")
+            //print("SELF.SECONDS IN TIMER: \(self.seconds)")
             if self.seconds > 0.0 {
                 if Double(String(format: "%.0f", self.seconds.truncatingRemainder(dividingBy: 1.0))) == 0.0 {
-                self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+                    self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
                 }
                 //print("TRUNCATING REMAINDER: \(self.seconds.truncatingRemainder(dividingBy: 1.0))")
                 self.seconds -= 0.1
@@ -441,11 +450,52 @@ class GameViewController: UIViewController {
     }
     
     //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces() --> See what is done in the viewDidLoad() function(compartmentalize by calling this function in viewDidLoad() and moving the code from there to here)
-    private func createNewWord() {
+    public func createNewWord() {
+        for blankSpace in blankSpaces {
+            blankSpace.removeFromSuperview()
+        }
+        for letter in letters {
+            letter.layer.removeAllAnimations()
+            letter.removeFromSuperview()
+        }
+        countdownTimer.invalidate()
+        backgroundImage.image = UIImage(named: imageName)
+        //maybe change the event of willResignActiveNotification to something more forgiving
+        NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeGame), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         
+        blankSpaces = [UIImageView]()
+        letters = [UIImageView]()
+        
+        letterXAndYPositions = [[CGFloat]]()
+        letterAndIndex = [:]
+        finalLettersWithIndexAndStringRep = [:]
+        indexOfTappedLetter = [Int]()
+        
+        hintLetterIndices = [Int]()
+        hintLetterPositions = [Int]()
+        
+        chosenLetterStack = [UIImageView]()
+        chosenLetterStackIndices = [Int]()
+        
+        nextUnvisitedBlankSpace = 0
+        
+        seconds = 15.0
+        startTimer()
+        
+        game = Game(themeFile: themeFileName)
+        
+        addBlankSpaces()
+        addLetters()
+        // this is set to false again when assignRightAmountOfHints() for 3-letter words
+        hintsButton.isEnabled = true
+        assignRightAmountOfHints()
     }
     
+    // Also save data in Core Data before segueing
     private func gameOver() {
+        // save data here
         self.performSegue(withIdentifier: "segueFromGameToGameOver", sender: nil)
     }
     
@@ -453,12 +503,20 @@ class GameViewController: UIViewController {
         if segue.identifier == "segueFromGameToGameOver" {
             if let destVC = segue.destination as? GameOverViewController {
                 print("IM ETHAN BRADBERRY")
-                // Add destVC.totalWords = #, destVC.timeSpent = #s, destVC.hintsUsed = x/totalHints
+                destVC.worldsSolved = totalWordsSolvedThisGame
+                destVC.score = totalScoreThisGame
+                destVC.totalHints = totalHintsUsedThisGame
             }
         }
     }
     
+    @IBAction func unwindToGameFromGameOverVC(segue: UIStoryboardSegue) {
+        print("unwinded!")
+    }
+    
 }
+    
+    
 
 extension UIImageView {
     func rotate() {

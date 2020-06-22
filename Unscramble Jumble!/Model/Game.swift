@@ -17,15 +17,15 @@ class Game {
     var scrambledIndices: [Int] = []
     
     init?(themeFile: String) {
-        /*unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
-        scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())*/
+        unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
+        scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())
         
         //scrambledIndices = getScrambledLetterIndices()
         print("Scrambled Indices: \(scrambledIndices)")
         //unscrambledWordLettersArray = getWordLetters()
         // MARK: Change this later
-        unscrambledWord = removeCarriageReturn(from: "Solomon Islands")
-        scrambledWord = shuffleLetters(word: "Solomon Islands".split(separator: " ").joined())
+        /*unscrambledWord = removeCarriageReturn(from: "Solomon Islands")
+        scrambledWord = shuffleLetters(word: "Solomon Islands".split(separator: " ").joined())*/
         unscrambledWordWithoutSpaces = unscrambledWord.split(separator: " ").joined().uppercased()
         print(unscrambledWord)
         print(scrambledWord)

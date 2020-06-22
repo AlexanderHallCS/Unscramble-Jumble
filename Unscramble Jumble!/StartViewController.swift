@@ -22,8 +22,6 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.delegate = self
         loadBannerAd()
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     deinit {
@@ -36,6 +34,7 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         print("called!")
     } */
     
+    //MARK: ------------>FIX THIS AS IT DOESNT LOOK GOOD ON MANY DEVICES<----------------
     // programmatic implementation of banner view so that its width scales with the size of the ad
     func loadBannerAd() {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,8 +70,7 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         categoryVC.didMove(toParent: self)
     }
     
-    @IBAction func unwindToStartFromPauseVC(segue: UIStoryboardSegue) {
-        //self.dismiss(animated: true, completion: nil)
+    @IBAction func unwindToStartFromPauseOrGameOverVC(segue: UIStoryboardSegue) {
         print("unwinded!")
     }
     
