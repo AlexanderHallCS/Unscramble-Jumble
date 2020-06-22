@@ -17,6 +17,7 @@ class Game {
     var scrambledIndices: [Int] = []
     
     init?(themeFile: String) {
+        resetVariables()
         unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
         scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())
         
@@ -87,5 +88,12 @@ class Game {
     // gets the string representation of the letter that was tapped
     public func getLetterStringRepresentation(from index: Int) -> String {
         return String(Array(scrambledWord)[index]).uppercased()
+    }
+    
+    private func resetVariables() {
+        scrambledWord = ""
+        unscrambledWord = ""
+        unscrambledWordWithoutSpaces = ""
+        scrambledIndices = [Int]()
     }
 }

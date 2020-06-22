@@ -46,6 +46,7 @@ class GameViewController: UIViewController {
     var seconds = 15.0
     
     var isPaused = false
+    var completedLetterAnimations = 0
     
     var totalWordsSolvedThisGame = 0
     var totalScoreThisGame = 0
@@ -54,6 +55,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
+        
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -219,7 +221,6 @@ class GameViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
-            
             for letterViewIndex in 0..<letters.count {
                 if firstTouch.view == letters[letterViewIndex] {
                     indexOfTappedLetter.append(letterViewIndex)
@@ -237,28 +238,34 @@ class GameViewController: UIViewController {
         chosenLetterStack.append(letter)
         chosenLetterStackIndices.append(nextUnvisitedBlankSpace)
         finalLettersWithIndexAndStringRep[letter] = (nextUnvisitedBlankSpace, game!.getLetterStringRepresentation(from: indexOfTappedLetter.last!))
-        UIView.animate(withDuration: 1.5, animations: {
+        UIView.animate(withDuration: 1.2, animations: {
             letter.frame = CGRect(x: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.x, y: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.origin.y, width: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.width, height: self.blankSpaces[self.nextUnvisitedBlankSpace].frame.height)
             letter.rotate()
             self.view.bringSubviewToFront(letter)
-        })
-        // checking when all letters are tapped if the final word is equal to the actual word
-        if self.finalLettersWithIndexAndStringRep.count == self.game!.unscrambledWordWithoutSpaces.count {
-            var correctValues = 0
-            let unscrambledWordWithoutSpacesArray = Array(self.game!.unscrambledWordWithoutSpaces)
-            for value in self.finalLettersWithIndexAndStringRep.values {
-                if String(unscrambledWordWithoutSpacesArray[value.index]) == value.stringRep {
-                    correctValues += 1
+        }, completion: { _ in
+            self.completedLetterAnimations += 1
+            print("COMPLETED LETTER ANIMATIONS: \(self.completedLetterAnimations)")
+            // checking if all letters have been tapped
+            if self.completedLetterAnimations == self.game!.unscrambledWordWithoutSpaces.count {
+                var correctValues = 0
+                let unscrambledWordWithoutSpacesArray = Array(self.game!.unscrambledWordWithoutSpaces)
+                for value in self.finalLettersWithIndexAndStringRep.values {
+                    if String(unscrambledWordWithoutSpacesArray[value.index]) == value.stringRep {
+                        correctValues += 1
+                    }
+                }
+                // checking when all letters are tapped if the final word is equal to the actual word
+                if correctValues == unscrambledWordWithoutSpacesArray.count {
+                    self.totalWordsSolvedThisGame += 1
+                    self.createNewWord()
+                    print("YOU WON!")
+                } else {
+                    print("INCORRECT >w< TRY AGAIN!")
                 }
             }
-            if correctValues == unscrambledWordWithoutSpacesArray.count {
-                totalWordsSolvedThisGame += 1
-                createNewWord()
-                print("YOU WON!")
-            } else {
-                print("INCORRECT >w< TRY AGAIN!")
-            }
-        } else {
+        })
+        // checking when all letters are tapped if the final word is equal to the actual word
+        if self.finalLettersWithIndexAndStringRep.count != self.game!.unscrambledWordWithoutSpaces.count {
             // stops the user from being able to tap on the letter while it is animating and once it finishes animating
             letters[letters.firstIndex(of: letter)!].isUserInteractionEnabled = false
             if nextUnvisitedBlankSpace != letters.count-1 {
@@ -293,6 +300,7 @@ class GameViewController: UIViewController {
         chosenLetterStack.removeLast()
         chosenLetterStackIndices.removeLast()
         indexOfTappedLetter.removeLast()
+        completedLetterAnimations -= 1
         if nextUnvisitedBlankSpace != firstLetterInStackIndex {
             nextUnvisitedBlankSpace -= 1
         }
@@ -317,6 +325,7 @@ class GameViewController: UIViewController {
             hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
             hintsButton.isEnabled = false
         } else {
+            totalHintsUsedThisGame += 1
             hintsLeft -= 1
             hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
         }
@@ -342,10 +351,12 @@ class GameViewController: UIViewController {
             removeLetter()
         }
         
-        UIView.animate(withDuration: 1.5, animations: {
+        UIView.animate(withDuration: 1.2, animations: {
             self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.x, y: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.y, width: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.width, height: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.height)
             self.letters[randomLetterIndex].rotate()
             self.view.bringSubviewToFront(self.letters[randomLetterIndex])
+        }, completion: { _ in
+            self.completedLetterAnimations += 1
         })
         letters[randomLetterIndex].isUserInteractionEnabled = false
     }
@@ -459,11 +470,7 @@ class GameViewController: UIViewController {
             letter.removeFromSuperview()
         }
         countdownTimer.invalidate()
-        backgroundImage.image = UIImage(named: imageName)
-        //maybe change the event of willResignActiveNotification to something more forgiving
-        NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.willResignActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(resumeGame), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
+        //backgroundImage.image = UIImage(named: imageName)
         
         blankSpaces = [UIImageView]()
         letters = [UIImageView]()
@@ -480,11 +487,13 @@ class GameViewController: UIViewController {
         chosenLetterStackIndices = [Int]()
         
         nextUnvisitedBlankSpace = 0
+        completedLetterAnimations = 0
         
         seconds = 15.0
         startTimer()
         
         game = Game(themeFile: themeFileName)
+        //game!.scrambledIndices = [Int]()
         
         addBlankSpaces()
         addLetters()
@@ -522,10 +531,10 @@ extension UIImageView {
     func rotate() {
         let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
         rotation.toValue = Double.pi * 2
-        rotation.duration = 0.3
+        rotation.duration = 0.2
         rotation.isCumulative = true
         // animation duration divided by rotation.duration
-        rotation.repeatCount = 5
+        rotation.repeatCount = 6
         self.layer.add(rotation, forKey: "rotationAnimation")
     }
 }

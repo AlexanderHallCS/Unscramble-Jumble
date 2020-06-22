@@ -21,7 +21,7 @@ class GameOverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        wordsSolvedLabel.text = "Words Solved: \(worldsSolved) words"
+        wordsSolvedLabel.text = "Words Solved: \(worldsSolved)"
         scoreLabel.text = "Score: \(score)"
         hintsUsedLabel.text = "Hints Used: \(totalHints)"
     }
@@ -38,6 +38,7 @@ class GameOverViewController: UIViewController {
             destVC.totalWordsSolvedThisGame = 0
             destVC.totalScoreThisGame = 0
             destVC.totalHintsUsedThisGame = 0
+            //destVC.addObservers()
             destVC.createNewWord()
         }
         
