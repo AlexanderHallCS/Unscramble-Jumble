@@ -43,7 +43,7 @@ class GameViewController: UIViewController {
     var hintsLeft = 0
     
     var countdownTimer = Timer()
-    var seconds = 15.0
+    var seconds = 10.0
     
     var isPaused = false
     var completedLetterAnimations = 0
@@ -51,6 +51,9 @@ class GameViewController: UIViewController {
     var totalWordsSolvedThisGame = 0
     var totalScoreThisGame = 0
     var totalHintsUsedThisGame = 0
+    
+    let checkmark = UIImageView(image: UIImage(named: "CheckMark"))
+    let cross = UIImageView(image: UIImage(named: "WrongAnswerCross"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +76,7 @@ class GameViewController: UIViewController {
         print("did deinit3 and remove observers!")
         NotificationCenter.default.removeObserver(self,name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     @IBAction func goToPauseVC(_ sender: UIButton) {
@@ -257,9 +261,10 @@ class GameViewController: UIViewController {
                 // checking when all letters are tapped if the final word is equal to the actual word
                 if correctValues == unscrambledWordWithoutSpacesArray.count {
                     self.totalWordsSolvedThisGame += 1
-                    self.createNewWord()
+                    self.animateCheckMark()
                     print("YOU WON!")
                 } else {
+                    self.animateCross()
                     print("INCORRECT >w< TRY AGAIN!")
                 }
             }
@@ -384,13 +389,18 @@ class GameViewController: UIViewController {
         countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
             //print("SELF.SECONDS IN TIMER: \(self.seconds)")
-            if self.seconds > 0.0 {
-                if Double(String(format: "%.0f", self.seconds.truncatingRemainder(dividingBy: 1.0))) == 0.0 {
-                    self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+            if self.seconds > -1.0 {
+                if Double(String(String(self.seconds).split(separator: ".")[1].first!))! == 0.0 {
+                    print("TRUE! NEW SECOND: \(self.seconds)")
+                    self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(self.seconds))", attributes: strokeTextAttributes)
                 }
-                //print("TRUNCATING REMAINDER: \(self.seconds.truncatingRemainder(dividingBy: 1.0))")
+                print("REMAINDER: \(Double(String(String(self.seconds).split(separator: ".")[1].first!))!)")
+                print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
+                print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
+                print("SELF.SECONDS: \(self.seconds)")
                 self.seconds -= 0.1
             } else {
+                print("IT HAS BEEN CALLED!")
                 self.countdownTimerLabel.attributedText = NSAttributedString(string: "0", attributes: strokeTextAttributes)
                 self.countdownTimer.invalidate()
                 // IMPLEMENT THIS FUNCTIONALITY(storing stuff in Core Data, adding a game over child VC, etc.)
@@ -400,6 +410,7 @@ class GameViewController: UIViewController {
     }
     // called when someone closes the app or someone gets a call, etc.
     @objc private func suddenlyPauseGame() {
+        //countdownTimer.invalidate()
         if isPaused == false {
             isPaused = true
             //UserDefaults.standard.set("\(seconds)", forKey: "TimerState")
@@ -408,6 +419,7 @@ class GameViewController: UIViewController {
             pauseVC.view.frame = self.view.frame
             self.view.addSubview(pauseVC.view)
             pauseVC.didMove(toParent: self)
+            print("SUDDENLY PAUSED THE GAME!!!! -> pause")
             pauseGame()
         }
     }
@@ -419,6 +431,9 @@ class GameViewController: UIViewController {
         print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
         print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
         print("SELF.SECONDS: \(self.seconds)")
+        if isPaused == false {
+            startTimer()
+        }
     }
     
     // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
@@ -426,23 +441,26 @@ class GameViewController: UIViewController {
         print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
         print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
         print("SELF.SECONDS: \(self.seconds)")
+        print("TIMER WAS INVAALIIDLADIALDIADLAITITEIIIEDIDIDIIDIDIDIDIDIDIDIDIDIDIDIIDIDIDIDIDI")
         countdownTimer.invalidate()
         print("INT CEIL SELF.SECONDS2: \(Int(ceil(self.seconds)))")
         print("CEIL SELF.SECONDS2: \(ceil(self.seconds))")
         print("SELF.SECONDS2: \(self.seconds)")
         for letter in finalLettersWithIndexAndStringRep.keys {
-            pauseLetter(layer: letter.layer)
+            pauseLayer(layer: letter.layer)
         }
+        pauseLayer(layer: checkmark.layer)
         print("pause game!")
     }
     
-    func pauseLetter(layer: CALayer) {
+    func pauseLayer(layer: CALayer) {
         let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
         layer.speed = 0.0
         layer.timeOffset = pausedTime
     }
     
     func resumeLayer(layer: CALayer) {
+        print("I GOT CALLED LOLLLLL")
         let pausedTime: CFTimeInterval = layer.timeOffset
         layer.speed = 1.0
         layer.timeOffset = 0.0
@@ -458,10 +476,12 @@ class GameViewController: UIViewController {
         for letter in finalLettersWithIndexAndStringRep.keys {
             resumeLayer(layer: letter.layer)
         }
+        resumeLayer(layer: checkmark.layer)
     }
     
     //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces() --> See what is done in the viewDidLoad() function(compartmentalize by calling this function in viewDidLoad() and moving the code from there to here)
     public func createNewWord() {
+        print("WORD CREATION!")
         for blankSpace in blankSpaces {
             blankSpace.removeFromSuperview()
         }
@@ -489,7 +509,7 @@ class GameViewController: UIViewController {
         nextUnvisitedBlankSpace = 0
         completedLetterAnimations = 0
         
-        seconds = 15.0
+        seconds = 10.0
         startTimer()
         
         game = Game(themeFile: themeFileName)
@@ -506,6 +526,42 @@ class GameViewController: UIViewController {
     private func gameOver() {
         // save data here
         self.performSegue(withIdentifier: "segueFromGameToGameOver", sender: nil)
+    }
+    
+    private func animateCheckMark() {
+        for letter in letters {
+            letter.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+            letter.layer.borderWidth = letter.frame.width/20
+        }
+        checkmark.frame = CGRect(x: view.frame.width/2-view.frame.width/4/2, y: view.frame.height/6, width: view.frame.width/4, height: view.frame.width/4)
+        checkmark.alpha = 0.0
+        print("CENTER: \(view.center)")
+        self.view.addSubview(checkmark)
+        UIView.animate(withDuration: 1.0, animations: {
+            print("ANIMATED CHECKMARK!")
+            self.view.bringSubviewToFront(self.checkmark)
+            self.checkmark.alpha = 1.0
+        }, completion: { _ in
+            self.checkmark.removeFromSuperview()
+            self.createNewWord()
+        })
+    }
+    
+    private func animateCross() {
+        cross.frame = CGRect(x: view.frame.width/2-view.frame.width/4/2, y: view.frame.height/6, width: view.frame.width/4, height: view.frame.width/4)
+        cross.alpha = 0.0
+        print("CENTER: \(view.center)")
+        self.view.addSubview(cross)
+        UIView.animate(withDuration: 1.0, animations: {
+            print("ANIMATED CROSS!")
+            self.view.bringSubviewToFront(self.cross)
+            self.cross.alpha = 1.0
+        }, completion: { _ in
+            self.cross.removeFromSuperview()
+            for _ in self.chosenLetterStack {
+                self.removeLetter()
+            }
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
