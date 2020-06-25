@@ -48,15 +48,15 @@ class GameViewController: UIViewController {
     var isPaused = false
     var didGetWordRight = false
     var didGetWordWrong = false
-    var didCompleteCheckMarkAnimation = false
+    // var didCompleteCheckMarkAnimation = false
     var completedLetterAnimations = 0
     
     var totalWordsSolvedThisGame = 0
     var totalScoreThisGame = 0
     var totalHintsUsedThisGame = 0
     
-    let checkmark = UIImageView(image: UIImage(named: "CheckMark"))
-    let cross = UIImageView(image: UIImage(named: "WrongAnswerCross"))
+    //let checkmark = UIImageView(image: UIImage(named: "CheckMark"))
+    //let cross = UIImageView(image: UIImage(named: "WrongAnswerCross"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -271,14 +271,14 @@ class GameViewController: UIViewController {
                     self.didGetWordWrong = false
                     if self.isPaused == false {
                         self.totalWordsSolvedThisGame += 1
-                        self.animateCheckMark()
+                        self.addGreenBorderAndCreateWord()
                         print("YOU WON!")
                     }
                 } else {
                     self.didGetWordRight = false
                     self.didGetWordWrong = true
                     if self.isPaused == false {
-                        self.animateCross()
+                        self.addRedBorder()
                         print("INCORRECT >w< TRY AGAIN!")
                     }
                 }
@@ -478,7 +478,7 @@ class GameViewController: UIViewController {
             pauseLayer(layer: letter.layer)
         }
         print("FINAL LETTERS WITH INDEX AND STRING REP: \(finalLettersWithIndexAndStringRep)")
-        pauseLayer(layer: checkmark.layer)
+        //pauseLayer(layer: checkmark.layer)
         print("pause game!")
     }
     
@@ -500,31 +500,35 @@ class GameViewController: UIViewController {
     
     @objc func resumeGame() {
         isPaused = false
-        if didGetWordRight && didCompleteCheckMarkAnimation == false {
+        if didGetWordRight/* && didCompleteCheckMarkAnimation == false*/ {
             totalWordsSolvedThisGame += 1
-            animateCheckMark()
-            resumeLayer(layer: checkmark.layer)
+            createNewWord()
+            //animateCheckMark()
+            //resumeLayer(layer: checkmark.layer)
             print("YOU WON FROM RESUME!")
         } else if didGetWordWrong {
-            animateCross()
             startTimer()
             for letter in finalLettersWithIndexAndStringRep.keys {
                 resumeLayer(layer: letter.layer)
             }
-            resumeLayer(layer: checkmark.layer)
+            for letter in letters {
+                letter.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+                removeLetter()
+            }
+            //resumeLayer(layer: checkmark.layer)
             print("INCORRECT >w< TRY AGAIN!")
-        } else if didCompleteCheckMarkAnimation {
+        }/* else if didCompleteCheckMarkAnimation {
             print("DID SOMEBODY SAY THUNDERFURY BLESSED BLADE OF THE WINDSEEKER?!")
             resumeLayer(layer: checkmark.layer)
             checkmark.removeFromSuperview()
             createNewWord()
-        } else {
+        }*/ else {
             print("GAME HAS BEEN RESUMED!")
             startTimer()
             for letter in finalLettersWithIndexAndStringRep.keys {
                 resumeLayer(layer: letter.layer)
             }
-            resumeLayer(layer: checkmark.layer)
+            //resumeLayer(layer: checkmark.layer)
         }
     }
     
@@ -559,7 +563,7 @@ class GameViewController: UIViewController {
         completedLetterAnimations = 0
         didGetWordRight = false
         didGetWordWrong = false
-        didCompleteCheckMarkAnimation = false
+        //didCompleteCheckMarkAnimation = false
         
         seconds = 10.0
         startTimer()
@@ -580,16 +584,22 @@ class GameViewController: UIViewController {
         self.performSegue(withIdentifier: "segueFromGameToGameOver", sender: nil)
     }
     
-    private func animateCheckMark() {
+    private func addGreenBorderAndCreateWord() {
         for letter in letters {
             letter.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             letter.layer.borderWidth = letter.frame.width/20
         }
-        checkmark.frame = CGRect(x: view.frame.width/2-view.frame.width/4/2, y: view.frame.height/6, width: view.frame.width/4, height: view.frame.width/4)
-        checkmark.alpha = 0.0
-        print("CENTER: \(view.center)")
-        self.view.addSubview(checkmark)
-        UIView.animate(withDuration: 1.0, animations: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            if self.isPaused == false {
+                self.createNewWord()
+            }
+        })
+        
+        //checkmark.frame = CGRect(x: view.frame.width/2-view.frame.width/4/2, y: view.frame.height/6, width: view.frame.width/4, height: view.frame.width/4)
+        //checkmark.alpha = 0.0
+        //print("CENTER: \(view.center)")
+        //self.view.addSubview(checkmark)
+        /*UIView.animate(withDuration: 1.0, animations: {
             print("ANIMATED CHECKMARK!")
             self.view.bringSubviewToFront(self.checkmark)
             self.checkmark.alpha = 1.0
@@ -600,15 +610,29 @@ class GameViewController: UIViewController {
                 self.checkmark.removeFromSuperview()
                 self.createNewWord()
             }
-        })
+        }) */
     }
     
-    private func animateCross() {
-        cross.frame = CGRect(x: view.frame.width/2-view.frame.width/4/2, y: view.frame.height/6, width: view.frame.width/4, height: view.frame.width/4)
-        cross.alpha = 0.0
-        print("CENTER: \(view.center)")
-        self.view.addSubview(cross)
-        UIView.animate(withDuration: 1.0, animations: {
+    private func addRedBorder() {
+        for letter in letters {
+            letter.layer.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+            letter.layer.borderWidth = letter.frame.width/20
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            if self.isPaused == false {
+                for letter in self.letters {
+                    letter.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+                    self.removeLetter()
+                }
+                
+            }
+        })
+        // cross.frame = CGRect(x: view.frame.width/2-view.frame.width/4/2, y: view.frame.height/6, width: view.frame.width/4, height: view.frame.width/4)
+        //cross.alpha = 0.0
+        //print("CENTER: \(view.center)")
+        //self.view.addSubview(cross)
+        /*UIView.animate(withDuration: 1.0, animations: {
             print("ANIMATED CROSS!")
             self.view.bringSubviewToFront(self.cross)
             self.cross.alpha = 1.0
@@ -617,8 +641,9 @@ class GameViewController: UIViewController {
             for _ in self.chosenLetterStack {
                 self.removeLetter()
             }
-        })
+        })*/
     }
+       
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueFromGameToGameOver" {
@@ -647,4 +672,16 @@ extension UIImageView {
         rotation.repeatCount = 6
         self.layer.add(rotation, forKey: "rotationAnimation")
     }
+    
+    /*func animateBorderAndCreateNewLetter() {
+        
+        //CATransaction
+        
+        let borderAnimation: CABasicAnimation = CABasicAnimation(keyPath: "borderColor")
+        borderAnimation.fromValue = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+        borderAnimation.toValue = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        borderAnimation.duration = 1.0
+        self.layer.add(borderAnimation, forKey: "borderColor")
+        self.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+    } */
 }
