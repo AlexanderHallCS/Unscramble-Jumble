@@ -501,12 +501,12 @@ class GameViewController: UIViewController {
     @objc func resumeGame() {
         isPaused = false
         if didGetWordRight && didCompleteCheckMarkAnimation == false {
-            self.totalWordsSolvedThisGame += 1
-            self.animateCheckMark()
+            totalWordsSolvedThisGame += 1
+            animateCheckMark()
             resumeLayer(layer: checkmark.layer)
             print("YOU WON FROM RESUME!")
         } else if didGetWordWrong {
-            self.animateCross()
+            animateCross()
             startTimer()
             for letter in finalLettersWithIndexAndStringRep.keys {
                 resumeLayer(layer: letter.layer)
@@ -514,8 +514,10 @@ class GameViewController: UIViewController {
             resumeLayer(layer: checkmark.layer)
             print("INCORRECT >w< TRY AGAIN!")
         } else if didCompleteCheckMarkAnimation {
-            self.checkmark.removeFromSuperview()
-            self.createNewWord()
+            print("DID SOMEBODY SAY THUNDERFURY BLESSED BLADE OF THE WINDSEEKER?!")
+            resumeLayer(layer: checkmark.layer)
+            checkmark.removeFromSuperview()
+            createNewWord()
         } else {
             print("GAME HAS BEEN RESUMED!")
             startTimer()
