@@ -46,6 +46,9 @@ class GameViewController: UIViewController {
     var seconds = 10.0
     
     var isPaused = false
+    var didGetWordRight = false
+    var didGetWordWrong = false
+    var didCompleteCheckMarkAnimation = false
     var completedLetterAnimations = 0
     
     var totalWordsSolvedThisGame = 0
@@ -62,6 +65,8 @@ class GameViewController: UIViewController {
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.didBecomeActiveNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.didEnterBackgroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeGame), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         startTimer()
         
@@ -77,6 +82,8 @@ class GameViewController: UIViewController {
         NotificationCenter.default.removeObserver(self,name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     @IBAction func goToPauseVC(_ sender: UIButton) {
@@ -260,12 +267,20 @@ class GameViewController: UIViewController {
                 }
                 // checking when all letters are tapped if the final word is equal to the actual word
                 if correctValues == unscrambledWordWithoutSpacesArray.count {
-                    self.totalWordsSolvedThisGame += 1
-                    self.animateCheckMark()
-                    print("YOU WON!")
+                    self.didGetWordRight = true
+                    self.didGetWordWrong = false
+                    if self.isPaused == false {
+                        self.totalWordsSolvedThisGame += 1
+                        self.animateCheckMark()
+                        print("YOU WON!")
+                    }
                 } else {
-                    self.animateCross()
-                    print("INCORRECT >w< TRY AGAIN!")
+                    self.didGetWordRight = false
+                    self.didGetWordWrong = true
+                    if self.isPaused == false {
+                        self.animateCross()
+                        print("INCORRECT >w< TRY AGAIN!")
+                    }
                 }
             }
         })
@@ -394,10 +409,10 @@ class GameViewController: UIViewController {
                     print("TRUE! NEW SECOND: \(self.seconds)")
                     self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(self.seconds))", attributes: strokeTextAttributes)
                 }
-                print("REMAINDER: \(Double(String(String(self.seconds).split(separator: ".")[1].first!))!)")
-                print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
-                print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
-                print("SELF.SECONDS: \(self.seconds)")
+//                print("REMAINDER: \(Double(String(String(self.seconds).split(separator: ".")[1].first!))!)")
+//                print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
+//                print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
+//                print("SELF.SECONDS: \(self.seconds)")
                 self.seconds -= 0.1
             } else {
                 print("IT HAS BEEN CALLED!")
@@ -408,32 +423,45 @@ class GameViewController: UIViewController {
             }
         })
     }
-    // called when someone closes the app or someone gets a call, etc.
+    // called when the app goes to the background(ex: someone gets a call, home button is pressed, notification center is opened, etc.)
     @objc private func suddenlyPauseGame() {
         //countdownTimer.invalidate()
         if isPaused == false {
             isPaused = true
+            print("SUDDENLY PAUSED THE GAME!!!! -> pause")
+            pauseGame()
             //UserDefaults.standard.set("\(seconds)", forKey: "TimerState")
             let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PausePopUpID") as! PauseViewController
             self.addChild(pauseVC)
             pauseVC.view.frame = self.view.frame
             self.view.addSubview(pauseVC.view)
             pauseVC.didMove(toParent: self)
-            print("SUDDENLY PAUSED THE GAME!!!! -> pause")
-            pauseGame()
         }
     }
     
+    // is called when app goes back into foreground after being interrupted
     @objc private func restorePausedState() {
-        print("RESTORED!")
-        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
-        countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
-        print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
-        print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
-        print("SELF.SECONDS: \(self.seconds)")
-        if isPaused == false {
-            startTimer()
-        }
+        /*if didGetWordRight && isPaused == false {
+            self.totalWordsSolvedThisGame += 1
+            self.animateCheckMark()
+            print("YOU WON!")
+        } else if didGetWordWrong && isPaused == false {
+            self.animateCross()
+            print("INCORRECT >w< TRY AGAIN!")
+        } else if didCompleteCheckMarkAnimation && isPaused == false {
+            self.checkmark.removeFromSuperview()
+            self.createNewWord()
+        } else { */
+            print("RESTORED!")
+            let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
+            countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+            print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
+            print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
+            print("SELF.SECONDS: \(self.seconds)")
+            /*if isPaused == false {
+                startTimer()
+            } */
+       // }
     }
     
     // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
@@ -449,6 +477,7 @@ class GameViewController: UIViewController {
         for letter in finalLettersWithIndexAndStringRep.keys {
             pauseLayer(layer: letter.layer)
         }
+        print("FINAL LETTERS WITH INDEX AND STRING REP: \(finalLettersWithIndexAndStringRep)")
         pauseLayer(layer: checkmark.layer)
         print("pause game!")
     }
@@ -471,12 +500,30 @@ class GameViewController: UIViewController {
     
     @objc func resumeGame() {
         isPaused = false
-        print("GAME HAS BEEN RESUMED!")
-        startTimer()
-        for letter in finalLettersWithIndexAndStringRep.keys {
-            resumeLayer(layer: letter.layer)
+        if didGetWordRight && didCompleteCheckMarkAnimation == false {
+            self.totalWordsSolvedThisGame += 1
+            self.animateCheckMark()
+            resumeLayer(layer: checkmark.layer)
+            print("YOU WON FROM RESUME!")
+        } else if didGetWordWrong {
+            self.animateCross()
+            startTimer()
+            for letter in finalLettersWithIndexAndStringRep.keys {
+                resumeLayer(layer: letter.layer)
+            }
+            resumeLayer(layer: checkmark.layer)
+            print("INCORRECT >w< TRY AGAIN!")
+        } else if didCompleteCheckMarkAnimation {
+            self.checkmark.removeFromSuperview()
+            self.createNewWord()
+        } else {
+            print("GAME HAS BEEN RESUMED!")
+            startTimer()
+            for letter in finalLettersWithIndexAndStringRep.keys {
+                resumeLayer(layer: letter.layer)
+            }
+            resumeLayer(layer: checkmark.layer)
         }
-        resumeLayer(layer: checkmark.layer)
     }
     
     //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces() --> See what is done in the viewDidLoad() function(compartmentalize by calling this function in viewDidLoad() and moving the code from there to here)
@@ -508,6 +555,9 @@ class GameViewController: UIViewController {
         
         nextUnvisitedBlankSpace = 0
         completedLetterAnimations = 0
+        didGetWordRight = false
+        didGetWordWrong = false
+        didCompleteCheckMarkAnimation = false
         
         seconds = 10.0
         startTimer()
@@ -542,8 +592,12 @@ class GameViewController: UIViewController {
             self.view.bringSubviewToFront(self.checkmark)
             self.checkmark.alpha = 1.0
         }, completion: { _ in
-            self.checkmark.removeFromSuperview()
-            self.createNewWord()
+            self.didCompleteCheckMarkAnimation = true
+            print("CHECKMARK ANIMATION DID COMPLETE!!!!!!")
+            if self.isPaused == false {
+                self.checkmark.removeFromSuperview()
+                self.createNewWord()
+            }
         })
     }
     
@@ -580,8 +634,6 @@ class GameViewController: UIViewController {
     }
     
 }
-    
-    
 
 extension UIImageView {
     func rotate() {

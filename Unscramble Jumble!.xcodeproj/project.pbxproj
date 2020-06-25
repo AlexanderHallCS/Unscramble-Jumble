@@ -21,6 +21,7 @@
 		118D74C6242C7048007DB21E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D74C5242C7048007DB21E /* CategoryViewController.swift */; };
 		1191C5012478E25A00F38E9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C5002478E25A00F38E9C /* Constants.swift */; };
 		11A022B22481F5E600D49FFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11A022B12481F5E600D49FFB /* GoogleService-Info.plist */; };
+		11A9A1D624A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11A9A1D424A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld */; };
 		11A9F3FD247A6BBD0093E699 /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */; };
 		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
 		11D793C42428822A00435B54 /* Nature.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BF2428822A00435B54 /* Nature.txt */; };
@@ -70,6 +71,7 @@
 		118D74C5242C7048007DB21E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		1191C5002478E25A00F38E9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		11A022B12481F5E600D49FFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		11A9A1D524A3E09F00B10696 /* Unscramble_Jumble.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unscramble_Jumble.xcdatamodel; sourceTree = "<group>"; };
 		11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewController.swift; sourceTree = "<group>"; };
 		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
 		11D793BF2428822A00435B54 /* Nature.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Nature.txt; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				11343DBA2470584900748375 /* GameViewController.swift */,
 				11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */,
 				11A022B12481F5E600D49FFB /* GoogleService-Info.plist */,
+				11A9A1D424A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld */,
 				111A7EAF24763DC8006CF80D /* Model */,
 				11058729242433900005B62D /* Assets.xcassets */,
 				1105872E242433900005B62D /* Info.plist */,
@@ -481,6 +484,7 @@
 				11343DBB2470584900748375 /* GameViewController.swift in Sources */,
 				110587202424338E0005B62D /* SceneDelegate.swift in Sources */,
 				1191C5012478E25A00F38E9C /* Constants.swift in Sources */,
+				11A9A1D624A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld in Sources */,
 				11A9F3FD247A6BBD0093E699 /* PauseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,6 +830,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		11A9A1D424A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				11A9A1D524A3E09F00B10696 /* Unscramble_Jumble.xcdatamodel */,
+			);
+			currentVersion = 11A9A1D524A3E09F00B10696 /* Unscramble_Jumble.xcdatamodel */;
+			path = Unscramble_Jumble.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 110587122424338E0005B62D /* Project object */;
 }
