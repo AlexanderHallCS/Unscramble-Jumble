@@ -48,15 +48,13 @@ class GameViewController: UIViewController {
     var isPaused = false
     var didGetWordRight = false
     var didGetWordWrong = false
-    // var didCompleteCheckMarkAnimation = false
+    var shouldAddRedBorder = true
+    var shouldAddGreenBorder = true
     var completedLetterAnimations = 0
     
     var totalWordsSolvedThisGame = 0
     var totalScoreThisGame = 0
     var totalHintsUsedThisGame = 0
-    
-    //let checkmark = UIImageView(image: UIImage(named: "CheckMark"))
-    //let cross = UIImageView(image: UIImage(named: "WrongAnswerCross"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +63,6 @@ class GameViewController: UIViewController {
         //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.didBecomeActiveNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.didEnterBackgroundNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeGame), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         startTimer()
         
@@ -82,8 +78,6 @@ class GameViewController: UIViewController {
         NotificationCenter.default.removeObserver(self,name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     @IBAction func goToPauseVC(_ sender: UIButton) {
@@ -501,19 +495,27 @@ class GameViewController: UIViewController {
     @objc func resumeGame() {
         isPaused = false
         if didGetWordRight/* && didCompleteCheckMarkAnimation == false*/ {
-            totalWordsSolvedThisGame += 1
-            createNewWord()
+            if shouldAddGreenBorder == true {
+                addGreenBorderAndCreateWord()
+            } else {
+                totalWordsSolvedThisGame += 1
+                createNewWord()
+            }
             //animateCheckMark()
             //resumeLayer(layer: checkmark.layer)
             print("YOU WON FROM RESUME!")
         } else if didGetWordWrong {
             startTimer()
-            for letter in finalLettersWithIndexAndStringRep.keys {
-                resumeLayer(layer: letter.layer)
-            }
-            for letter in letters {
-                letter.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
-                removeLetter()
+            if shouldAddRedBorder == false {
+                for letter in finalLettersWithIndexAndStringRep.keys {
+                    resumeLayer(layer: letter.layer)
+                }
+                for letter in letters {
+                    letter.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
+                    removeLetter()
+                }
+            } else {
+                addRedBorder()
             }
             //resumeLayer(layer: checkmark.layer)
             print("INCORRECT >w< TRY AGAIN!")
@@ -561,9 +563,11 @@ class GameViewController: UIViewController {
         
         nextUnvisitedBlankSpace = 0
         completedLetterAnimations = 0
+        
         didGetWordRight = false
         didGetWordWrong = false
-        //didCompleteCheckMarkAnimation = false
+        shouldAddGreenBorder = true
+        shouldAddRedBorder = true
         
         seconds = 10.0
         startTimer()
@@ -585,6 +589,8 @@ class GameViewController: UIViewController {
     }
     
     private func addGreenBorderAndCreateWord() {
+        shouldAddGreenBorder = false
+        // countdownTimer.invalidate()
         for letter in letters {
             letter.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             letter.layer.borderWidth = letter.frame.width/20
@@ -594,26 +600,10 @@ class GameViewController: UIViewController {
                 self.createNewWord()
             }
         })
-        
-        //checkmark.frame = CGRect(x: view.frame.width/2-view.frame.width/4/2, y: view.frame.height/6, width: view.frame.width/4, height: view.frame.width/4)
-        //checkmark.alpha = 0.0
-        //print("CENTER: \(view.center)")
-        //self.view.addSubview(checkmark)
-        /*UIView.animate(withDuration: 1.0, animations: {
-            print("ANIMATED CHECKMARK!")
-            self.view.bringSubviewToFront(self.checkmark)
-            self.checkmark.alpha = 1.0
-        }, completion: { _ in
-            self.didCompleteCheckMarkAnimation = true
-            print("CHECKMARK ANIMATION DID COMPLETE!!!!!!")
-            if self.isPaused == false {
-                self.checkmark.removeFromSuperview()
-                self.createNewWord()
-            }
-        }) */
     }
     
     private func addRedBorder() {
+        shouldAddRedBorder = false
         for letter in letters {
             letter.layer.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             letter.layer.borderWidth = letter.frame.width/20
@@ -628,20 +618,6 @@ class GameViewController: UIViewController {
                 
             }
         })
-        // cross.frame = CGRect(x: view.frame.width/2-view.frame.width/4/2, y: view.frame.height/6, width: view.frame.width/4, height: view.frame.width/4)
-        //cross.alpha = 0.0
-        //print("CENTER: \(view.center)")
-        //self.view.addSubview(cross)
-        /*UIView.animate(withDuration: 1.0, animations: {
-            print("ANIMATED CROSS!")
-            self.view.bringSubviewToFront(self.cross)
-            self.cross.alpha = 1.0
-        }, completion: { _ in
-            self.cross.removeFromSuperview()
-            for _ in self.chosenLetterStack {
-                self.removeLetter()
-            }
-        })*/
     }
        
     
@@ -672,16 +648,4 @@ extension UIImageView {
         rotation.repeatCount = 6
         self.layer.add(rotation, forKey: "rotationAnimation")
     }
-    
-    /*func animateBorderAndCreateNewLetter() {
-        
-        //CATransaction
-        
-        let borderAnimation: CABasicAnimation = CABasicAnimation(keyPath: "borderColor")
-        borderAnimation.fromValue = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
-        borderAnimation.toValue = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-        borderAnimation.duration = 1.0
-        self.layer.add(borderAnimation, forKey: "borderColor")
-        self.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-    } */
 }
