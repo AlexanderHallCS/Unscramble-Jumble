@@ -61,6 +61,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yao-hh-LvN">
                                 <rect key="frame" x="42" y="152.33333333333331" width="330" height="601.33333333333348"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueBorder" translatesAutoresizingMaskIntoConstraints="NO" id="39r-EH-h87">
+                                        <rect key="frame" x="-6.6666666666666572" y="-6.3333333333333712" width="343.33333333333326" height="614"/>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-BN-m2b" userLabel="Adjectives">
                                         <rect key="frame" x="8" y="126.66666666666667" width="314" height="59.666666666666671"/>
                                         <state key="normal" backgroundImage="Adjectives"/>
@@ -97,7 +100,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hax-4m-rCM">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48.666666666666664"/>
+                                        <rect key="frame" x="1" y="1" width="47" height="47"/>
                                         <state key="normal" title="BackButton" image="BackButton"/>
                                         <connections>
                                             <action selector="backOut:" destination="mIU-lr-PUK" eventType="touchUpInside" id="vrb-u5-8jd"/>
@@ -111,14 +114,17 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7FF-pI-CYU" secondAttribute="bottom" multiplier="494/234" id="1ZE-Th-5Gq"/>
                                     <constraint firstItem="RME-sb-hoC" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="1bh-N6-xPf"/>
-                                    <constraint firstItem="hax-4m-rCM" firstAttribute="leading" secondItem="yao-hh-LvN" secondAttribute="leading" id="4Kp-C5-iiS"/>
-                                    <constraint firstItem="hax-4m-rCM" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0809717" id="AlV-ym-O0a"/>
+                                    <constraint firstItem="39r-EH-h87" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="1.021" id="2QY-UN-RvN"/>
+                                    <constraint firstItem="hax-4m-rCM" firstAttribute="leading" secondItem="yao-hh-LvN" secondAttribute="leading" constant="1" id="4Kp-C5-iiS"/>
+                                    <constraint firstItem="39r-EH-h87" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="1.04" id="7ki-yb-9WZ"/>
+                                    <constraint firstItem="hax-4m-rCM" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0809717" constant="-1.6909822666666727" id="AlV-ym-O0a"/>
                                     <constraint firstAttribute="bottom" secondItem="uCm-TE-cQF" secondAttribute="bottom" multiplier="494/477" id="DdN-Lw-5m6"/>
                                     <constraint firstItem="uCm-TE-cQF" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="HRI-hx-5mv"/>
                                     <constraint firstAttribute="bottom" secondItem="Uwm-BN-m2b" secondAttribute="bottom" multiplier="494/153" id="OKC-PY-MM3"/>
-                                    <constraint firstItem="hax-4m-rCM" firstAttribute="top" secondItem="yao-hh-LvN" secondAttribute="top" id="POd-99-z5u"/>
+                                    <constraint firstItem="hax-4m-rCM" firstAttribute="top" secondItem="yao-hh-LvN" secondAttribute="top" constant="1" id="POd-99-z5u"/>
                                     <constraint firstItem="O83-e8-SDQ" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="PeD-hp-vqR"/>
                                     <constraint firstAttribute="bottom" secondItem="3zY-f4-Ouf" secondAttribute="bottom" multiplier="494/315" id="PoQ-5T-B1o"/>
+                                    <constraint firstItem="39r-EH-h87" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="U4K-1b-7Ti"/>
                                     <constraint firstItem="7FF-pI-CYU" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.951515" id="UxN-st-YJI"/>
                                     <constraint firstItem="Uwm-BN-m2b" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="YLg-Pj-Rca"/>
                                     <constraint firstAttribute="bottom" secondItem="O83-e8-SDQ" secondAttribute="bottom" multiplier="494/396" id="ZIs-xN-6t8"/>
@@ -126,12 +132,13 @@
                                     <constraint firstItem="Uwm-BN-m2b" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="bar-Vv-Zff"/>
                                     <constraint firstItem="O83-e8-SDQ" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="byN-cC-3ez"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hax-4m-rCM" secondAttribute="trailing" priority="500" constant="20" symbolic="YES" id="cPf-4T-WPa"/>
-                                    <constraint firstItem="hax-4m-rCM" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.145455" id="fHZ-sC-gle"/>
+                                    <constraint firstItem="hax-4m-rCM" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.145455" constant="-1.0001499999999979" id="fHZ-sC-gle"/>
                                     <constraint firstItem="7FF-pI-CYU" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="fWS-Wc-EHS"/>
                                     <constraint firstItem="O83-e8-SDQ" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.951515" id="faE-uT-dm5"/>
                                     <constraint firstItem="3zY-f4-Ouf" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0991903" id="hh1-Ob-2Z1"/>
                                     <constraint firstItem="uCm-TE-cQF" firstAttribute="width" secondItem="yao-hh-LvN" secondAttribute="width" multiplier="0.951515" id="ibf-Yx-UI9"/>
                                     <constraint firstItem="RME-sb-hoC" firstAttribute="height" secondItem="yao-hh-LvN" secondAttribute="height" multiplier="0.0870536" id="k58-p6-k2B"/>
+                                    <constraint firstItem="39r-EH-h87" firstAttribute="centerY" secondItem="yao-hh-LvN" secondAttribute="centerY" id="n8n-Yz-ImB"/>
                                     <constraint firstItem="uCm-TE-cQF" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="om0-hs-jSn"/>
                                     <constraint firstItem="7FF-pI-CYU" firstAttribute="centerX" secondItem="yao-hh-LvN" secondAttribute="centerX" id="pK7-JZ-Lx4"/>
                                     <constraint firstItem="RME-sb-hoC" firstAttribute="top" secondItem="yao-hh-LvN" secondAttribute="bottom" multiplier="39/448" id="rR5-5E-H6B"/>
@@ -501,6 +508,7 @@
         <image name="Adjectives" width="480" height="79"/>
         <image name="BackButton" width="158" height="133"/>
         <image name="BackToStartButton" width="420" height="79"/>
+        <image name="BlueBorder" width="330" height="601"/>
         <image name="Categories" width="389" height="71"/>
         <image name="Common Words" width="480" height="79"/>
         <image name="ContinueButton" width="158" height="133"/>

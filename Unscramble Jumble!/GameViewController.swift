@@ -264,6 +264,7 @@ class GameViewController: UIViewController {
                     self.didGetWordRight = true
                     self.didGetWordWrong = false
                     if self.isPaused == false {
+                        self.countdownTimer.invalidate()
                         self.totalWordsSolvedThisGame += 1
                         self.addGreenBorderAndCreateWord()
                         print("YOU WON!")
@@ -494,15 +495,13 @@ class GameViewController: UIViewController {
     
     @objc func resumeGame() {
         isPaused = false
-        if didGetWordRight/* && didCompleteCheckMarkAnimation == false*/ {
+        if didGetWordRight {
             if shouldAddGreenBorder == true {
                 addGreenBorderAndCreateWord()
             } else {
                 totalWordsSolvedThisGame += 1
                 createNewWord()
             }
-            //animateCheckMark()
-            //resumeLayer(layer: checkmark.layer)
             print("YOU WON FROM RESUME!")
         } else if didGetWordWrong {
             startTimer()
@@ -517,24 +516,17 @@ class GameViewController: UIViewController {
             } else {
                 addRedBorder()
             }
-            //resumeLayer(layer: checkmark.layer)
             print("INCORRECT >w< TRY AGAIN!")
-        }/* else if didCompleteCheckMarkAnimation {
-            print("DID SOMEBODY SAY THUNDERFURY BLESSED BLADE OF THE WINDSEEKER?!")
-            resumeLayer(layer: checkmark.layer)
-            checkmark.removeFromSuperview()
-            createNewWord()
-        }*/ else {
+        } else {
             print("GAME HAS BEEN RESUMED!")
             startTimer()
             for letter in finalLettersWithIndexAndStringRep.keys {
                 resumeLayer(layer: letter.layer)
             }
-            //resumeLayer(layer: checkmark.layer)
         }
     }
     
-    //TODO: reset all variables(lists, booleans, etc.) and refresh UI by creating new instance of game and calling addLetters() and addBlankSpaces() --> See what is done in the viewDidLoad() function(compartmentalize by calling this function in viewDidLoad() and moving the code from there to here)
+    // Resets all variables, removes animations and UIImageViews, and creates another instance of game which, in turn, creates a new word
     public func createNewWord() {
         print("WORD CREATION!")
         for blankSpace in blankSpaces {
