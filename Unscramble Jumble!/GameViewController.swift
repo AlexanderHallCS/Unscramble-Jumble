@@ -56,6 +56,8 @@ class GameViewController: UIViewController {
     var totalScoreThisGame = 0
     var totalHintsUsedThisGame = 0
     
+    var scoreAvailableFromWord = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
@@ -71,6 +73,7 @@ class GameViewController: UIViewController {
         addBlankSpaces()
         addLetters()
         assignRightAmountOfHints()
+        scoreAvailableFromWord = 20 * game!.unscrambledWordWithoutSpaces.count
     }
     
     deinit {
@@ -264,6 +267,8 @@ class GameViewController: UIViewController {
                     self.didGetWordRight = true
                     self.didGetWordWrong = false
                     if self.isPaused == false {
+                        self.totalScoreThisGame += self.scoreAvailableFromWord
+                        self.scoreLabel.text = "Score: \(self.totalScoreThisGame)"
                         self.countdownTimer.invalidate()
                         self.totalWordsSolvedThisGame += 1
                         self.addGreenBorderAndCreateWord()
@@ -333,13 +338,19 @@ class GameViewController: UIViewController {
         
         // don't allow the hint button to be pressed once all hints are used up
         if hintsLeft == 0 {
-            hintsButton.isEnabled = false
+            if game!.unscrambledWordWithoutSpaces.count == 3 {
+                hintsButton.isEnabled = false
+            } else {
+                scoreAvailableFromWord -= 20
+            }
         } else if hintsLeft == 1 {
+            scoreAvailableFromWord -= 20
             totalHintsUsedThisGame += 1
             hintsLeft -= 1
             hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
             hintsButton.isEnabled = false
         } else {
+            scoreAvailableFromWord -= 20
             totalHintsUsedThisGame += 1
             hintsLeft -= 1
             hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
@@ -499,6 +510,8 @@ class GameViewController: UIViewController {
             if shouldAddGreenBorder == true {
                 addGreenBorderAndCreateWord()
             } else {
+                totalScoreThisGame += scoreAvailableFromWord
+                scoreLabel.text = "Score: \(totalScoreThisGame)"
                 totalWordsSolvedThisGame += 1
                 createNewWord()
             }
@@ -572,6 +585,7 @@ class GameViewController: UIViewController {
         // this is set to false again when assignRightAmountOfHints() for 3-letter words
         hintsButton.isEnabled = true
         assignRightAmountOfHints()
+        scoreAvailableFromWord = 20 * game!.unscrambledWordWithoutSpaces.count
     }
     
     // Also save data in Core Data before segueing
@@ -582,7 +596,6 @@ class GameViewController: UIViewController {
     
     private func addGreenBorderAndCreateWord() {
         shouldAddGreenBorder = false
-        // countdownTimer.invalidate()
         for letter in letters {
             letter.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             letter.layer.borderWidth = letter.frame.width/20
@@ -607,7 +620,6 @@ class GameViewController: UIViewController {
                     letter.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
                     self.removeLetter()
                 }
-                
             }
         })
     }

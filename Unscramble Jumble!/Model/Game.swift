@@ -30,14 +30,6 @@ class Game {
         unscrambledWordWithoutSpaces = unscrambledWord.split(separator: " ").joined().uppercased()
         print(unscrambledWord)
         print(scrambledWord)
-        // MARK: UNCOMMENT vvTHISvv TO TEST FOR BLANK SPACES AT END OF FILE
-        /*let filePath = Bundle.main.path(forResource: themeFile, ofType: "txt")
-        let fileContents = try! String(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
-        let allWordsInFile = fileContents.components(separatedBy: ["\n"])
-        for wooord in allWordsInFile {
-            print(wooord)
-        } */
-        
     }
     
     private func getRandomWord(from fileName: String) -> String {
