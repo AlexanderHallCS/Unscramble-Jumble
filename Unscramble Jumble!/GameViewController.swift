@@ -24,6 +24,8 @@ class GameViewController: UIViewController {
     var themeFileName: String = ""
     var imageName: String = ""
     
+    var hintsAndScoreLabelColor = UIColor.black
+    
     var blankSpaces = [UIImageView]()
     var letters = [UIImageView]()
     
@@ -69,6 +71,9 @@ class GameViewController: UIViewController {
         startTimer()
         
         game = Game(themeFile: themeFileName)
+        
+        scoreLabel.textColor = hintsAndScoreLabelColor
+        hintsLeftLabel.textColor = hintsAndScoreLabelColor
         
         addBlankSpaces()
         addLetters()

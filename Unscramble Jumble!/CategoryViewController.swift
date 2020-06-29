@@ -89,6 +89,7 @@ class CategoryViewController: UIViewController {
                     case Segues.spaceToGame:
                             destVC.imageName = FileNames.BGImageFileNames.space
                             destVC.themeFileName = FileNames.WordFileNames.space
+                            destVC.hintsAndScoreLabelColor = UIColor.white
                     default: break
                 }
             }
