@@ -70,6 +70,14 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         categoryVC.didMove(toParent: self)
     }
     
+    @IBAction func goToStatisticsVC(_ sender: UIButton) {
+        let statisticsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StatisticsPopUpID") as! StatisticsViewController
+        self.addChild(statisticsVC)
+        statisticsVC.view.frame = self.view.frame
+        self.view.addSubview(statisticsVC.view)
+        statisticsVC.didMove(toParent: self)
+    }
+    
     @IBAction func unwindToStartFromPauseOrGameOverVC(segue: UIStoryboardSegue) {
         print("unwinded!")
     }
