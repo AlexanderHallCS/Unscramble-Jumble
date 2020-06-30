@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="BestGame" representedClassName="BestGame" syncable="YES" codeGenerationType="class">
+        <attribute name="bestCategory" optional="YES" attributeType="String" defaultValueString="------"/>
+        <attribute name="bestHintsUsed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bestScore" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bestWordsSolved" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="TotalStats" representedClassName="TotalStats" syncable="YES" codeGenerationType="class">
+        <attribute name="totalGamesPlayed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalScore" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalWordsSolved" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="BestGame" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="TotalStats" positionX="-54" positionY="18" width="128" height="88"/>
+    </elements>
 </model>

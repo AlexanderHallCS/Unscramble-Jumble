@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
     @IBOutlet var countdownTimerLabel: UILabel!
     
     var game: Game?
+    var coreDataManager = CoreDataManager()
     
     var themeFileName: String = ""
     var imageName: String = ""
@@ -593,9 +594,14 @@ class GameViewController: UIViewController {
         scoreAvailableFromWord = 20 * game!.unscrambledWordWithoutSpaces.count
     }
     
-    // Also save data in Core Data before segueing
+    // Saves and fetches data then segues to GameOver VC
     private func gameOver() {
-        // save data here
+        // save totals to database
+        coreDataManager.addAndSaveTotalStatsData(totalGamesPlayed: coreDataManager.fetchTotalStatsData().totalGamesPlayed + 1, totalScore: coreDataManager.fetchTotalStatsData().totalScore + totalScoreThisGame, totalWordsSolved: coreDataManager.fetchTotalStatsData().totalWordsSolved + totalWordsSolvedThisGame)
+        // save best game data if this is the best game(higher score compared to original highest score)
+        if totalScoreThisGame > coreDataManager.fetchBestGameData().bestScore {
+            coreDataManager.addAndSaveBestGameData(bestCategory: game!.category, bestHintsUsed: totalHintsUsedThisGame, bestScore: totalScoreThisGame, bestWordsSolved: totalWordsSolvedThisGame)
+        }
         self.performSegue(withIdentifier: "segueFromGameToGameOver", sender: nil)
     }
     

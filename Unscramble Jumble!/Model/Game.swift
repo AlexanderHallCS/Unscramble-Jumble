@@ -13,6 +13,7 @@ class Game {
     var scrambledWord = ""
     var unscrambledWord = ""
     var unscrambledWordWithoutSpaces = ""
+    var category = ""
     
     var scrambledIndices: [Int] = []
     
@@ -20,6 +21,7 @@ class Game {
         resetVariables()
         unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
         scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())
+        category = getCategory(from: themeFile)
         
         //scrambledIndices = getScrambledLetterIndices()
         print("Scrambled Indices: \(scrambledIndices)")
@@ -82,10 +84,15 @@ class Game {
         return String(Array(scrambledWord)[index]).uppercased()
     }
     
+    private func getCategory(from themeFileName: String) -> String {
+        return themeFileName.replacingOccurrences(of: "_", with: " ")
+    }
+    
     private func resetVariables() {
         scrambledWord = ""
         unscrambledWord = ""
         unscrambledWordWithoutSpaces = ""
+        category = ""
         scrambledIndices = [Int]()
     }
 }
