@@ -694,6 +694,15 @@
                         <viewLayoutGuide key="safeArea" id="DqQ-SK-iOl"/>
                     </view>
                     <navigationItem key="navigationItem" id="kfx-Nk-g7H"/>
+                    <connections>
+                        <outlet property="bestCategoryLabel" destination="1f2-ih-Ku3" id="6gl-Ff-9Jj"/>
+                        <outlet property="bestHintsUsedLabel" destination="qxQ-dM-6nP" id="ReW-uU-Ynm"/>
+                        <outlet property="bestScoreLabel" destination="VIc-7m-XAa" id="3e2-aK-3kD"/>
+                        <outlet property="bestWordsSolvedLabel" destination="eLZ-Qo-uCK" id="i9Y-c2-kqj"/>
+                        <outlet property="totalGamesPlayedLabel" destination="SGz-jA-1Oe" id="CPC-vq-caG"/>
+                        <outlet property="totalScoreLabel" destination="se5-TO-YyT" id="1bB-dy-Aea"/>
+                        <outlet property="totalWordsSolvedLabel" destination="4U7-y1-q5M" id="Cee-6v-6Wy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiI-Dz-cCz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

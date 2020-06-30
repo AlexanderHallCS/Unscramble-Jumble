@@ -9,10 +9,22 @@
 import UIKit
 
 class StatisticsViewController: UIViewController {
-
+    
+    @IBOutlet var totalGamesPlayedLabel: UILabel!
+    @IBOutlet var totalScoreLabel: UILabel!
+    @IBOutlet var totalWordsSolvedLabel: UILabel!
+    
+    @IBOutlet var bestCategoryLabel: UILabel!
+    @IBOutlet var bestWordsSolvedLabel: UILabel!
+    @IBOutlet var bestScoreLabel: UILabel!
+    @IBOutlet var bestHintsUsedLabel: UILabel!
+    
+    let coreDataManager = CoreDataManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setLabelTexts()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.animateIn()
     }
@@ -29,7 +41,7 @@ class StatisticsViewController: UIViewController {
         });
     }
     
-    func animateIn() {
+    private func animateIn() {
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.view.alpha = 0.0;
         UIView.animate(withDuration: 0.25, animations: {
@@ -38,14 +50,15 @@ class StatisticsViewController: UIViewController {
         });
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setLabelTexts() {
+        totalGamesPlayedLabel.text = "Total Games Played: \(coreDataManager.fetchTotalStatsData().totalGamesPlayed)"
+        totalScoreLabel.text = "Total Score: \(coreDataManager.fetchTotalStatsData().totalScore)"
+        totalWordsSolvedLabel.text = "Total Words Solved: \(coreDataManager.fetchTotalStatsData().totalWordsSolved)"
+        
+        bestCategoryLabel.text = "Category: \(coreDataManager.fetchBestGameData().bestCategory)"
+        bestWordsSolvedLabel.text = "Words Solved: \(coreDataManager.fetchBestGameData().bestWordsSolved)"
+        bestScoreLabel.text = "Score: \(coreDataManager.fetchBestGameData().bestScore)"
+        bestHintsUsedLabel.text = "Hints Used: \(coreDataManager.fetchBestGameData().bestHintsUsed)"
     }
-    */
 
 }
