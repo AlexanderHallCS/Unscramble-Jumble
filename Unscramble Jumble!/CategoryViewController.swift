@@ -96,10 +96,7 @@ class CategoryViewController: UIViewController {
         }
     }
     
-}
-
-extension CategoryViewController {
-    func segueAndRemoveSelf(segueName: String) {
+    private func segueAndRemoveSelf(segueName: String) {
         self.performSegue(withIdentifier: segueName, sender: self)
         self.view.removeFromSuperview()
         self.removeFromParent()

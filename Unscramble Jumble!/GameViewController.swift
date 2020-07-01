@@ -46,7 +46,8 @@ class GameViewController: UIViewController {
     var hintsLeft = 0
     
     var countdownTimer = Timer()
-    var seconds = 10.0
+    var seconds = 30.0
+    var secondsSubtractingMultiplier = 1.0
     
     var isPaused = false
     var didGetWordRight = false
@@ -580,7 +581,12 @@ class GameViewController: UIViewController {
         shouldAddGreenBorder = true
         shouldAddRedBorder = true
         
-        seconds = 10.0
+        //takes away 2 seconds for every word solved down to a minimum of 2 seconds
+        seconds = 30.0 - 2*secondsSubtractingMultiplier
+        if 30.0 - 2*secondsSubtractingMultiplier > 2.0 {
+            secondsSubtractingMultiplier += 1
+        }
+        
         startTimer()
         
         game = Game(themeFile: themeFileName)
@@ -594,8 +600,10 @@ class GameViewController: UIViewController {
         scoreAvailableFromWord = 20 * game!.unscrambledWordWithoutSpaces.count
     }
     
-    // Saves and fetches data then segues to GameOver VC
+    // Saves and fetches data then segues to GameOver VC.
     private func gameOver() {
+        // this is to stop any words from being created after the segue
+        isPaused = true
         // save totals to database
         coreDataManager.addAndSaveTotalStatsData(totalGamesPlayed: coreDataManager.fetchTotalStatsData().totalGamesPlayed + 1, totalScore: coreDataManager.fetchTotalStatsData().totalScore + totalScoreThisGame, totalWordsSolved: coreDataManager.fetchTotalStatsData().totalWordsSolved + totalWordsSolvedThisGame)
         // save best game data if this is the best game(higher score compared to original highest score)
@@ -648,7 +656,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func unwindToGameFromGameOverVC(segue: UIStoryboardSegue) {
-        print("unwinded!")
+        print("unwinded to game from gameoverVC!")
     }
     
 }

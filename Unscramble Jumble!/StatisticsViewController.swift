@@ -50,15 +50,24 @@ class StatisticsViewController: UIViewController {
         });
     }
 
-    func setLabelTexts() {
-        totalGamesPlayedLabel.text = "Total Games Played: \(coreDataManager.fetchTotalStatsData().totalGamesPlayed)"
-        totalScoreLabel.text = "Total Score: \(coreDataManager.fetchTotalStatsData().totalScore)"
-        totalWordsSolvedLabel.text = "Total Words Solved: \(coreDataManager.fetchTotalStatsData().totalWordsSolved)"
+    private func setLabelTexts() {
+        // set text for "Totals" labels
+        addUnderlineAndTextToLabel(totalString: "Total Games Played:  \(coreDataManager.fetchTotalStatsData().totalGamesPlayed)", underLinedString: "Total Games Played:", label: totalGamesPlayedLabel)
+        addUnderlineAndTextToLabel(totalString: "Total Score:  \(coreDataManager.fetchTotalStatsData().totalScore)", underLinedString: "Total Score:", label: totalScoreLabel)
+        addUnderlineAndTextToLabel(totalString: "Total Words Solved:  \(coreDataManager.fetchTotalStatsData().totalWordsSolved)", underLinedString: "Total Words Solved:", label: totalWordsSolvedLabel)
         
-        bestCategoryLabel.text = "Category: \(coreDataManager.fetchBestGameData().bestCategory)"
-        bestWordsSolvedLabel.text = "Words Solved: \(coreDataManager.fetchBestGameData().bestWordsSolved)"
-        bestScoreLabel.text = "Score: \(coreDataManager.fetchBestGameData().bestScore)"
-        bestHintsUsedLabel.text = "Hints Used: \(coreDataManager.fetchBestGameData().bestHintsUsed)"
+        //set text for "Best Game" labels
+        addUnderlineAndTextToLabel(totalString: "Category:  \(coreDataManager.fetchBestGameData().bestCategory)", underLinedString: "Category:", label: bestCategoryLabel)
+        addUnderlineAndTextToLabel(totalString: "Words Solved:  \(coreDataManager.fetchBestGameData().bestWordsSolved)", underLinedString: "Words Solved:", label: bestWordsSolvedLabel)
+        addUnderlineAndTextToLabel(totalString: "Score:  \(coreDataManager.fetchBestGameData().bestScore)", underLinedString: "Score:", label: bestScoreLabel)
+        addUnderlineAndTextToLabel(totalString: "Hints Used:  \(coreDataManager.fetchBestGameData().bestHintsUsed)", underLinedString: "Hints Used:", label: bestHintsUsedLabel)
+    }
+    
+    // adds text to the label passed and underlines a part of it up to the end of "underLinedString"
+    private func addUnderlineAndTextToLabel(totalString: String, underLinedString: String, label: UILabel) {
+        let attributedText = NSMutableAttributedString.init(string: totalString)
+        attributedText.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: NSRange(location: 0, length: underLinedString.count))
+        label.attributedText = attributedText
     }
 
 }

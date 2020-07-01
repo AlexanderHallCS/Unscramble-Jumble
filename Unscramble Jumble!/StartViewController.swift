@@ -79,7 +79,7 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
     }
     
     @IBAction func unwindToStartFromPauseOrGameOverVC(segue: UIStoryboardSegue) {
-        print("unwinded!")
+        print("unwinded to start from game over VC!")
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {

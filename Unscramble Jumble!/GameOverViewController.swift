@@ -21,22 +21,29 @@ class GameOverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        wordsSolvedLabel.text = "Words Solved: \(worldsSolved)"
-        scoreLabel.text = "Score: \(score)"
-        hintsUsedLabel.text = "Hints Used: \(totalHints)"
+        setLabelTexts()
+    }
+    
+    private func setLabelTexts() {
+        addUnderlineAndTextToLabel(totalString: "Words Solved: \(worldsSolved)", underLinedString: "Words Solved:", label: wordsSolvedLabel)
+        addUnderlineAndTextToLabel(totalString: "Score: \(score)", underLinedString: "Score:", label: scoreLabel)
+        addUnderlineAndTextToLabel(totalString: "Hints Used: \(totalHints)", underLinedString: "Hints Used:", label: hintsUsedLabel)
+    }
+    
+    // adds text to the label passed and underlines a part of it up to the end of "underLinedString"
+    private func addUnderlineAndTextToLabel(totalString: String, underLinedString: String, label: UILabel) {
+        let attributedText = NSMutableAttributedString.init(string: totalString)
+        attributedText.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: NSRange(location: 0, length: underLinedString.count))
+        label.attributedText = attributedText
     }
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         if let destVC = segue.destination as? GameViewController {
             destVC.totalWordsSolvedThisGame = 0
             destVC.totalScoreThisGame = 0
             destVC.totalHintsUsedThisGame = 0
-            //destVC.addObservers()
             destVC.createNewWord()
         }
         
