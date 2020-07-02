@@ -183,7 +183,7 @@
                     <navigationItem key="navigationItem" id="lOa-em-dtd"/>
                     <connections>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="adjectivesToGame" id="XW0-nI-bbu"/>
-                        <segue destination="Y3p-mg-j3y" kind="push" identifier="commonWordsToGame" id="fCs-Dl-3sc"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="commonWordsToGame" id="fCs-Dl-3sc"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="countriesToGame" id="FzA-oP-uEn"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="natureToGame" id="pbh-Dt-RRw"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="spaceToGame" id="Xtd-O8-0jn"/>
@@ -780,7 +780,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FzA-oP-uEn"/>
+        <segue reference="XW0-nI-bbu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Adjectives" width="480" height="79"/>
