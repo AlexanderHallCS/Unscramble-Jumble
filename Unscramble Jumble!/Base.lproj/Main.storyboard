@@ -36,7 +36,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLt-8g-rEg" userLabel="MusicButton">
                                 <rect key="frame" x="286" y="31.333333333333329" width="50" height="41"/>
-                                <state key="normal" backgroundImage="BaseMusicButton"/>
+                                <state key="normal" backgroundImage="BaseSoundButton"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -786,7 +786,7 @@
         <image name="Adjectives" width="480" height="79"/>
         <image name="BackButton" width="158" height="133"/>
         <image name="BackToStartButton" width="420" height="79"/>
-        <image name="BaseMusicButton" width="136" height="136"/>
+        <image name="BaseSoundButton" width="136" height="136"/>
         <image name="BlueBorder" width="330" height="601"/>
         <image name="Categories" width="389" height="71"/>
         <image name="Common Words" width="480" height="79"/>

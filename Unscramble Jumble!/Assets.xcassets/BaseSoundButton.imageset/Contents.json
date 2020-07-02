@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "BaseMusicButton.png",
+      "filename" : "BaseSoundButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
