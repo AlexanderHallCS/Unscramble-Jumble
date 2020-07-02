@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationCenter
+import AVFoundation
 
 class GameViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class GameViewController: UIViewController {
     
     var game: Game?
     var coreDataManager = CoreDataManager()
+    
+    var audioPlayer: AVAudioPlayer?
     
     var themeFileName: String = ""
     var imageName: String = ""
@@ -238,6 +241,7 @@ class GameViewController: UIViewController {
         if let firstTouch = touches.first {
             for letterViewIndex in 0..<letters.count {
                 if firstTouch.view == letters[letterViewIndex] {
+                    playSound(fileName: "LetterTapSound")
                     indexOfTappedLetter.append(letterViewIndex)
                     animateTowardsBlankSpace(letter: letters[letterViewIndex])
                 }
@@ -269,8 +273,9 @@ class GameViewController: UIViewController {
                         correctValues += 1
                     }
                 }
-                // checking when all letters are tapped if the final word is equal to the actual word
+                // got word right
                 if correctValues == unscrambledWordWithoutSpacesArray.count {
+                    self.playSound(fileName: "CorrectAnswerSound")
                     self.didGetWordRight = true
                     self.didGetWordWrong = false
                     if self.isPaused == false {
@@ -281,7 +286,9 @@ class GameViewController: UIViewController {
                         self.addGreenBorderAndCreateWord()
                         print("YOU WON!")
                     }
+                // got word wrong
                 } else {
+                    self.playSound(fileName: "WrongAnswerSound")
                     self.didGetWordRight = false
                     self.didGetWordWrong = true
                     if self.isPaused == false {
@@ -384,6 +391,7 @@ class GameViewController: UIViewController {
             removeLetter()
         }
         
+        playSound(fileName: "LetterTapSound")
         UIView.animate(withDuration: 1.2, animations: {
             self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.x, y: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.y, width: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.width, height: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.height)
             self.letters[randomLetterIndex].rotate()
@@ -604,6 +612,9 @@ class GameViewController: UIViewController {
     private func gameOver() {
         // this is to stop any words from being created after the segue
         isPaused = true
+        for letter in letters {
+            letter.layer.removeAllAnimations()
+        }
         // save totals to database
         coreDataManager.addAndSaveTotalStatsData(totalGamesPlayed: coreDataManager.fetchTotalStatsData().totalGamesPlayed + 1, totalScore: coreDataManager.fetchTotalStatsData().totalScore + totalScoreThisGame, totalWordsSolved: coreDataManager.fetchTotalStatsData().totalWordsSolved + totalWordsSolvedThisGame)
         // save best game data if this is the best game(higher score compared to original highest score)
@@ -642,7 +653,26 @@ class GameViewController: UIViewController {
             }
         })
     }
-       
+    
+    func playSound(fileName: String) {
+        if isSoundOn {
+            guard let url = Bundle.main.url(forResource: fileName, withExtension: "mp3") else {
+                return
+            }
+            
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+                try AVAudioSession.sharedInstance().setActive(true)
+                audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+                guard let audioPlayer = audioPlayer else {
+                    return
+                }
+                audioPlayer.play()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueFromGameToGameOver" {

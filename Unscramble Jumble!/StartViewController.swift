@@ -9,7 +9,11 @@
 import UIKit
 import GoogleMobileAds
 
+var isSoundOn = true
+
 class StartViewController: UIViewController, GADBannerViewDelegate {
+    
+    @IBOutlet var soundButton: UIButton!
     
     var bannerView: GADBannerView!
     
@@ -28,13 +32,6 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         print("did deinit!")
     }
     
-    /*override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        bannerView.removeFromSuperview()
-        print("called!")
-    } */
-    
-    //MARK: ------------>FIX THIS AS IT DOESNT LOOK GOOD ON MANY DEVICES<----------------
     // programmatic implementation of banner view so that its width scales with the size of the ad
     func loadBannerAd() {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
@@ -59,6 +56,16 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         let viewWidth = frame.size.width
         bannerView.adSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(viewWidth)
         bannerView.load(GADRequest())
+    }
+    
+    @IBAction func toggleSound(_ sender: UIButton) {
+        if isSoundOn {
+            isSoundOn = false
+            soundButton.setBackgroundImage(UIImage(named: "StopSoundButton"), for: .normal)
+        } else {
+            isSoundOn = true
+            soundButton.setBackgroundImage(UIImage(named: "BaseSoundButton"), for: .normal)
+        }
     }
     
     // causes the category VC to pop up

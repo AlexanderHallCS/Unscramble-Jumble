@@ -37,6 +37,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLt-8g-rEg" userLabel="MusicButton">
                                 <rect key="frame" x="286" y="31.333333333333329" width="50" height="41"/>
                                 <state key="normal" backgroundImage="BaseSoundButton"/>
+                                <connections>
+                                    <action selector="toggleSound:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8gH-pl-hYq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -69,6 +72,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="4ok-5g-2LB"/>
+                    <connections>
+                        <outlet property="soundButton" destination="NLt-8g-rEg" id="giT-eG-SZw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

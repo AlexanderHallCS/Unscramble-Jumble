@@ -30,6 +30,9 @@
 		11D793C52428822A00435B54 /* Space.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C02428822A00435B54 /* Space.txt */; };
 		11D793C62428822A00435B54 /* Countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C12428822A00435B54 /* Countries.txt */; };
 		11D793C72428822A00435B54 /* Adjectives.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C22428822A00435B54 /* Adjectives.txt */; };
+		11D88DD224AE95CB0007EBE4 /* WrongAnswerSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11D88DCF24AE95CB0007EBE4 /* WrongAnswerSound.mp3 */; };
+		11D88DD824AE96F50007EBE4 /* LetterTapSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11D88DD624AE96F50007EBE4 /* LetterTapSound.mp3 */; };
+		11D88DD924AE96F50007EBE4 /* CorrectAnswerSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11D88DD724AE96F50007EBE4 /* CorrectAnswerSound.mp3 */; };
 		590803FCF92C03C33ED310BB /* Pods_Unscramble_Jumble_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0862E7F9D3464E71480FFBD /* Pods_Unscramble_Jumble_Tests.framework */; };
 		6EF654B1CD743F58749F694A /* Pods_Unscramble_Jumble__Unscramble_Jumble_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8D8C68B8B54DD4B18EBF0E /* Pods_Unscramble_Jumble__Unscramble_Jumble_UITests.framework */; };
 		B58425082A11C346D5F98882 /* Pods_Unscramble_Jumble_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41D3F17EE563DACE510D17BC /* Pods_Unscramble_Jumble_.framework */; };
@@ -82,6 +85,9 @@
 		11D793C02428822A00435B54 /* Space.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Space.txt; sourceTree = "<group>"; };
 		11D793C12428822A00435B54 /* Countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Countries.txt; sourceTree = "<group>"; };
 		11D793C22428822A00435B54 /* Adjectives.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Adjectives.txt; sourceTree = "<group>"; };
+		11D88DCF24AE95CB0007EBE4 /* WrongAnswerSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WrongAnswerSound.mp3; sourceTree = "<group>"; };
+		11D88DD624AE96F50007EBE4 /* LetterTapSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LetterTapSound.mp3; sourceTree = "<group>"; };
+		11D88DD724AE96F50007EBE4 /* CorrectAnswerSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CorrectAnswerSound.mp3; sourceTree = "<group>"; };
 		41D3F17EE563DACE510D17BC /* Pods_Unscramble_Jumble_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unscramble_Jumble_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D97C533391672E1166EFA58 /* Pods-Unscramble Jumble!-Unscramble Jumble!UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble Jumble!-Unscramble Jumble!UITests.release.xcconfig"; path = "Target Support Files/Pods-Unscramble Jumble!-Unscramble Jumble!UITests/Pods-Unscramble Jumble!-Unscramble Jumble!UITests.release.xcconfig"; sourceTree = "<group>"; };
 		5E5890B221B1003535E6BBD5 /* Pods-Unscramble Jumble!Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unscramble Jumble!Tests.debug.xcconfig"; path = "Target Support Files/Pods-Unscramble Jumble!Tests/Pods-Unscramble Jumble!Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 		1105871C2424338E0005B62D /* Unscramble Jumble! */ = {
 			isa = PBXGroup;
 			children = (
+				11526B8524AD946F00347212 /* Sounds */,
 				11D793C82428823600435B54 /* Text File References */,
 				11DAC5F72473835A00AF718C /* Supporting Files */,
 				1191C5002478E25A00F38E9C /* Constants.swift */,
@@ -190,6 +197,16 @@
 				111A7EAD24763D07006CF80D /* Game.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		11526B8524AD946F00347212 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				11D88DD724AE96F50007EBE4 /* CorrectAnswerSound.mp3 */,
+				11D88DD624AE96F50007EBE4 /* LetterTapSound.mp3 */,
+				11D88DCF24AE95CB0007EBE4 /* WrongAnswerSound.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		11D793C82428823600435B54 /* Text File References */ = {
@@ -348,8 +365,11 @@
 			files = (
 				1105872D242433900005B62D /* LaunchScreen.storyboard in Resources */,
 				11D793C32428822A00435B54 /* Common_Words.txt in Resources */,
+				11D88DD224AE95CB0007EBE4 /* WrongAnswerSound.mp3 in Resources */,
+				11D88DD924AE96F50007EBE4 /* CorrectAnswerSound.mp3 in Resources */,
 				11A022B22481F5E600D49FFB /* GoogleService-Info.plist in Resources */,
 				1105872A242433900005B62D /* Assets.xcassets in Resources */,
+				11D88DD824AE96F50007EBE4 /* LetterTapSound.mp3 in Resources */,
 				110587252424338E0005B62D /* Main.storyboard in Resources */,
 				11D793C42428822A00435B54 /* Nature.txt in Resources */,
 				11D793C52428822A00435B54 /* Space.txt in Resources */,
