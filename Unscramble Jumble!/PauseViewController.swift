@@ -1,6 +1,6 @@
 //
 //  PauseViewController.swift
-//  Unscramble It!
+//  Unscramble Jumble!
 //
 //  Created by Alexander Hall on 5/24/20.
 //  Copyright © 2020 Hall Inc. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  GameViewController.swift
-//  Unscramble It!
+//  Unscramble Jumble!
 //
 //  Created by Alexander Hall on 5/16/20.
 //  Copyright © 2020 Hall Inc. All rights reserved.
@@ -87,7 +87,6 @@ class GameViewController: UIViewController {
     }
     
     deinit {
-        print("did deinit3 and remove observers!")
         NotificationCenter.default.removeObserver(self,name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -95,15 +94,7 @@ class GameViewController: UIViewController {
     
     @IBAction func goToPauseVC(_ sender: UIButton) {
         isPaused = true
-        print("GAME IS PAUSED")
-        print("INT CEIL SELF.SECONDS PAUSE: \(Int(ceil(self.seconds)))")
-        print("CEIL SELF.SECONDS PAUSE: \(ceil(self.seconds))")
-        print("SELF.SECONDS PAUSE: \(self.seconds)")
         pauseGame()
-        print("GAME IS PAUSED")
-        print("INT CEIL SELF.SECONDS PAUSE AFTER: \(Int(ceil(self.seconds)))")
-        print("CEIL SELF.SECONDS PAUSE AFTER: \(ceil(self.seconds))")
-        print("SELF.SECONDS PAUSE AFTER: \(self.seconds)")
         let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PausePopUpID") as! PauseViewController
         self.addChild(pauseVC)
         pauseVC.view.frame = self.view.frame
@@ -122,8 +113,7 @@ class GameViewController: UIViewController {
         }
         // start of formatting blank spaces for words/word phrases where all words are <= 6 characters long
         var wordsLessThanLengthSix = 0
-        for word in game!.unscrambledWord.split(separator: " "){
-            print("Word Length: \(word.count), Word: \(word)")
+        for word in game!.unscrambledWord.split(separator: " ") {
             if word.count <= 6 {
                 wordsLessThanLengthSix += 1
             }
@@ -263,7 +253,6 @@ class GameViewController: UIViewController {
             self.view.bringSubviewToFront(letter)
         }, completion: { _ in
             self.completedLetterAnimations += 1
-            print("COMPLETED LETTER ANIMATIONS: \(self.completedLetterAnimations)")
             // checking if all letters have been tapped
             if self.completedLetterAnimations == self.game!.unscrambledWordWithoutSpaces.count {
                 var correctValues = 0
@@ -284,7 +273,6 @@ class GameViewController: UIViewController {
                         self.countdownTimer.invalidate()
                         self.totalWordsSolvedThisGame += 1
                         self.addGreenBorderAndCreateWord()
-                        print("YOU WON!")
                     }
                 // got word wrong
                 } else {
@@ -293,7 +281,6 @@ class GameViewController: UIViewController {
                     self.didGetWordWrong = true
                     if self.isPaused == false {
                         self.addRedBorder()
-                        print("INCORRECT >w< TRY AGAIN!")
                     }
                 }
             }
@@ -404,7 +391,6 @@ class GameViewController: UIViewController {
     
     func assignRightAmountOfHints() {
         switch game!.scrambledWord.count {
-        //MARK: Fine tune these values later(maybe have the same number of hints as there are letters but reward 0 points for using all hints) --> unless you implement the functionality at the end when time runs out, put all letters in the right spot
         case 3:
             hintsLeft = 0
             hintsButton.isEnabled = false
@@ -424,34 +410,23 @@ class GameViewController: UIViewController {
         let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
         countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
-            //print("SELF.SECONDS IN TIMER: \(self.seconds)")
             if self.seconds > -1.0 {
                 if Double(String(String(self.seconds).split(separator: ".")[1].first!))! == 0.0 {
-                    print("TRUE! NEW SECOND: \(self.seconds)")
                     self.countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(self.seconds))", attributes: strokeTextAttributes)
                 }
-//                print("REMAINDER: \(Double(String(String(self.seconds).split(separator: ".")[1].first!))!)")
-//                print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
-//                print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
-//                print("SELF.SECONDS: \(self.seconds)")
                 self.seconds -= 0.1
             } else {
-                print("IT HAS BEEN CALLED!")
                 self.countdownTimerLabel.attributedText = NSAttributedString(string: "0", attributes: strokeTextAttributes)
                 self.countdownTimer.invalidate()
-                // IMPLEMENT THIS FUNCTIONALITY(storing stuff in Core Data, adding a game over child VC, etc.)
                 self.gameOver()
             }
         })
     }
     // called when the app goes to the background(ex: someone gets a call, home button is pressed, notification center is opened, etc.)
     @objc private func suddenlyPauseGame() {
-        //countdownTimer.invalidate()
         if isPaused == false {
             isPaused = true
-            print("SUDDENLY PAUSED THE GAME!!!! -> pause")
             pauseGame()
-            //UserDefaults.standard.set("\(seconds)", forKey: "TimerState")
             let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PausePopUpID") as! PauseViewController
             self.addChild(pauseVC)
             pauseVC.view.frame = self.view.frame
@@ -462,45 +437,15 @@ class GameViewController: UIViewController {
     
     // is called when app goes back into foreground after being interrupted
     @objc private func restorePausedState() {
-        /*if didGetWordRight && isPaused == false {
-            self.totalWordsSolvedThisGame += 1
-            self.animateCheckMark()
-            print("YOU WON!")
-        } else if didGetWordWrong && isPaused == false {
-            self.animateCross()
-            print("INCORRECT >w< TRY AGAIN!")
-        } else if didCompleteCheckMarkAnimation && isPaused == false {
-            self.checkmark.removeFromSuperview()
-            self.createNewWord()
-        } else { */
-            print("RESTORED!")
             let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
             countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
-            print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
-            print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
-            print("SELF.SECONDS: \(self.seconds)")
-            /*if isPaused == false {
-                startTimer()
-            } */
-       // }
     }
     
-    // MARK: Present a pause child view controller when app goes in background and pause everything(timers, etc.)
     private func pauseGame() {
-        print("INT CEIL SELF.SECONDS: \(Int(ceil(self.seconds)))")
-        print("CEIL SELF.SECONDS: \(ceil(self.seconds))")
-        print("SELF.SECONDS: \(self.seconds)")
-        print("TIMER WAS INVAALIIDLADIALDIADLAITITEIIIEDIDIDIIDIDIDIDIDIDIDIDIDIDIDIIDIDIDIDIDI")
         countdownTimer.invalidate()
-        print("INT CEIL SELF.SECONDS2: \(Int(ceil(self.seconds)))")
-        print("CEIL SELF.SECONDS2: \(ceil(self.seconds))")
-        print("SELF.SECONDS2: \(self.seconds)")
         for letter in finalLettersWithIndexAndStringRep.keys {
             pauseLayer(layer: letter.layer)
         }
-        print("FINAL LETTERS WITH INDEX AND STRING REP: \(finalLettersWithIndexAndStringRep)")
-        //pauseLayer(layer: checkmark.layer)
-        print("pause game!")
     }
     
     func pauseLayer(layer: CALayer) {
@@ -510,7 +455,6 @@ class GameViewController: UIViewController {
     }
     
     func resumeLayer(layer: CALayer) {
-        print("I GOT CALLED LOLLLLL")
         let pausedTime: CFTimeInterval = layer.timeOffset
         layer.speed = 1.0
         layer.timeOffset = 0.0
@@ -530,7 +474,6 @@ class GameViewController: UIViewController {
                 totalWordsSolvedThisGame += 1
                 createNewWord()
             }
-            print("YOU WON FROM RESUME!")
         } else if didGetWordWrong {
             startTimer()
             if shouldAddRedBorder == false {
@@ -544,9 +487,7 @@ class GameViewController: UIViewController {
             } else {
                 addRedBorder()
             }
-            print("INCORRECT >w< TRY AGAIN!")
         } else {
-            print("GAME HAS BEEN RESUMED!")
             startTimer()
             for letter in finalLettersWithIndexAndStringRep.keys {
                 resumeLayer(layer: letter.layer)
@@ -556,7 +497,6 @@ class GameViewController: UIViewController {
     
     // Resets all variables, removes animations and UIImageViews, and creates another instance of game which, in turn, creates a new word
     public func createNewWord() {
-        print("WORD CREATION!")
         for blankSpace in blankSpaces {
             blankSpace.removeFromSuperview()
         }
@@ -565,7 +505,6 @@ class GameViewController: UIViewController {
             letter.removeFromSuperview()
         }
         countdownTimer.invalidate()
-        //backgroundImage.image = UIImage(named: imageName)
         
         blankSpaces = [UIImageView]()
         letters = [UIImageView]()
@@ -598,7 +537,6 @@ class GameViewController: UIViewController {
         startTimer()
         
         game = Game(themeFile: themeFileName)
-        //game!.scrambledIndices = [Int]()
         
         addBlankSpaces()
         addLetters()
@@ -677,7 +615,6 @@ class GameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueFromGameToGameOver" {
             if let destVC = segue.destination as? GameOverViewController {
-                print("IM ETHAN BRADBERRY")
                 destVC.worldsSolved = totalWordsSolvedThisGame
                 destVC.score = totalScoreThisGame
                 destVC.totalHints = totalHintsUsedThisGame
@@ -686,7 +623,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func unwindToGameFromGameOverVC(segue: UIStoryboardSegue) {
-        print("unwinded to game from gameoverVC!")
+   
     }
     
 }

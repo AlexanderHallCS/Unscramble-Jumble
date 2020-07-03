@@ -1,6 +1,6 @@
 //
 //  CategoryViewController.swift
-//  Unscramble It!
+//  Unscramble Jumble!
 //
 //  Created by Alexander Hall on 3/26/20.
 //  Copyright © 2020 Hall Inc. All rights reserved.
@@ -40,11 +40,6 @@ class CategoryViewController: UIViewController {
     }
     @IBAction func spaceToGame(_ sender: UIButton) {
         segueAndRemoveSelf(segueName: Segues.spaceToGame)
-    }
-    
-    
-    deinit {
-        print("did deinit2!")
     }
     
     @IBAction func backOut(_ sender: UIButton) {

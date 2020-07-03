@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  Unscramble It!
+//  Unscramble Jumble!
 //
 //  Created by Alexander Hall on 5/22/20.
 //  Copyright © 2020 Hall Inc. All rights reserved.
@@ -27,7 +27,7 @@ struct FileNames {
 }
 
 enum Keys {
-    static let adUnitID = "ca-app-pub-3940256099942544/2934735716"
+    static let adUnitID = ""
 }
 
 

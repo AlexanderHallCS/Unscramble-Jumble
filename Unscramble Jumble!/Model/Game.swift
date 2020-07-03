@@ -1,6 +1,6 @@
 //
-//  Word.swift
-//  Unscramble It!
+//  Game.swift
+//  Unscramble Jumble!
 //
 //  Created by Alexander Hall on 5/20/20.
 //  Copyright © 2020 Hall Inc. All rights reserved.
@@ -22,16 +22,7 @@ class Game {
         unscrambledWord = removeCarriageReturn(from: getRandomWord(from: themeFile))
         scrambledWord = shuffleLetters(word: unscrambledWord.split(separator: " ").joined())
         category = getCategory(from: themeFile)
-        
-        //scrambledIndices = getScrambledLetterIndices()
-        print("Scrambled Indices: \(scrambledIndices)")
-        //unscrambledWordLettersArray = getWordLetters()
-        // MARK: Change this later
-        /*unscrambledWord = removeCarriageReturn(from: "Solomon Islands")
-        scrambledWord = shuffleLetters(word: "Solomon Islands".split(separator: " ").joined())*/
         unscrambledWordWithoutSpaces = unscrambledWord.split(separator: " ").joined().uppercased()
-        print(unscrambledWord)
-        print(scrambledWord)
     }
     
     private func getRandomWord(from fileName: String) -> String {

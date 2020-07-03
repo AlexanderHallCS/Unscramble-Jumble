@@ -1,6 +1,6 @@
 //
-//  ViewController.swift
-//  Unscramble It!
+//  StartViewController.swift
+//  Unscramble Jumble!
 //
 //  Created by Alexander Hall on 3/19/20.
 //  Copyright © 2020 Hall Inc. All rights reserved.
@@ -26,10 +26,6 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         bannerView.rootViewController = self
         bannerView.delegate = self
         loadBannerAd()
-    }
-    
-    deinit {
-        print("did deinit!")
     }
     
     // programmatic implementation of banner view so that its width scales with the size of the ad
@@ -86,7 +82,7 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
     }
     
     @IBAction func unwindToStartFromPauseOrGameOverVC(segue: UIStoryboardSegue) {
-        print("unwinded to start from game over VC!")
+        
     }
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
