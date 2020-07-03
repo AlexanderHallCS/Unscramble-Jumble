@@ -450,8 +450,14 @@ class GameViewController: UIViewController {
     
     // is called when app goes back into foreground after being interrupted
     @objc private func restorePausedState() {
-            let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
-            countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+        let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
+        countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
+        if didGetWordRight {
+            for letter in letters {
+                letter.layer.borderColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                letter.layer.borderWidth = letter.frame.width/20
+            }
+        }
     }
     
     private func pauseGame() {
@@ -479,6 +485,7 @@ class GameViewController: UIViewController {
     @objc func resumeGame() {
         if didGetWordRight {
             if didSuddenlyPause {
+                playSound(fileName: "CorrectAnswerSound")
                 totalScoreThisGame += scoreAvailableFromWord
                 scoreLabel.text = "Score: \(totalScoreThisGame)"
                 totalWordsSolvedThisGame += 1
@@ -495,6 +502,12 @@ class GameViewController: UIViewController {
                     removeLetter()
                 }
             } else {
+                if didSuddenlyPause {
+                    playSound(fileName: "WrongAnswerSound")
+                    for letter in finalLettersWithIndexAndStringRep.keys {
+                        resumeLayer(layer: letter.layer)
+                    }
+                }
                 addRedBorder()
             }
         } else {
