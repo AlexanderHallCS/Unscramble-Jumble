@@ -14,6 +14,8 @@ class GameViewController: UIViewController {
     
     @IBOutlet var backgroundImage: UIImageView!
     
+    @IBOutlet var undoLetterButton: UIButton!
+    @IBOutlet var undoAllLettersButton: UIButton!
     @IBOutlet var hintsButton: UIButton!
     
     @IBOutlet var hintsLeftLabel: UILabel!
@@ -297,12 +299,16 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func popLastLetterOff(_ sender: UIButton) {
-        removeLetter()
+        if completedLetterAnimations != game!.unscrambledWordWithoutSpaces.count {
+            removeLetter()
+        }
     }
     
     @IBAction func removeAllLetters(_ sender: UIButton) {
-        for _ in chosenLetterStack {
-            removeLetter()
+        if completedLetterAnimations != game!.unscrambledWordWithoutSpaces.count {
+            for _ in chosenLetterStack {
+                removeLetter()
+            }
         }
     }
     
@@ -316,7 +322,11 @@ class GameViewController: UIViewController {
             letters[letters.firstIndex(of: lastLetterInStack)!].isUserInteractionEnabled = true
             return
         }
-        finalLettersWithIndexAndStringRep.removeValue(forKey: chosenLetterStack.last!)
+        
+        // if statement fixes a bug where the first hint is removed from the finalLetters dictionary
+        if !hintLetterPositions.contains(finalLettersWithIndexAndStringRep[chosenLetterStack.last!]!.index) {
+            finalLettersWithIndexAndStringRep.removeValue(forKey: chosenLetterStack.last!)
+        }
         chosenLetterStack.last!.layer.removeAllAnimations()
         chosenLetterStack.removeLast()
         chosenLetterStackIndices.removeLast()
@@ -336,57 +346,58 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func generateHint(_ sender: UIButton) {
-        
-        // don't allow the hint button to be pressed once all hints are used up
-        if hintsLeft == 0 {
-            if game!.unscrambledWordWithoutSpaces.count == 3 {
+        if completedLetterAnimations != game!.unscrambledWordWithoutSpaces.count {
+            // don't allow the hint button to be pressed once all hints are used up
+            if hintsLeft == 0 {
+                if game!.unscrambledWordWithoutSpaces.count == 3 {
+                    hintsButton.isEnabled = false
+                } else {
+                    scoreAvailableFromWord -= 20
+                }
+            } else if hintsLeft == 1 {
+                scoreAvailableFromWord -= 20
+                totalHintsUsedThisGame += 1
+                hintsLeft -= 1
+                hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
                 hintsButton.isEnabled = false
             } else {
                 scoreAvailableFromWord -= 20
+                totalHintsUsedThisGame += 1
+                hintsLeft -= 1
+                hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
             }
-        } else if hintsLeft == 1 {
-            scoreAvailableFromWord -= 20
-            totalHintsUsedThisGame += 1
-            hintsLeft -= 1
-            hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
-            hintsButton.isEnabled = false
-        } else {
-            scoreAvailableFromWord -= 20
-            totalHintsUsedThisGame += 1
-            hintsLeft -= 1
-            hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
-        }
-        
-        var randomLetterIndex = Int.random(in: 0..<letters.count)
-        // check if the random letter index has already been chosen before if it has, keep generating random indices until it hasn't, else add it to hintLetterIndices
-        if hintLetterIndices.contains(randomLetterIndex) {
-            while hintLetterIndices.contains(randomLetterIndex) {
-                randomLetterIndex = Int.random(in: 0..<letters.count)
-                if !hintLetterIndices.contains(randomLetterIndex) {
-                    hintLetterIndices.append(randomLetterIndex)
-                    break
+            
+            var randomLetterIndex = Int.random(in: 0..<letters.count)
+            // check if the random letter index has already been chosen before if it has, keep generating random indices until it hasn't, else add it to hintLetterIndices
+            if hintLetterIndices.contains(randomLetterIndex) {
+                while hintLetterIndices.contains(randomLetterIndex) {
+                    randomLetterIndex = Int.random(in: 0..<letters.count)
+                    if !hintLetterIndices.contains(randomLetterIndex) {
+                        hintLetterIndices.append(randomLetterIndex)
+                        break
+                    }
                 }
+            } else {
+                hintLetterIndices.append(randomLetterIndex)
             }
-        } else {
-            hintLetterIndices.append(randomLetterIndex)
+            hintLetterPositions.append(game!.scrambledIndices[randomLetterIndex])
+            finalLettersWithIndexAndStringRep[letters[randomLetterIndex]] = (game!.scrambledIndices[randomLetterIndex], game!.getLetterStringRepresentation(from: randomLetterIndex))
+            
+            // removes all the letters on the blank spaces in preparation for putting a hint in
+            for _ in chosenLetterStack {
+                removeLetter()
+            }
+            
+            playSound(fileName: "LetterTapSound")
+            UIView.animate(withDuration: 1.2, animations: {
+                self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.x, y: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.y, width: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.width, height: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.height)
+                self.letters[randomLetterIndex].rotate()
+                self.view.bringSubviewToFront(self.letters[randomLetterIndex])
+            }, completion: { _ in
+                self.completedLetterAnimations += 1
+            })
+            letters[randomLetterIndex].isUserInteractionEnabled = false
         }
-        hintLetterPositions.append(game!.scrambledIndices[randomLetterIndex])
-        finalLettersWithIndexAndStringRep[letters[randomLetterIndex]] = (game!.scrambledIndices[randomLetterIndex], game!.getLetterStringRepresentation(from: randomLetterIndex))
-        
-        // removes all the letters on the blank spaces in preparation for putting a hint in
-        for _ in chosenLetterStack {
-            removeLetter()
-        }
-        
-        playSound(fileName: "LetterTapSound")
-        UIView.animate(withDuration: 1.2, animations: {
-            self.letters[randomLetterIndex].frame = CGRect(x: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.x, y: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.origin.y, width: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.width, height: self.blankSpaces[self.game!.scrambledIndices[randomLetterIndex]].frame.height)
-            self.letters[randomLetterIndex].rotate()
-            self.view.bringSubviewToFront(self.letters[randomLetterIndex])
-        }, completion: { _ in
-            self.completedLetterAnimations += 1
-        })
-        letters[randomLetterIndex].isUserInteractionEnabled = false
     }
     
     func assignRightAmountOfHints() {
@@ -469,12 +480,9 @@ class GameViewController: UIViewController {
             if shouldAddGreenBorder == true {
                 addGreenBorderAndCreateWord()
             } else {
-                totalScoreThisGame += scoreAvailableFromWord
-                scoreLabel.text = "Score: \(totalScoreThisGame)"
-                totalWordsSolvedThisGame += 1
                 createNewWord()
             }
-        } else if didGetWordWrong {
+        } else if didGetWordWrong && completedLetterAnimations == game!.unscrambledWordWithoutSpaces.count {
             startTimer()
             if shouldAddRedBorder == false {
                 for letter in finalLettersWithIndexAndStringRep.keys {
@@ -544,6 +552,7 @@ class GameViewController: UIViewController {
         hintsButton.isEnabled = true
         assignRightAmountOfHints()
         scoreAvailableFromWord = 20 * game!.unscrambledWordWithoutSpaces.count
+        scoreLabel.text = "Score: \(totalScoreThisGame)"
     }
     
     // Saves and fetches data then segues to GameOver VC.

@@ -356,6 +356,8 @@
                         <outlet property="hintsButton" destination="x89-ml-3c9" id="c9G-lC-0lZ"/>
                         <outlet property="hintsLeftLabel" destination="usf-0T-FQS" id="OJb-BV-uZj"/>
                         <outlet property="scoreLabel" destination="6Ud-ow-aNn" id="cax-dc-qtp"/>
+                        <outlet property="undoAllLettersButton" destination="tq3-b8-nM1" id="RrS-lY-MmC"/>
+                        <outlet property="undoLetterButton" destination="PZ1-bp-2VR" id="cQa-tJ-oRw"/>
                         <segue destination="Ifd-VC-3re" kind="show" identifier="segueFromGameToGameOver" id="Ebh-I3-6cN"/>
                     </connections>
                 </viewController>

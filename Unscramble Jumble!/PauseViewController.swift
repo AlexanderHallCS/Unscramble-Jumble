@@ -16,10 +16,6 @@ class PauseViewController: UIViewController {
         self.animateIn()
     }
     
-    deinit {
-        print("did deinit4!")
-    }
-    
     @IBAction func backOutToGameVC(_ sender: UIButton) {
         
         UIView.animate(withDuration: 0.25, animations: {

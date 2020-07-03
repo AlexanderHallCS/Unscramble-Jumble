@@ -44,6 +44,7 @@ class GameOverViewController: UIViewController {
             destVC.totalWordsSolvedThisGame = 0
             destVC.totalScoreThisGame = 0
             destVC.totalHintsUsedThisGame = 0
+            destVC.seconds = 30.0
             destVC.createNewWord()
         }
         

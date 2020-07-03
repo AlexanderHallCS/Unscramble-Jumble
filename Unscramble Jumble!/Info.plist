@@ -24,7 +24,7 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>AllowsArbitraryLoads</key>
+		<key>Allows Arbitrary Loads</key>
 		<true/>
 	</dict>
 	<key>UIApplicationSceneManifest</key>
