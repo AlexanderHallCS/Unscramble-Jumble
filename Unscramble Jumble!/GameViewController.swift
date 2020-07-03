@@ -477,7 +477,6 @@ class GameViewController: UIViewController {
     }
     
     @objc func resumeGame() {
-        isPaused = false
         if didGetWordRight {
             if didSuddenlyPause {
                 totalScoreThisGame += scoreAvailableFromWord
@@ -504,6 +503,7 @@ class GameViewController: UIViewController {
                 resumeLayer(layer: letter.layer)
             }
         }
+        isPaused = false
     }
     
     // Resets all variables, removes animations and UIImageViews, and creates another instance of game which, in turn, creates a new word
