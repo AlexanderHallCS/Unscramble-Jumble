@@ -85,16 +85,4 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         
     }
     
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("Ad was received!")
-    }
-    
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print("adViewDidDismissScreen")
-    }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print(error)
-    }
-    
 }

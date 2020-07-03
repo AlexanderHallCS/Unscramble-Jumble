@@ -72,7 +72,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
         
-        //maybe change the event of willResignActiveNotification to something more forgiving
         NotificationCenter.default.addObserver(self, selector: #selector(suddenlyPauseGame), name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(restorePausedState), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeGame), name: NSNotification.Name(rawValue: "removedPauseVCNotification"), object: nil)
@@ -124,7 +123,6 @@ class GameViewController: UIViewController {
         if wordsLessThanLengthSix == game!.unscrambledWord.split(separator: " ").count {
             let centerXOfFrame = self.view.frame.width/2 - self.view.frame.width/8/2
             let widthOfLetterPlusSpacing = self.view.frame.width/8 + self.view.frame.width/32
-            //var unevenLetterOffset: CGFloat = 0.0
             var xShift: CGFloat = 0.0
             var firstLetterInRowIndex = 0
             //getting the longest sub word's length so that the width of the blank spaces is based on it
@@ -418,7 +416,7 @@ class GameViewController: UIViewController {
         hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
     }
     
-    func startTimer() {
+    private func startTimer() {
         let strokeTextAttributes: [NSAttributedString.Key:Any] = [.strokeColor:#colorLiteral(red: 0, green: 0, blue: 0.737254902, alpha: 1), .strokeWidth:-4.0]
         countdownTimerLabel.attributedText = NSAttributedString(string: "\(Int(ceil(self.seconds)))", attributes: strokeTextAttributes)
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
@@ -434,6 +432,7 @@ class GameViewController: UIViewController {
             }
         })
     }
+    
     // called when the app goes to the background(ex: someone gets a call, home button is pressed, notification center is opened, etc.)
     @objc private func suddenlyPauseGame() {
         if isPaused == false {
