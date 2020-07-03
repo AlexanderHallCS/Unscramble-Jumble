@@ -55,6 +55,7 @@ class GameViewController: UIViewController {
     var secondsSubtractingMultiplier = 1.0
     
     var isPaused = false
+    var didSuddenlyPause = false
     var didGetWordRight = false
     var didGetWordWrong = false
     var shouldAddRedBorder = true
@@ -437,6 +438,7 @@ class GameViewController: UIViewController {
     @objc private func suddenlyPauseGame() {
         if isPaused == false {
             isPaused = true
+            didSuddenlyPause = true
             pauseGame()
             let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PausePopUpID") as! PauseViewController
             self.addChild(pauseVC)
@@ -477,11 +479,12 @@ class GameViewController: UIViewController {
     @objc func resumeGame() {
         isPaused = false
         if didGetWordRight {
-            if shouldAddGreenBorder == true {
-                addGreenBorderAndCreateWord()
-            } else {
-                createNewWord()
+            if didSuddenlyPause {
+                totalScoreThisGame += scoreAvailableFromWord
+                scoreLabel.text = "Score: \(totalScoreThisGame)"
+                totalWordsSolvedThisGame += 1
             }
+            createNewWord()
         } else if didGetWordWrong && completedLetterAnimations == game!.unscrambledWordWithoutSpaces.count {
             startTimer()
             if shouldAddRedBorder == false {
@@ -531,6 +534,7 @@ class GameViewController: UIViewController {
         nextUnvisitedBlankSpace = 0
         completedLetterAnimations = 0
         
+        didSuddenlyPause = false
         didGetWordRight = false
         didGetWordWrong = false
         shouldAddGreenBorder = true
