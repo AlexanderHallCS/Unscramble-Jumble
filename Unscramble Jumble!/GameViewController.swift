@@ -60,6 +60,8 @@ class GameViewController: UIViewController {
     var didGetWordWrong = false
     var shouldAddRedBorder = true
     var shouldAddGreenBorder = true
+    var isNewGame = false
+    
     var completedLetterAnimations = 0
     
     var totalWordsSolvedThisGame = 0
@@ -553,9 +555,15 @@ class GameViewController: UIViewController {
         shouldAddRedBorder = true
         
         //takes away 2 seconds for every word solved down to a minimum of 2 seconds
-        seconds = 30.0 - 2*secondsSubtractingMultiplier
-        if 30.0 - 2*secondsSubtractingMultiplier > 2.0 {
-            secondsSubtractingMultiplier += 1
+        if isNewGame == false {
+            seconds = 30.0 - 2*secondsSubtractingMultiplier
+            if 30.0 - 2*secondsSubtractingMultiplier > 2.0 {
+                secondsSubtractingMultiplier += 1
+            }
+        } else {
+            seconds = 30.0
+            secondsSubtractingMultiplier = 1.0
+            isNewGame = false
         }
         
         startTimer()
@@ -574,9 +582,10 @@ class GameViewController: UIViewController {
     // Saves and fetches data then segues to GameOver VC.
     private func gameOver() {
         // this is to stop any words from being created after the segue
-        isPaused = true
+        //isPaused = true
         for letter in letters {
             letter.layer.removeAllAnimations()
+            letter.isUserInteractionEnabled = false
         }
         // save totals to database
         coreDataManager.addAndSaveTotalStatsData(totalGamesPlayed: coreDataManager.fetchTotalStatsData().totalGamesPlayed + 1, totalScore: coreDataManager.fetchTotalStatsData().totalScore + totalScoreThisGame, totalWordsSolved: coreDataManager.fetchTotalStatsData().totalWordsSolved + totalWordsSolvedThisGame)

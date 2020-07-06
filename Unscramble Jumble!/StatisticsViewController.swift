@@ -19,12 +19,17 @@ class StatisticsViewController: UIViewController {
     @IBOutlet var bestScoreLabel: UILabel!
     @IBOutlet var bestHintsUsedLabel: UILabel!
     
+    @IBOutlet var totalsLabel: UILabel!
+    @IBOutlet var bestGameLabel: UILabel!
+    
     let coreDataManager = CoreDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setLabelTexts()
+        totalsLabel.textColor = UIColor.black
+        bestGameLabel.textColor = UIColor.black
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.animateIn()
     }
@@ -68,6 +73,7 @@ class StatisticsViewController: UIViewController {
         let attributedText = NSMutableAttributedString.init(string: totalString)
         attributedText.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: NSRange(location: 0, length: underLinedString.count))
         label.attributedText = attributedText
+        label.textColor = UIColor.black
     }
 
 }

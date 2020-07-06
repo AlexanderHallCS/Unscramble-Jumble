@@ -13,6 +13,7 @@ class GameOverViewController: UIViewController {
     @IBOutlet var wordsSolvedLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var hintsUsedLabel: UILabel!
+    @IBOutlet var resultsLabel: UILabel!
     
     var worldsSolved = 0
     var score = 0
@@ -22,6 +23,7 @@ class GameOverViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setLabelTexts()
+        resultsLabel.textColor = UIColor.black
     }
     
     private func setLabelTexts() {
@@ -35,6 +37,7 @@ class GameOverViewController: UIViewController {
         let attributedText = NSMutableAttributedString.init(string: totalString)
         attributedText.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: NSRange(location: 0, length: underLinedString.count))
         label.attributedText = attributedText
+        label.textColor = UIColor.black
     }
     
     // MARK: - Navigation
@@ -44,7 +47,7 @@ class GameOverViewController: UIViewController {
             destVC.totalWordsSolvedThisGame = 0
             destVC.totalScoreThisGame = 0
             destVC.totalHintsUsedThisGame = 0
-            destVC.seconds = 30.0
+            destVC.isNewGame = true
             destVC.createNewWord()
         }
         
