@@ -12,6 +12,7 @@ class CategoryViewController: UIViewController {
     
     enum Segues {
         static let adjectivesToGame = "adjectivesToGame"
+        static let animalsToGame = "animalsToGame"
         static let commonWordsToGame = "commonWordsToGame"
         static let countriesToGame = "countriesToGame"
         static let natureToGame = "natureToGame"
@@ -72,6 +73,9 @@ class CategoryViewController: UIViewController {
                     case Segues.adjectivesToGame:
                             destVC.imageName = FileNames.BGImageFileNames.adjectives
                             destVC.themeFileName = FileNames.WordFileNames.adjectives
+                    case Segues.animalsToGame:
+                            destVC.imageName = FileNames.BGImageFileNames.animals
+                            destVC.themeFileName = FileNames.WordFileNames.animals
                     case Segues.commonWordsToGame:
                             destVC.imageName = FileNames.BGImageFileNames.commonWords
                             destVC.themeFileName = FileNames.WordFileNames.commonWords

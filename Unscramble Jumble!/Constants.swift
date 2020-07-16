@@ -11,6 +11,7 @@ import Foundation
 struct FileNames {
     enum WordFileNames {
         static let adjectives = "Adjectives"
+        static let animals = "Animals"
         static let commonWords = "Common_Words"
         static let countries = "Countries"
         static let nature = "Nature"
@@ -19,6 +20,7 @@ struct FileNames {
     
     enum BGImageFileNames {
         static let adjectives = "AdjectivesBG"
+        static let animals = "AnimalsBG"
         static let commonWords = "CommonWordsBG"
         static let countries = "CountriesBG"
         static let nature = "NatureBG"
