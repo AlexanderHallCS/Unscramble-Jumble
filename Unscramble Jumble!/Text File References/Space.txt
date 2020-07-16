@@ -25,3 +25,17 @@ Aries
 Pisces
 Taurus
 Polaris
+Waxing
+Waning
+Gravity
+White Dwarf
+Solar Flare
+Neutron Star
+Pulsar
+Quasar
+Astral
+Solar System
+Oort Cloud
+Orbit
+Light Year
+Black Hole

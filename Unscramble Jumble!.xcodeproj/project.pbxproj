@@ -19,6 +19,9 @@
 		112CFA0624ABD54900DD22B7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112CFA0524ABD54900DD22B7 /* CoreDataManager.swift */; };
 		11343DBB2470584900748375 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11343DBA2470584900748375 /* GameViewController.swift */; };
 		113FBE6A249D5F7500DBAE55 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113FBE69249D5F7500DBAE55 /* GameOverViewController.swift */; };
+		114B6DD624C119BD00D11AA0 /* Animals.txt in Resources */ = {isa = PBXBuildFile; fileRef = 114B6DD324C119BC00D11AA0 /* Animals.txt */; };
+		114B6DD724C119BD00D11AA0 /* Space.txt in Resources */ = {isa = PBXBuildFile; fileRef = 114B6DD424C119BC00D11AA0 /* Space.txt */; };
+		114B6DD824C119BD00D11AA0 /* Nature.txt in Resources */ = {isa = PBXBuildFile; fileRef = 114B6DD524C119BD00D11AA0 /* Nature.txt */; };
 		118D74C6242C7048007DB21E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D74C5242C7048007DB21E /* CategoryViewController.swift */; };
 		1191C5012478E25A00F38E9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191C5002478E25A00F38E9C /* Constants.swift */; };
 		11A022B22481F5E600D49FFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11A022B12481F5E600D49FFB /* GoogleService-Info.plist */; };
@@ -26,8 +29,6 @@
 		11A9F3FD247A6BBD0093E699 /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */; };
 		11C3D9F424A9A0AD00EC89E1 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3D9F324A9A0AD00EC89E1 /* StatisticsViewController.swift */; };
 		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
-		11D793C42428822A00435B54 /* Nature.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BF2428822A00435B54 /* Nature.txt */; };
-		11D793C52428822A00435B54 /* Space.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C02428822A00435B54 /* Space.txt */; };
 		11D793C62428822A00435B54 /* Countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C12428822A00435B54 /* Countries.txt */; };
 		11D793C72428822A00435B54 /* Adjectives.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C22428822A00435B54 /* Adjectives.txt */; };
 		11D88DD224AE95CB0007EBE4 /* WrongAnswerSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11D88DCF24AE95CB0007EBE4 /* WrongAnswerSound.mp3 */; };
@@ -74,6 +75,9 @@
 		112CFA0524ABD54900DD22B7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		11343DBA2470584900748375 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		113FBE69249D5F7500DBAE55 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		114B6DD324C119BC00D11AA0 /* Animals.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Animals.txt; sourceTree = "<group>"; };
+		114B6DD424C119BC00D11AA0 /* Space.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Space.txt; sourceTree = "<group>"; };
+		114B6DD524C119BD00D11AA0 /* Nature.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Nature.txt; sourceTree = "<group>"; };
 		118D74C5242C7048007DB21E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		1191C5002478E25A00F38E9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		11A022B12481F5E600D49FFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -81,8 +85,6 @@
 		11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewController.swift; sourceTree = "<group>"; };
 		11C3D9F324A9A0AD00EC89E1 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
-		11D793BF2428822A00435B54 /* Nature.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Nature.txt; sourceTree = "<group>"; };
-		11D793C02428822A00435B54 /* Space.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Space.txt; sourceTree = "<group>"; };
 		11D793C12428822A00435B54 /* Countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Countries.txt; sourceTree = "<group>"; };
 		11D793C22428822A00435B54 /* Adjectives.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Adjectives.txt; sourceTree = "<group>"; };
 		11D88DCF24AE95CB0007EBE4 /* WrongAnswerSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WrongAnswerSound.mp3; sourceTree = "<group>"; };
@@ -213,10 +215,11 @@
 			isa = PBXGroup;
 			children = (
 				11D793C22428822A00435B54 /* Adjectives.txt */,
+				114B6DD324C119BC00D11AA0 /* Animals.txt */,
 				11D793BE2428822A00435B54 /* Common_Words.txt */,
 				11D793C12428822A00435B54 /* Countries.txt */,
-				11D793BF2428822A00435B54 /* Nature.txt */,
-				11D793C02428822A00435B54 /* Space.txt */,
+				114B6DD524C119BD00D11AA0 /* Nature.txt */,
+				114B6DD424C119BC00D11AA0 /* Space.txt */,
 			);
 			path = "Text File References";
 			sourceTree = "<group>";
@@ -371,10 +374,11 @@
 				1105872A242433900005B62D /* Assets.xcassets in Resources */,
 				11D88DD824AE96F50007EBE4 /* LetterTapSound.mp3 in Resources */,
 				110587252424338E0005B62D /* Main.storyboard in Resources */,
-				11D793C42428822A00435B54 /* Nature.txt in Resources */,
-				11D793C52428822A00435B54 /* Space.txt in Resources */,
 				11D793C72428822A00435B54 /* Adjectives.txt in Resources */,
 				11D793C62428822A00435B54 /* Countries.txt in Resources */,
+				114B6DD624C119BD00D11AA0 /* Animals.txt in Resources */,
+				114B6DD824C119BD00D11AA0 /* Nature.txt in Resources */,
+				114B6DD724C119BD00D11AA0 /* Space.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

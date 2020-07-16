@@ -10,6 +10,8 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
+    @IBOutlet var scrollView: UIScrollView!
+    
     enum Segues {
         static let adjectivesToGame = "adjectivesToGame"
         static let animalsToGame = "animalsToGame"
@@ -29,6 +31,9 @@ class CategoryViewController: UIViewController {
     // segue to GameViewController and remove CategoryViewController right after
     @IBAction func adjectivesToGame(_ sender: UIButton) {
         segueAndRemoveSelf(segueName: Segues.adjectivesToGame)
+    }
+    @IBAction func animalsToGame(_ sender: UIButton) {
+        segueAndRemoveSelf(segueName: Segues.animalsToGame)
     }
     @IBAction func commonWordsToGame(_ sender: UIButton) {
         segueAndRemoveSelf(segueName: Segues.commonWordsToGame)
@@ -61,6 +66,8 @@ class CategoryViewController: UIViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.alpha = 1.0
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        }, completion: { _ in
+            self.scrollView.flashScrollIndicators()
         });
     }
     
@@ -76,6 +83,7 @@ class CategoryViewController: UIViewController {
                     case Segues.animalsToGame:
                             destVC.imageName = FileNames.BGImageFileNames.animals
                             destVC.themeFileName = FileNames.WordFileNames.animals
+                            destVC.hintsAndScoreLabelColor = UIColor.white
                     case Segues.commonWordsToGame:
                             destVC.imageName = FileNames.BGImageFileNames.commonWords
                             destVC.themeFileName = FileNames.WordFileNames.commonWords

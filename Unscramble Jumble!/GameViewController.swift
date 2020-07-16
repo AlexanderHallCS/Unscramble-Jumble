@@ -412,8 +412,12 @@ class GameViewController: UIViewController {
             hintsLeft = 4
         case 7...9:
             hintsLeft = 5
-        default:
+        case 9...11:
             hintsLeft = 6
+        case 11...13:
+            hintsLeft = 7
+        default:
+            hintsLeft = 8
         }
         hintsLeftLabel.text? = "Hints Left: \(hintsLeft)"
     }
@@ -554,10 +558,10 @@ class GameViewController: UIViewController {
         shouldAddGreenBorder = true
         shouldAddRedBorder = true
         
-        //takes away 2 seconds for every word solved down to a minimum of 2 seconds
+        //takes away 2 seconds for every word solved down to a minimum of 6 seconds
         if isNewGame == false {
             seconds = 30.0 - 2*secondsSubtractingMultiplier
-            if 30.0 - 2*secondsSubtractingMultiplier > 2.0 {
+            if 30.0 - 2*secondsSubtractingMultiplier > 6.0 {
                 secondsSubtractingMultiplier += 1
             }
         } else {
