@@ -1,19 +1,27 @@
 {
   "images" : [
     {
-      "filename" : "GamingBG.png",
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "1x"
     },
     {
       "filename" : "GamingBG@2x.png",
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "2x"
     },
     {
       "filename" : "GamingBG@3x.png",
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "GamingBG.png",
+      "idiom" : "ipad",
+      "scale" : "2x"
     }
   ],
   "info" : {
