@@ -28,6 +28,10 @@
 		11A9A1D624A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11A9A1D424A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld */; };
 		11A9F3FD247A6BBD0093E699 /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */; };
 		11C3D9F424A9A0AD00EC89E1 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3D9F324A9A0AD00EC89E1 /* StatisticsViewController.swift */; };
+		11D152DD24DA08CF0063C6FD /* Science.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152D924DA08CE0063C6FD /* Science.txt */; };
+		11D152DE24DA08CF0063C6FD /* Art.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152DA24DA08CF0063C6FD /* Art.txt */; };
+		11D152DF24DA08CF0063C6FD /* Sports.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152DB24DA08CF0063C6FD /* Sports.txt */; };
+		11D152E024DA08CF0063C6FD /* Technology.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152DC24DA08CF0063C6FD /* Technology.txt */; };
 		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
 		11D793C62428822A00435B54 /* Countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C12428822A00435B54 /* Countries.txt */; };
 		11D793C72428822A00435B54 /* Adjectives.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C22428822A00435B54 /* Adjectives.txt */; };
@@ -84,6 +88,10 @@
 		11A9A1D524A3E09F00B10696 /* Unscramble_Jumble.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unscramble_Jumble.xcdatamodel; sourceTree = "<group>"; };
 		11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewController.swift; sourceTree = "<group>"; };
 		11C3D9F324A9A0AD00EC89E1 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		11D152D924DA08CE0063C6FD /* Science.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Science.txt; sourceTree = "<group>"; };
+		11D152DA24DA08CF0063C6FD /* Art.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Art.txt; sourceTree = "<group>"; };
+		11D152DB24DA08CF0063C6FD /* Sports.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sports.txt; sourceTree = "<group>"; };
+		11D152DC24DA08CF0063C6FD /* Technology.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Technology.txt; sourceTree = "<group>"; };
 		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
 		11D793C12428822A00435B54 /* Countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Countries.txt; sourceTree = "<group>"; };
 		11D793C22428822A00435B54 /* Adjectives.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Adjectives.txt; sourceTree = "<group>"; };
@@ -214,6 +222,10 @@
 		11D793C82428823600435B54 /* Text File References */ = {
 			isa = PBXGroup;
 			children = (
+				11D152DA24DA08CF0063C6FD /* Art.txt */,
+				11D152D924DA08CE0063C6FD /* Science.txt */,
+				11D152DB24DA08CF0063C6FD /* Sports.txt */,
+				11D152DC24DA08CF0063C6FD /* Technology.txt */,
 				11D793C22428822A00435B54 /* Adjectives.txt */,
 				114B6DD324C119BC00D11AA0 /* Animals.txt */,
 				11D793BE2428822A00435B54 /* Common_Words.txt */,
@@ -369,10 +381,14 @@
 				1105872D242433900005B62D /* LaunchScreen.storyboard in Resources */,
 				11D793C32428822A00435B54 /* Common_Words.txt in Resources */,
 				11D88DD224AE95CB0007EBE4 /* WrongAnswerSound.mp3 in Resources */,
+				11D152DF24DA08CF0063C6FD /* Sports.txt in Resources */,
+				11D152DE24DA08CF0063C6FD /* Art.txt in Resources */,
 				11D88DD924AE96F50007EBE4 /* CorrectAnswerSound.mp3 in Resources */,
 				11A022B22481F5E600D49FFB /* GoogleService-Info.plist in Resources */,
+				11D152E024DA08CF0063C6FD /* Technology.txt in Resources */,
 				1105872A242433900005B62D /* Assets.xcassets in Resources */,
 				11D88DD824AE96F50007EBE4 /* LetterTapSound.mp3 in Resources */,
+				11D152DD24DA08CF0063C6FD /* Science.txt in Resources */,
 				110587252424338E0005B62D /* Main.storyboard in Resources */,
 				11D793C72428822A00435B54 /* Adjectives.txt in Resources */,
 				11D793C62428822A00435B54 /* Countries.txt in Resources */,

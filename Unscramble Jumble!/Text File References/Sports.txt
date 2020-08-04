@@ -1,0 +1,67 @@
+Soccer
+Boxing
+Cycling
+Cricket
+Ice Hockey
+Field Hockey
+Gym
+Polo
+Tennis
+Table Tennis
+Weight Lifting
+Bat
+Racket
+Tennis Court
+Karate
+Martial Arts
+Jiu Jitsu
+Judo
+Black Belt
+Home Run
+Curling
+Rugby
+Esports
+Chess
+Bronze Medal
+Silver Medal
+Gold Medal
+Red Card
+Yellow Card
+Hurdle
+Race
+Athlete
+Long Jump
+Rowing
+Croquet
+Figure Skating
+Diving
+Diver
+Archery
+Fencing
+Foul Ball
+Darts
+Track and Field
+Running
+Discus Throw
+Hammer Throw
+Javelin Throw
+Skiing
+Bowling
+Boxer
+Frisbee
+Gymnast
+Goalie
+Huddle
+Kayak
+League
+MVP
+Offense
+Defense
+Parkour
+Roller Skating
+Racing
+Team
+Umpire
+World Series
+Sailing
+Squash

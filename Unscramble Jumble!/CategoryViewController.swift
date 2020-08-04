@@ -19,6 +19,7 @@ class CategoryViewController: UIViewController {
         static let countriesToGame = "countriesToGame"
         static let natureToGame = "natureToGame"
         static let spaceToGame = "spaceToGame"
+        //premium category segues
     }
     
     override func viewDidLoad() {

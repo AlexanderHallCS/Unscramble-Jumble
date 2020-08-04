@@ -6,6 +6,10 @@
         <attribute name="bestScore" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="bestWordsSolved" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="InAppPurchase" representedClassName="InAppPurchase" syncable="YES" codeGenerationType="class">
+        <attribute name="currentLetterBackground" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="hasPurchased" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+    </entity>
     <entity name="TotalStats" representedClassName="TotalStats" syncable="YES" codeGenerationType="class">
         <attribute name="totalGamesPlayed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalScore" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
@@ -14,5 +18,6 @@
     <elements>
         <element name="BestGame" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="TotalStats" positionX="-54" positionY="18" width="128" height="88"/>
+        <element name="InAppPurchase" positionX="-54" positionY="27" width="128" height="73"/>
     </elements>
 </model>
