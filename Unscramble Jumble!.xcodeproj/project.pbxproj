@@ -32,6 +32,7 @@
 		11D152DE24DA08CF0063C6FD /* Art.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152DA24DA08CF0063C6FD /* Art.txt */; };
 		11D152DF24DA08CF0063C6FD /* Sports.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152DB24DA08CF0063C6FD /* Sports.txt */; };
 		11D152E024DA08CF0063C6FD /* Technology.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152DC24DA08CF0063C6FD /* Technology.txt */; };
+		11D152E224DA1C940063C6FD /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D152E124DA1C940063C6FD /* ShopViewController.swift */; };
 		11D793C32428822A00435B54 /* Common_Words.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793BE2428822A00435B54 /* Common_Words.txt */; };
 		11D793C62428822A00435B54 /* Countries.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C12428822A00435B54 /* Countries.txt */; };
 		11D793C72428822A00435B54 /* Adjectives.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D793C22428822A00435B54 /* Adjectives.txt */; };
@@ -92,6 +93,7 @@
 		11D152DA24DA08CF0063C6FD /* Art.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Art.txt; sourceTree = "<group>"; };
 		11D152DB24DA08CF0063C6FD /* Sports.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Sports.txt; sourceTree = "<group>"; };
 		11D152DC24DA08CF0063C6FD /* Technology.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Technology.txt; sourceTree = "<group>"; };
+		11D152E124DA1C940063C6FD /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		11D793BE2428822A00435B54 /* Common_Words.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Common_Words.txt; sourceTree = "<group>"; };
 		11D793C12428822A00435B54 /* Countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Countries.txt; sourceTree = "<group>"; };
 		11D793C22428822A00435B54 /* Adjectives.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Adjectives.txt; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				112CFA0524ABD54900DD22B7 /* CoreDataManager.swift */,
 				110587212424338E0005B62D /* StartViewController.swift */,
 				110587232424338E0005B62D /* Main.storyboard */,
+				11D152E124DA1C940063C6FD /* ShopViewController.swift */,
 				11C3D9F324A9A0AD00EC89E1 /* StatisticsViewController.swift */,
 				113FBE69249D5F7500DBAE55 /* GameOverViewController.swift */,
 				118D74C5242C7048007DB21E /* CategoryViewController.swift */,
@@ -526,6 +529,7 @@
 				111A7EAE24763D07006CF80D /* Game.swift in Sources */,
 				112CFA0624ABD54900DD22B7 /* CoreDataManager.swift in Sources */,
 				110587222424338E0005B62D /* StartViewController.swift in Sources */,
+				11D152E224DA1C940063C6FD /* ShopViewController.swift in Sources */,
 				1105871E2424338E0005B62D /* AppDelegate.swift in Sources */,
 				113FBE6A249D5F7500DBAE55 /* GameOverViewController.swift in Sources */,
 				11C3D9F424A9A0AD00EC89E1 /* StatisticsViewController.swift in Sources */,

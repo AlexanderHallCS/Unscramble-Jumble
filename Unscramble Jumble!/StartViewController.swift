@@ -73,12 +73,22 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         categoryVC.didMove(toParent: self)
     }
     
+    // causes the statistics VC to pop up
     @IBAction func goToStatisticsVC(_ sender: UIButton) {
         let statisticsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StatisticsPopUpID") as! StatisticsViewController
         self.addChild(statisticsVC)
         statisticsVC.view.frame = self.view.frame
         self.view.addSubview(statisticsVC.view)
         statisticsVC.didMove(toParent: self)
+    }
+    
+    // causes the shop VC to pop up
+    @IBAction func goToShopVC(_ sender: UIButton) {
+        let shopVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ShopPopUpID") as! ShopViewController
+        self.addChild(shopVC)
+        shopVC.view.frame = self.view.frame
+        self.view.addSubview(shopVC.view)
+        shopVC.didMove(toParent: self)
     }
     
     @IBAction func unwindToStartFromPauseOrGameOverVC(segue: UIStoryboardSegue) {
