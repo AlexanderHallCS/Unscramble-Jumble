@@ -70,6 +70,9 @@ class GameViewController: UIViewController {
     
     var scoreAvailableFromWord = 0
     
+    var letterSkinFileNameRoot = ""
+    var blankSpaceFileName = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundImage.image = UIImage(named: imageName)
@@ -84,6 +87,8 @@ class GameViewController: UIViewController {
         scoreLabel.textColor = hintsAndScoreLabelColor
         hintsLeftLabel.textColor = hintsAndScoreLabelColor
         
+        // getLetterSkin() has to be first in order to get the file names
+        getLetterSkin()
         addBlankSpaces()
         addLetters()
         assignRightAmountOfHints()
@@ -112,7 +117,7 @@ class GameViewController: UIViewController {
         let yRowShift: CGFloat = self.view.frame.width/10 * CGFloat(game!.unscrambledWord.split(separator: " ").count-1)
         for letter in game!.unscrambledWord.indices {
             if game!.unscrambledWord[letter] != " " {
-                blankSpaces.append(UIImageView(image: UIImage(named: "Blank Space")!))
+                blankSpaces.append(UIImageView(image: UIImage(named: blankSpaceFileName)!))
             }
         }
         // start of formatting blank spaces for words/word phrases where all words are <= 6 characters long
@@ -183,7 +188,7 @@ class GameViewController: UIViewController {
     // adds all the letters to the bottom of the screen and positions them accordingly
     private func addLetters() {
         for letter in game!.scrambledWord.indices {
-            letters.append(UIImageView(image: UIImage(named: String(game!.scrambledWord[letter].uppercased()))!))
+            letters.append(UIImageView(image: UIImage(named: String(game!.scrambledWord[letter].uppercased())+letterSkinFileNameRoot)!))
         }
         
         // allowing touch events to be registered on the letters
@@ -647,6 +652,21 @@ class GameViewController: UIViewController {
             } catch let error {
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    private func getLetterSkin() {
+        
+        switch coreDataManager.fetchIAPData().currentLetterSkin {
+        case 0:
+        letterSkinFileNameRoot = ""
+        blankSpaceFileName = "Blank Space"
+        case 1:
+        letterSkinFileNameRoot = " Wooden"
+        blankSpaceFileName = "Blank Space Wooden"
+        default:
+        letterSkinFileNameRoot = " Metal"
+        blankSpaceFileName = "Blank Space Metal"
         }
     }
     
