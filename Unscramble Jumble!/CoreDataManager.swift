@@ -43,6 +43,19 @@ class CoreDataManager {
         }
     }
     
+    public func addAndSaveIAPData(currentLetterSkin: Int, hasPurchased: Bool) {
+        let entity = NSEntityDescription.entity(forEntityName: "InAppPurchase", in: context!)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue(currentLetterSkin, forKey: "currentLetterSkin")
+        newUser.setValue(hasPurchased, forKey: "hasPurchased")
+        
+        do {
+            try context!.save()
+        } catch {
+            fatalError("Could not save data!")
+        }
+    }
+    
     public func fetchTotalStatsData() -> (totalGamesPlayed: Int, totalScore: Int, totalWordsSolved: Int) {
         
         var totalGamesPlayed: UInt32 = 0
@@ -88,4 +101,26 @@ class CoreDataManager {
         }
         return (bestCategory: bestCategory, bestHintsUsed: Int(bestHintsUsed), bestScore: Int(bestScore), bestWordsSolved: Int(bestWordsSolved))
     }
+    
+    public func fetchIAPData() -> (currentLetterSkin: Int, hasPurchased: Bool) {
+        
+        var currentLetterSkin: UInt32 = 0
+        var hasPurchased = false
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "InAppPurchase")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context!.fetch(request)
+            for data in result as! [NSManagedObject] {
+                currentLetterSkin = (data.value(forKey: "currentLetterSkin") as! UInt32)
+                hasPurchased = (data.value(forKey: "hasPurchased") as! Bool)
+            }
+        } catch {
+            fatalError("Could not fetch data!")
+        }
+        
+        return (currentLetterSkin: Int(currentLetterSkin), hasPurchased: hasPurchased)
+    }
+    
 }
