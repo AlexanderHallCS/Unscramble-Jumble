@@ -105,7 +105,7 @@
                                         <rect key="frame" x="-7.3333333333333428" y="-5.3333333333333428" width="344.66666666666674" height="504.66666666666674"/>
                                     </imageView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbd-Hg-EwK">
-                                        <rect key="frame" x="0.0" y="102.66666666666666" width="330" height="391.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="102.66666666666666" width="330" height="391.33333333333326"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1In-yF-YN7" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="330" height="805.33333333333337"/>
@@ -161,21 +161,33 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Premium" translatesAutoresizingMaskIntoConstraints="NO" id="EUG-aM-0wh">
                                                         <rect key="frame" x="47" y="452.66666666666674" width="236" height="45"/>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gY0-BH-Tow" userLabel="Gaming">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gY0-BH-Tow" userLabel="Art">
                                                         <rect key="frame" x="8" y="525.33333333333337" width="314" height="49"/>
                                                         <state key="normal" backgroundImage="GrayedArt"/>
+                                                        <connections>
+                                                            <action selector="artToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="Qfe-28-w9d"/>
+                                                        </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpL-0L-pOq" userLabel="Movies">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpL-0L-pOq" userLabel="Science">
                                                         <rect key="frame" x="8" y="597.33333333333337" width="314" height="49"/>
                                                         <state key="normal" backgroundImage="GrayedScience"/>
+                                                        <connections>
+                                                            <action selector="scienceToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="xrI-bz-XfI"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNm-p1-bd3" userLabel="Sports">
                                                         <rect key="frame" x="8" y="669" width="314" height="49"/>
                                                         <state key="normal" backgroundImage="GrayedSports"/>
+                                                        <connections>
+                                                            <action selector="sportsToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="S8e-4N-YHE"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSb-2J-JSW" userLabel="Technology">
                                                         <rect key="frame" x="8.3333333333333428" y="740.66666666666674" width="313.33333333333326" height="49"/>
                                                         <state key="normal" backgroundImage="GrayedTechnology"/>
+                                                        <connections>
+                                                            <action selector="technologyToGame:" destination="mIU-lr-PUK" eventType="touchUpInside" id="NAi-vN-g5H"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.84705882352941175" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -299,13 +311,21 @@
                     </view>
                     <navigationItem key="navigationItem" id="lOa-em-dtd"/>
                     <connections>
+                        <outlet property="artButton" destination="gY0-BH-Tow" id="mQL-tT-hs2"/>
+                        <outlet property="scienceButton" destination="ZpL-0L-pOq" id="6px-UI-tBC"/>
                         <outlet property="scrollView" destination="Tbd-Hg-EwK" id="FIx-Im-6jv"/>
+                        <outlet property="sportsButton" destination="CNm-p1-bd3" id="SrU-2S-TM7"/>
+                        <outlet property="technologyButton" destination="gSb-2J-JSW" id="ead-zk-Xe5"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="adjectivesToGame" id="XW0-nI-bbu"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="commonWordsToGame" id="fCs-Dl-3sc"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="countriesToGame" id="FzA-oP-uEn"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="natureToGame" id="pbh-Dt-RRw"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="spaceToGame" id="Xtd-O8-0jn"/>
                         <segue destination="Y3p-mg-j3y" kind="show" identifier="animalsToGame" id="J9Z-9y-AkT"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="artToGame" id="Tbk-Qs-ZHF"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="scienceToGame" id="Iat-3N-0ES"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="sportsToGame" id="KLt-xe-NQ1"/>
+                        <segue destination="Y3p-mg-j3y" kind="show" identifier="technologyToGame" id="jwY-98-wAE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MxW-bi-lG3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -476,7 +496,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2MB-IC-3pS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5871" y="112"/>
+            <point key="canvasLocation" x="6087" y="113"/>
         </scene>
         <!--Pause View Controller-->
         <scene sceneID="K0U-Hb-IWG">
@@ -526,7 +546,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5M-tN-4SW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="hfA-Kh-IzV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6708.6956521739139" y="112.5"/>
+            <point key="canvasLocation" x="6814" y="113"/>
         </scene>
         <!--Game Over View Controller-->
         <scene sceneID="aK7-dK-S8t">
@@ -1120,7 +1140,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="J9Z-9y-AkT"/>
+        <segue reference="Xtd-O8-0jn"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="A" width="500" height="500"/>

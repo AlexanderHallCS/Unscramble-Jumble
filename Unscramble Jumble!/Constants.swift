@@ -16,6 +16,11 @@ struct FileNames {
         static let countries = "Countries"
         static let nature = "Nature"
         static let space = "Space"
+        // premium category word files
+        static let art = "Art"
+        static let science = "Science"
+        static let sports = "Sports"
+        static let technology = "Technology"
     }
     
     enum BGImageFileNames {
@@ -25,6 +30,11 @@ struct FileNames {
         static let countries = "CountriesBG"
         static let nature = "NatureBG"
         static let space = "SpaceBG"
+        // premium category image files
+        static let art = "ArtBG"
+        static let science = "ScienceBG"
+        static let sports = "SportsBG"
+        static let technology = "TechnologyBG"
     }
 }
 
