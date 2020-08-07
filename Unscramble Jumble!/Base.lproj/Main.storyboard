@@ -105,7 +105,7 @@
                                         <rect key="frame" x="-7.3333333333333428" y="-5.3333333333333428" width="344.66666666666674" height="504.66666666666674"/>
                                     </imageView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tbd-Hg-EwK">
-                                        <rect key="frame" x="0.0" y="102.66666666666666" width="330" height="391.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="102.66666666666666" width="330" height="391.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1In-yF-YN7" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="330" height="805.33333333333337"/>
@@ -961,13 +961,13 @@
                                         <rect key="frame" x="172.33333333333334" y="184.66666666666669" width="150.00000000000003" height="27"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A" translatesAutoresizingMaskIntoConstraints="NO" id="zGy-Jq-Ybg" userLabel="A Default">
-                                        <rect key="frame" x="21.666666666666664" y="302" width="59.999999999999993" height="53"/>
+                                        <rect key="frame" x="25.666666666666671" y="302" width="53" height="53"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A Grayed Wooden" translatesAutoresizingMaskIntoConstraints="NO" id="v2n-Qv-cD7">
-                                        <rect key="frame" x="135" y="302" width="60" height="53"/>
+                                        <rect key="frame" x="138.66666666666666" y="302" width="53" height="53"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="A Grayed Metal" translatesAutoresizingMaskIntoConstraints="NO" id="Du4-Ma-9yf">
-                                        <rect key="frame" x="253" y="302" width="60" height="53"/>
+                                        <rect key="frame" x="256.66666666666669" y="302" width="53" height="53"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="NdI-NF-hP6">
                                         <rect key="frame" x="24" y="363" width="56" height="21"/>
@@ -992,6 +992,9 @@
                                         <state key="normal" backgroundImage="Blank Button">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="promptPurchase:" destination="lTs-Pi-Bpd" eventType="touchUpInside" id="YA1-M2-gy6"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase All for $0.99!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="LSV-pG-diZ">
                                         <rect key="frame" x="33" y="434" width="264" height="19"/>
@@ -1009,7 +1012,7 @@
                                     <constraint firstItem="TDP-5f-H8i" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.0128205" id="2RR-RM-9Xd"/>
                                     <constraint firstItem="Waf-EY-uGn" firstAttribute="leading" secondItem="AqO-v5-1pn" secondAttribute="trailing" multiplier="6.33/330" id="2rj-g1-vnL"/>
                                     <constraint firstItem="fjf-Ad-68h" firstAttribute="leading" secondItem="AqO-v5-1pn" secondAttribute="trailing" multiplier="6.33/330" id="2xY-sE-vjj"/>
-                                    <constraint firstItem="zGy-Jq-Ybg" firstAttribute="leading" secondItem="AqO-v5-1pn" secondAttribute="trailing" multiplier="21.67/330" id="3Wn-bf-Wgy"/>
+                                    <constraint firstItem="zGy-Jq-Ybg" firstAttribute="leading" secondItem="AqO-v5-1pn" secondAttribute="trailing" multiplier="25.5/330" id="3Wn-bf-Wgy"/>
                                     <constraint firstItem="LSV-pG-diZ" firstAttribute="centerY" secondItem="ZvT-ky-x7T" secondAttribute="centerY" id="3fS-NJ-8Cv"/>
                                     <constraint firstItem="Gxw-z6-jim" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.115385" constant="2.9998099999999965" id="52M-B8-6TV"/>
                                     <constraint firstItem="gO4-32-coe" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.454545" id="60D-4j-ErL"/>
@@ -1019,7 +1022,7 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qFN-uO-Aak" secondAttribute="trailing" priority="500" constant="20" symbolic="YES" id="8c8-mc-fAv"/>
                                     <constraint firstItem="fjf-Ad-68h" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.454545" id="9Bl-1t-gh7"/>
                                     <constraint firstItem="CXs-om-Dee" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.161943" id="9Ct-p6-5Kb"/>
-                                    <constraint firstItem="v2n-Qv-cD7" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.181818" id="9aj-k3-G1p"/>
+                                    <constraint firstItem="v2n-Qv-cD7" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.160605" id="9aj-k3-G1p"/>
                                     <constraint firstItem="Du4-Ma-9yf" firstAttribute="top" secondItem="AqO-v5-1pn" secondAttribute="bottom" multiplier="302/494" id="9gb-TD-eab"/>
                                     <constraint firstItem="LSV-pG-diZ" firstAttribute="centerX" secondItem="ZvT-ky-x7T" secondAttribute="centerX" id="AVX-mU-al2"/>
                                     <constraint firstItem="NdI-NF-hP6" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.0425101" id="AwZ-PJ-buL"/>
@@ -1030,7 +1033,7 @@
                                     <constraint firstItem="MuG-v8-gAc" firstAttribute="centerX" secondItem="AqO-v5-1pn" secondAttribute="centerX" id="Dko-c0-F4w"/>
                                     <constraint firstItem="18F-nz-z9A" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.013" id="Eqz-Af-Wai"/>
                                     <constraint firstItem="CXs-om-Dee" firstAttribute="centerX" secondItem="AqO-v5-1pn" secondAttribute="centerX" id="FDA-ug-k7R"/>
-                                    <constraint firstItem="zGy-Jq-Ybg" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.181818" id="GJs-Ya-b0B"/>
+                                    <constraint firstItem="zGy-Jq-Ybg" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.160605" id="GJs-Ya-b0B"/>
                                     <constraint firstItem="LSV-pG-diZ" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.8" id="GXX-qY-kWh"/>
                                     <constraint firstItem="y5y-Bl-hcS" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.454545" id="Hk2-GI-cFy"/>
                                     <constraint firstItem="TDP-5f-H8i" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" id="IdY-R2-L2Y"/>
@@ -1082,16 +1085,16 @@
                                     <constraint firstItem="Ntx-my-3dX" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.721212" id="pTB-rA-Ial"/>
                                     <constraint firstItem="18F-nz-z9A" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" id="rPc-aW-uge"/>
                                     <constraint firstItem="CXs-om-Dee" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.99697" id="s65-2X-lmr"/>
-                                    <constraint firstItem="Ntx-my-3dX" firstAttribute="top" secondItem="AqO-v5-1pn" secondAttribute="bottom" multiplier="240/494" symbolic="YES" id="sQZ-xl-bvs"/>
+                                    <constraint firstItem="Ntx-my-3dX" firstAttribute="top" secondItem="AqO-v5-1pn" secondAttribute="bottom" multiplier="240/494" id="sQZ-xl-bvs"/>
                                     <constraint firstItem="LSV-pG-diZ" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.0384615" id="tQq-cW-87F"/>
                                     <constraint firstItem="MuG-v8-gAc" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.0688259" id="tWz-LR-RCr"/>
-                                    <constraint firstItem="Du4-Ma-9yf" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.181818" id="uJP-Qh-HuN"/>
+                                    <constraint firstItem="Du4-Ma-9yf" firstAttribute="width" secondItem="AqO-v5-1pn" secondAttribute="width" multiplier="0.160605" id="uJP-Qh-HuN"/>
                                     <constraint firstItem="b9D-v8-ubM" firstAttribute="top" secondItem="AqO-v5-1pn" secondAttribute="top" constant="1" id="uYk-88-rfE"/>
                                     <constraint firstItem="zGy-Jq-Ybg" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.107287" id="vBo-09-wlf"/>
                                     <constraint firstItem="Ntx-my-3dX" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.0566802" id="vaJ-Xt-weC"/>
                                     <constraint firstItem="y5y-Bl-hcS" firstAttribute="leading" secondItem="AqO-v5-1pn" secondAttribute="trailing" multiplier="172.33/330" id="xdC-YV-FBb"/>
                                     <constraint firstItem="Du4-Ma-9yf" firstAttribute="height" secondItem="AqO-v5-1pn" secondAttribute="height" multiplier="0.107287" id="ykl-A3-BXr"/>
-                                    <constraint firstItem="Du4-Ma-9yf" firstAttribute="leading" secondItem="AqO-v5-1pn" secondAttribute="trailing" multiplier="253/330" id="zsp-ij-mfR"/>
+                                    <constraint firstItem="Du4-Ma-9yf" firstAttribute="leading" secondItem="AqO-v5-1pn" secondAttribute="trailing" multiplier="256.83/330" id="zsp-ij-mfR"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1104,6 +1107,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SL5-3a-5NX"/>
                     </view>
+                    <connections>
+                        <outlet property="defaultLetter" destination="zGy-Jq-Ybg" id="bmA-u6-WN0"/>
+                        <outlet property="metalLetter" destination="Du4-Ma-9yf" id="lmI-fe-CLj"/>
+                        <outlet property="purchaseAllLabel" destination="LSV-pG-diZ" id="DVP-WW-1ex"/>
+                        <outlet property="woodenLetter" destination="v2n-Qv-cD7" id="9KN-Br-aKD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j3w-nn-S19" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
