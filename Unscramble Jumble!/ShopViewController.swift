@@ -28,9 +28,7 @@ class ShopViewController: UIViewController {
         self.animateIn()
     }
     
-    // makes it so that the grayed out wooden and metal image views are not gray if the user purchased the bundle
-    // also enables user interaction
-    // also adds yellow border to the chosen letter
+    // makes it so that the grayed out wooden and metal image views are not gray if the user purchased the bundle, enables user interaction, and adds yellow border to chosen letter
     private func colorAndPrepareLetters() {
         //print("VALUE: \(coreDataManager.fetchIAPData().hasPurchased)")
         if coreDataManager.fetchIAPData().hasPurchased == true {
