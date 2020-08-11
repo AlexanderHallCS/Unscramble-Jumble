@@ -9,11 +9,7 @@
 import UIKit
 import GoogleMobileAds
 
-var isSoundOn = true
-
 class StartViewController: UIViewController, GADBannerViewDelegate {
-    
-    @IBOutlet var soundButton: UIButton!
     
     var bannerView: GADBannerView!
     
@@ -54,15 +50,14 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         bannerView.load(GADRequest())
     }
     
-    @IBAction func toggleSound(_ sender: UIButton) {
-        if isSoundOn {
-            isSoundOn = false
-            soundButton.setBackgroundImage(UIImage(named: "StopSoundButton"), for: .normal)
-        } else {
-            isSoundOn = true
-            soundButton.setBackgroundImage(UIImage(named: "BaseSoundButton"), for: .normal)
-        }
+    @IBAction func goToSettingsVC(_ sender: UIButton) {
+        let settingsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsPopUpID") as! SettingsViewController
+        self.addChild(settingsVC)
+        settingsVC.view.frame = self.view.frame
+        self.view.addSubview(settingsVC.view)
+        settingsVC.didMove(toParent: self)
     }
+    
     
     // causes the category VC to pop up
     @IBAction func goToCategoryVC(_ sender: UIButton) {
