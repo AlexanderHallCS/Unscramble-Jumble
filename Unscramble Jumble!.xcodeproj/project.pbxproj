@@ -28,6 +28,7 @@
 		11A022B22481F5E600D49FFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11A022B12481F5E600D49FFB /* GoogleService-Info.plist */; };
 		11A9A1D624A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11A9A1D424A3E09F00B10696 /* Unscramble_Jumble.xcdatamodeld */; };
 		11A9F3FD247A6BBD0093E699 /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */; };
+		11BC840F24E3062100225B3C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11BC840E24E3062100225B3C /* StoreKit.framework */; };
 		11C3D9F424A9A0AD00EC89E1 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C3D9F324A9A0AD00EC89E1 /* StatisticsViewController.swift */; };
 		11D152DD24DA08CF0063C6FD /* Science.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152D924DA08CE0063C6FD /* Science.txt */; };
 		11D152DE24DA08CF0063C6FD /* Art.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11D152DA24DA08CF0063C6FD /* Art.txt */; };
@@ -90,6 +91,7 @@
 		11A022B12481F5E600D49FFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		11A9A1D524A3E09F00B10696 /* Unscramble_Jumble.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Unscramble_Jumble.xcdatamodel; sourceTree = "<group>"; };
 		11A9F3FC247A6BBD0093E699 /* PauseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewController.swift; sourceTree = "<group>"; };
+		11BC840E24E3062100225B3C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		11C3D9F324A9A0AD00EC89E1 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		11D152D924DA08CE0063C6FD /* Science.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Science.txt; sourceTree = "<group>"; };
 		11D152DA24DA08CF0063C6FD /* Art.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Art.txt; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B58425082A11C346D5F98882 /* Pods_Unscramble_Jumble_.framework in Frameworks */,
+				11BC840F24E3062100225B3C /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +258,7 @@
 		7A0D13E767F739ECF5F6019A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11BC840E24E3062100225B3C /* StoreKit.framework */,
 				41D3F17EE563DACE510D17BC /* Pods_Unscramble_Jumble_.framework */,
 				AF8D8C68B8B54DD4B18EBF0E /* Pods_Unscramble_Jumble__Unscramble_Jumble_UITests.framework */,
 				D0862E7F9D3464E71480FFBD /* Pods_Unscramble_Jumble_Tests.framework */,

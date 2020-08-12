@@ -7,19 +7,25 @@
 //
 
 import UIKit
+import StoreKit
 
 var isSoundOn = true
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, SKPaymentTransactionObserver/*, SKProductsRequestDelegate*/ {
 
     @IBOutlet var soundLabel: UILabel!
     @IBOutlet var soundButton: UIButton!
+    
+    var coreDataManager = CoreDataManager()
+    
+    var myProduct: SKProduct?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         soundLabel.textColor = UIColor.black
         setSwitchToCorrectValue()
+        //fetchProducts()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.animateIn()
     }
@@ -63,7 +69,68 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func restorePurchase(_ sender: UIButton) {
-        
+        if coreDataManager.fetchIAPData().hasPurchased == false {
+            print("RESTORE PPURCHASHSHHSS")
+            SKPaymentQueue.default().restoreCompletedTransactions()
+            //fetchProducts()
+            
+            /*guard let myProduct = myProduct else {
+                return
+            }
+            
+            let payment = SKPayment(product: myProduct)
+            SKPaymentQueue.default().add(self)
+            SKPaymentQueue.default().add(payment) */
+        } else {
+            let alert = UIAlertController(title: "Oops", message: "There are no purchases to restore.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+                alert.removeFromParent()
+            })
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    /*private func fetchProducts() {
+        let request = SKProductsRequest(productIdentifiers: ["com.alexanderhallcs.Unscramble_Jumble.ShopPurchase"])
+        request.delegate = self
+        request.start()
+    } */
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        print("CALLED US NOW YES HAHAHA")
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .restored:
+                coreDataManager.addAndSaveIAPData(currentLetterSkin: 0, hasPurchased: true)
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+                let alert = UIAlertController(title: "Success", message: "Purchase has been restored!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+                    alert.removeFromParent()
+                })
+                self.present(alert, animated: true, completion: nil)
+                print("WE HAVE RESTORED!")
+            default:
+                break
+            }
+        }
+    }
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        if let product = response.products.first {
+            myProduct = product
+        }
     }
 
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        print("POOO")
+        if queue.transactions.count == 0 {
+            print("UH OH STINKY")
+            let alert = UIAlertController(title: "Oops", message: "There are no purchases to restore.", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default) {(action: UIAlertAction) -> Void in
+                alert.removeFromParent()
+            })
+        }
+    }
+    
 }

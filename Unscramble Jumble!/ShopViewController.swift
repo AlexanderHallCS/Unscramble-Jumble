@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import StoreKit
 
-class ShopViewController: UIViewController {
-
+class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProductsRequestDelegate {
     
     @IBOutlet var defaultLetter: UIImageView!
     @IBOutlet var woodenLetter: UIImageView!
@@ -18,12 +18,18 @@ class ShopViewController: UIViewController {
     @IBOutlet var purchaseAllLabel: UILabel!
     
     var coreDataManager = CoreDataManager()
+
+    var myProduct: SKProduct?
+    let productID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //coreDataManager.addAndSaveIAPData(currentLetterSkin: coreDataManager.fetchIAPData().currentLetterSkin,hasPurchased: true)
+        
+        print("HAVE WE PURCHASED?: \(coreDataManager.fetchIAPData().hasPurchased)")
+        getProducts()
         colorAndPrepareLetters()
+        preparePurchaseLabel()
+        SKPaymentQueue.default().add(self)
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         self.animateIn()
     }
@@ -95,6 +101,66 @@ class ShopViewController: UIViewController {
     
     @IBAction func promptPurchase(_ sender: UIButton) {
         
+        if coreDataManager.fetchIAPData().hasPurchased == false && SKPaymentQueue.canMakePayments() {
+            let paymentRequest = SKMutablePayment()
+            paymentRequest.productIdentifier = "com.alexanderhallcs.Unscramble_Jumble.ShopPurchase"
+            SKPaymentQueue.default().add(paymentRequest)
+            /*let payment = SKPayment(product: myProduct)
+            SKPaymentQueue.default().add(payment) */
+        }
+    }
+    
+    // fetches the products so that the price can be used in setting the purchase all label text
+    private func getProducts() {
+        let request = SKProductsRequest(productIdentifiers: [productID])
+        request.delegate = self
+        request.start()
+    }
+    
+    private func preparePurchaseLabel() {
+        if coreDataManager.fetchIAPData().hasPurchased {
+            purchaseAllLabel.text = "Purchased!"
+        }
+    }
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        print("CALLED!")
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchasing:
+                break
+            case .restored:
+                print("RESTORED BUT NOT HERE")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+            case .purchased:
+                purchaseAllLabel.text = "Purchased!"
+                coreDataManager.addAndSaveIAPData(currentLetterSkin: 0, hasPurchased: true)
+                colorAndPrepareLetters()
+                print("HAS PURCHASED IS TRUE NOWWWWWWWWWWW")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+            case .failed, .deferred:
+                print("ETHAN BRADBERRY")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+            default:
+                print("DEFAULT CASE")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+            }
+        }
+    }
+    
+    // gets the product in order to get the localized price and set it onto the purchase all label
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        print("PRODUCT REQUESTED!")
+        if let product = response.products.first {
+            myProduct = product
+        }
+        DispatchQueue.main.async {
+            self.purchaseAllLabel.text = "Purchase All for \(self.myProduct!.localizedPrice())!"
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -127,4 +193,13 @@ class ShopViewController: UIViewController {
         }
     }
     
+}
+
+extension SKProduct {
+    func localizedPrice() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = self.priceLocale
+        return formatter.string(from: self.price)!
+    }
 }
