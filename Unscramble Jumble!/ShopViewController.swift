@@ -25,8 +25,9 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("HAVE WE PURCHASED?: \(coreDataManager.fetchIAPData().hasPurchased)")
-        getProducts()
+        if coreDataManager.fetchIAPData().hasPurchased == false {
+            getProducts()
+        }
         colorAndPrepareLetters()
         preparePurchaseLabel()
         SKPaymentQueue.default().add(self)
@@ -36,9 +37,7 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
     
     // makes it so that the grayed out wooden and metal image views are not gray if the user purchased the bundle, enables user interaction, and adds yellow border to chosen letter
     private func colorAndPrepareLetters() {
-        //print("VALUE: \(coreDataManager.fetchIAPData().hasPurchased)")
         if coreDataManager.fetchIAPData().hasPurchased == true {
-            //print("ANY TRUERS?")
             woodenLetter.image = UIImage(named: "A Wooden")
             metalLetter.image = UIImage(named: "A Metal")
             defaultLetter.isUserInteractionEnabled = true
@@ -103,10 +102,8 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
         
         if coreDataManager.fetchIAPData().hasPurchased == false && SKPaymentQueue.canMakePayments() {
             let paymentRequest = SKMutablePayment()
-            paymentRequest.productIdentifier = "com.alexanderhallcs.Unscramble_Jumble.ShopPurchase"
+            paymentRequest.productIdentifier = productID
             SKPaymentQueue.default().add(paymentRequest)
-            /*let payment = SKPayment(product: myProduct)
-            SKPaymentQueue.default().add(payment) */
         }
     }
     
@@ -130,22 +127,18 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
             case .purchasing:
                 break
             case .restored:
-                print("RESTORED BUT NOT HERE")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 SKPaymentQueue.default().remove(self)
             case .purchased:
                 purchaseAllLabel.text = "Purchased!"
                 coreDataManager.addAndSaveIAPData(currentLetterSkin: 0, hasPurchased: true)
                 colorAndPrepareLetters()
-                print("HAS PURCHASED IS TRUE NOWWWWWWWWWWW")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 SKPaymentQueue.default().remove(self)
             case .failed, .deferred:
-                print("ETHAN BRADBERRY")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 SKPaymentQueue.default().remove(self)
             default:
-                print("DEFAULT CASE")
                 SKPaymentQueue.default().finishTransaction(transaction)
                 SKPaymentQueue.default().remove(self)
             }
@@ -154,7 +147,6 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
     
     // gets the product in order to get the localized price and set it onto the purchase all label
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        print("PRODUCT REQUESTED!")
         if let product = response.products.first {
             myProduct = product
         }
@@ -165,7 +157,6 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let firstTouch = touches.first {
-            //print("Touch Check Value: \(coreDataManager.fetchIAPData().hasPurchased)")
             if coreDataManager.fetchIAPData().hasPurchased == true {
                 switch firstTouch.view {
                 case defaultLetter:
@@ -173,19 +164,16 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
                     defaultLetter.layer.borderWidth = defaultLetter.frame.width/17
                     getLetterImageViewFromCurrentSkin().layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
                     coreDataManager.addAndSaveIAPData(currentLetterSkin: 0, hasPurchased: true)
-                    //print("Touch Check Value Default Letter: \(coreDataManager.fetchIAPData().hasPurchased)")
                 case woodenLetter:
                     woodenLetter.layer.borderColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
                     woodenLetter.layer.borderWidth = woodenLetter.frame.width/17
                     getLetterImageViewFromCurrentSkin().layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
                     coreDataManager.addAndSaveIAPData(currentLetterSkin: 1, hasPurchased: true)
-                    //print("Touch Check Value Wooden: \(coreDataManager.fetchIAPData().hasPurchased)")
                 case metalLetter:
                     metalLetter.layer.borderColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
                     metalLetter.layer.borderWidth = metalLetter.frame.width/17
                     getLetterImageViewFromCurrentSkin().layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
                     coreDataManager.addAndSaveIAPData(currentLetterSkin: 2, hasPurchased: true)
-                    //print("Touch Check Value Metal: \(coreDataManager.fetchIAPData().hasPurchased)")
                 default:
                     break
                 }
