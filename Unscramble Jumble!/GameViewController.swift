@@ -563,10 +563,10 @@ class GameViewController: UIViewController {
         shouldAddGreenBorder = true
         shouldAddRedBorder = true
         
-        //takes away 2 seconds for every word solved down to a minimum of 6 seconds
+        //takes away 2 seconds for every word solved down to a minimum of 4 seconds
         if isNewGame == false {
             seconds = 30.0 - 2*secondsSubtractingMultiplier
-            if 30.0 - 2*secondsSubtractingMultiplier > 6.0 {
+            if 30.0 - 2*secondsSubtractingMultiplier > 4.0 {
                 secondsSubtractingMultiplier += 1
             }
         } else {
