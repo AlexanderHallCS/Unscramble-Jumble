@@ -114,6 +114,7 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
         request.start()
     }
     
+    // makes sure that the purchaseAllLabel isn't reset when shop VC is dismissed and created again
     private func preparePurchaseLabel() {
         if coreDataManager.fetchIAPData().hasPurchased {
             purchaseAllLabel.text = "Purchased!"
@@ -121,7 +122,6 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        print("CALLED!")
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchasing:
@@ -183,6 +183,7 @@ class ShopViewController: UIViewController, SKPaymentTransactionObserver, SKProd
     
 }
 
+// used to make sure the right currency shows up for every user
 extension SKProduct {
     func localizedPrice() -> String {
         let formatter = NumberFormatter()

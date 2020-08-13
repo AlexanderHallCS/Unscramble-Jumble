@@ -104,6 +104,7 @@ class SettingsViewController: UIViewController, SKPaymentTransactionObserver {
         }
     }
 
+    // shows the user an alert if they haven't made an in-app purchase yet, but they try to restore purchases
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         if queue.transactions.count == 0 {
             showOopsAlert()
