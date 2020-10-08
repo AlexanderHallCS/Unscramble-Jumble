@@ -93,7 +93,8 @@ class SettingsViewController: UIViewController, SKPaymentTransactionObserver {
                 })
                 self.present(alert, animated: true, completion: nil)
             default:
-                break
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
             }
         }
     }
