@@ -5,7 +5,7 @@ target 'Unscramble Jumble!' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Stretchy Ohio
+  # Pods for Unscramble Jumble@
   pod 'FirebaseCore'
   pod 'Google-Mobile-Ads-SDK'
 
