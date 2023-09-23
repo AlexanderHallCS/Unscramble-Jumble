@@ -17,7 +17,7 @@ class StartViewController: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
         
         // setting up banner ad
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
         bannerView.adUnitID = Keys.adUnitID
         bannerView.rootViewController = self
         bannerView.delegate = self

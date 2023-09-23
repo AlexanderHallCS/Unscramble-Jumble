@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import GoogleMobileAds
-import Firebase
+import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
